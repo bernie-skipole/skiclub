@@ -36,8 +36,8 @@
 "nextmembers": 3051,
 "nextusers": 3041,
 "no_javascript": 540,
+"public": 7001,
 "redirector": 530,
-"sensors": 7001,
 "server_error": 520,
 "setpin": 8100,
 "setup": 3001,
@@ -2827,20 +2827,20 @@ false,
 },
 "public": {
 "ident": 7000,
-"brief": "Sensors pages",
+"brief": "Public pages",
 "default_page_name": "index",
 "restricted": false,
 "folders": {
 "restricted": {
 "ident": 7500,
-"brief": "Sensors pages - restricted",
+"brief": "Public pages - restricted",
 "default_page_name": "index",
 "restricted": true,
 "folders": {},
 "pages": {
-"sensors_template": {
+"public_template": {
 "ident": 7501,
-"brief": "The template for the sensors page",
+"brief": "The template for the public page",
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
@@ -3045,7 +3045,7 @@ false,
 "pages": {
 "index": {
 "ident": 7001,
-"brief": "Responder for sensors index page",
+"brief": "Responder for public index page",
 "RespondPage": {
 "class": "NoOperation",
 "original_args": {
