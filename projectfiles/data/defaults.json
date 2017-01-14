@@ -1,0 +1,109 @@
+{
+"backcol": "#11216a",
+"css_links": [
+"font_css",
+"ski_css"
+],
+"js_links": [
+"jquery_core",
+"skipole_js"
+],
+"widgets": {
+"inputtext": {
+"TextInput2": {
+"label_class": "ski_left_label"
+},
+"SubmitTextInput1": {
+"label_class": "ski_left_label",
+"button_class": "",
+"input_errored_class": "ski_input_errored",
+"input_accepted_class": "ski_input_accepted"
+},
+"SubmitTextInput2": {
+"button_class": "ski_left_label",
+"left_label_class": "ski_left_label"
+},
+"SubmitTextInput3": {
+"button_label_class": "ski_left_label",
+"label_class": "ski_left_label",
+"widget_class": "ski_top_bot_10",
+"input_accepted_class": "ski_input_accepted",
+"input_errored_class": "ski_input_errored"
+},
+"Password2": {
+"label_class": "ski_left_label"
+}
+},
+"paras": {
+"ShowPara": {
+"error_class": "ski_errorcol"
+}
+},
+"inputforms": {
+"SubmitForm1": {
+"left_class": "ski_left_label",
+"widget_class": "ski_top_bot_10"
+}
+},
+"dropdown": {
+"DropDown1": {
+"left_class": "ski_left_label"
+},
+"SubmitDropDown1": {
+"label_class": "ski_left_label"
+}
+},
+"checkbox": {
+"CheckBox1": {
+"left_class": "ski_left_label"
+}
+},
+"links": {
+"ButtonLink1": {
+"widget_class": "ski_midbutton"
+},
+"JSONButtonLink": {
+"widget_class": "ski_midbutton"
+},
+"Table2_Button": {
+"button_class": "ski_table_button",
+"widget_class": "ski_table",
+"even_class": "ski_table_even",
+"odd_class": "ski_table_odd",
+"header_class": "ski_table_header"
+}
+},
+"upload": {
+"SubmitUploadFile1": {
+"filebuttonlabel_class": "ski_left_label",
+"submitbuttonlabel_class": "ski_left_label"
+}
+},
+"confirm": {
+"ConfirmBox1": {
+"widget_class": "ski_confirm",
+"button1_class": "ski_confirm_butt1",
+"button2_class": "ski_confirm_butt2",
+"buttondiv_class": "ski_confirm_buttondiv",
+"para_class": "ski_confirm_para"
+},
+"ConfirmBox2": {
+"boxdiv_class": "ski_confirm",
+"widget_class": "ski_confirm_background",
+"button1_class": "ski_confirm_butt1",
+"button2_class": "ski_confirm_butt2",
+"buttondiv_class": "ski_confirm_buttondiv",
+"para_class": "ski_confirm_para"
+}
+},
+"logins": {
+"Pin4": {
+"inner_div_class": "",
+"char_div_class": "ski_left_pos_30",
+"butt_div_class": "ski_top_bot_10",
+"left_class": "ski_left_label",
+"error_class": "ski_errorcol"
+}
+}
+}
+}
