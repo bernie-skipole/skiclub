@@ -29,7 +29,7 @@ _CHARSPUNCT = _CHARS + "$%*+?"
 _PI = [ ('01', '192.168.1.71', '8000', 'astro', 'station')  ]
 
 # Default message
-_MESSAGE = "Web server started"
+_MESSAGE = "New database created"
 
 # The number of messages to retain
 _N_MESSAGES = 10

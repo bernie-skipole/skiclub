@@ -606,32 +606,6 @@ false,
 "80%"
 ]
 ],
-".ski_session_table": [
-[
-"background-color",
-"#11216a"
-],
-[
-"margin-left",
-"auto"
-],
-[
-"margin-right",
-"auto"
-],
-[
-"padding",
-"5px"
-],
-[
-"width",
-"30em"
-],
-[
-"text-align",
-"center"
-]
-],
 ".ski_top_bot_10": [
 [
 "margin-top",
@@ -3249,23 +3223,7 @@ false,
 "parts": [
 [
 "Text",
-"These web pages allow control of the robotic telescope. Anyone can view the sensor inputs and current operations, members can book sessions to control the telescope."
-],
-[
-"ClosedPart",
-{
-"tag_name": "br",
-"brief": "Line break",
-"show": true
-}
-],
-[
-"ClosedPart",
-{
-"tag_name": "br",
-"brief": "Line break",
-"show": true
-}
+"This is an example project, which uses an sqlite database to provide user membership and administrator logon capabilities."
 ]
 ]
 }
@@ -3274,21 +3232,13 @@ false,
 "Part",
 {
 "tag_name": "p",
-"brief": "UTC",
+"brief": "Default user",
 "show": true,
 "hide_if_empty": false,
 "parts": [
 [
 "Text",
-"All times are UTC."
-],
-[
-"ClosedPart",
-{
-"tag_name": "br",
-"brief": "Line break",
-"show": true
-}
+"When first run, or if the database file members.db is missing, a database will be created with user 'admin', password 'password' and a PIN of '1234'. Use these to log on, create new users - and change the above defaults!"
 ]
 ]
 }
@@ -3303,23 +3253,7 @@ false,
 "parts": [
 [
 "Text",
-"Session times for tonight and tomorrow:"
-],
-[
-"ClosedPart",
-{
-"tag_name": "br",
-"brief": "Line break",
-"show": true
-}
-],
-[
-"ClosedPart",
-{
-"tag_name": "br",
-"brief": "Line break",
-"show": true
-}
+"If you wish to use this example as the base of your own project, do not edit skiclub directly (as future versions may be incompatable), rather use the skipole.py -c copy function to create a copy with your own project name, and edit that as you wish."
 ]
 ]
 }
@@ -3327,32 +3261,29 @@ false,
 [
 "Part",
 {
-"tag_name": "div",
-"brief": "Holds table of time slots",
+"tag_name": "p",
+"brief": "New Tag",
 "show": true,
 "hide_if_empty": false,
-"attribs": {
-"class": "ski_mid_div"
-},
 "parts": [
 [
-"Widget",
+"Text",
+"This project may be suitable for a small club or a Raspberry Pi in-house project, but currently the entire skipole framework has not been tested for security. For more serious usage the wsgi application would also need to be served via a https capable server rather than the Python default web server."
+]
+]
+}
+],
+[
+"Part",
 {
-"class": "tables.TwoColTable1",
-"name": "slots",
-"brief": "Shows available slots",
-"fields": {
-"col0": [],
-"col1": [],
-"even_class": "",
-"header_class": "",
-"odd_class": "",
+"tag_name": "h2",
+"brief": "New Tag",
 "show": true,
-"title1": "",
-"title2": "",
-"widget_class": "ski_session_table"
-}
-}
+"hide_if_empty": false,
+"parts": [
+[
+"Text",
+"Therefore to be specific : This project should only be used for none-critical purposes. The security features are not to be relied upon."
 ]
 ]
 }
