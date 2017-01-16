@@ -163,24 +163,6 @@ _HEADER_TEXT = { 2001 : "Home Page",
                  9501: "Tests Page"
                }
 
-_NAV_BUTTONS = {2001:[['public','Public', True, '']],
-                3501: [['home','Home', True, ''], ['public','Public', True, '']],
-                3510: [['home','Home', True, ''], ['public','Public', True, '']],
-                3520: [['home','Home', True, ''], ['public','Public', True, '']],
-                3540: [['home','Home', True, ''], ['public','Public', True, '']],
-                3610: [['home','Home', True, ''], ['public','Public', True, '']],
-                3620: [['home','Home', True, ''], ['public','Public', True, '']],
-                5501: [['home','Home', True, ''], ['public','Public', True, '']],
-                5510: [['home','Home', True, ''], ['public','Public', True, '']],
-                5520: [['home','Home', True, ''], ['public','Public', True, '']],
-                5530: [['home','Home', True, ''], ['public','Public', True, '']],
-                5540: [['public','Public', True, '']],
-                6501: [['home','Home', True, ''], ['public','Public', True, '']],
-                7501: [['home','Home', True, '']],
-                8501: [['home','Home', True, ''], ['public','Public', True, '']],
-                8601: [['home','Home', True, ''], ['public','Public', True, '']],
-                9501: [['home','Home', True, ''], ['public','Public', True, '']]
-                }
 
 def end_call(page_ident, page_type, call_data, page_data, proj_data, lang):
     """This function is called at the end of a call prior to filling the returned page with page_data,
