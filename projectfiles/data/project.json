@@ -1838,7 +1838,8 @@ false,
 "allowed_callers": [],
 "fail_ident": "home",
 "submit_list": [
-"login",
+"members",
+"set_cookies",
 "logout"
 ],
 "target_ident": 5540
