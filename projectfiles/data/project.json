@@ -32,6 +32,7 @@
 "make_password": 3135,
 "make_pin": 3160,
 "make_pin2": 3170,
+"members": 6001,
 "newpin": 8101,
 "nextmembers": 3051,
 "nextusers": 3041,
@@ -1416,193 +1417,13 @@ false,
 "Part",
 {
 "tag_name": "p",
-"brief": "Options",
+"brief": "About membership",
 "show": true,
 "hide_if_empty": false,
 "parts": [
 [
 "Text",
-"The options available to you are:"
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "h3",
-"brief": "Home",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"Home"
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "p",
-"brief": "About Home",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"Takes you back to the Home page."
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "h3",
-"brief": "Sensors",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"Sensors"
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "p",
-"brief": "About Sensors",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"The Sensors page displays sensor input values measured at the robotic telescope site."
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "h3",
-"brief": "Control",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"Control"
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "p",
-"brief": "About Control",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"Within Control, you can either view the control session if it has been booked by another member, or take control of the robotic telescope within the timeslot if it has previously been booked by yourself."
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "h3",
-"brief": "Book Session",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"Book Session"
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "p",
-"brief": "About Book Session",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"This section allows you to view availability and book, or release, a time slot."
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "h3",
-"brief": "Logout",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"Logout"
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "p",
-"brief": "About Logout",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"On leaving these web pages, you should logout, particularly if you are using a public computer. This stops someone else carrying on with your session after you have left."
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "h3",
-"brief": "Your Settings",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"Your Settings"
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "p",
-"brief": "About User Settings",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"This area allows you to change your password, and set your email address."
+"Logged in members have access to the membership only pages, and also to a settings page where they can change their password and email."
 ]
 ]
 }
@@ -1803,7 +1624,7 @@ false,
 "parts": [
 [
 "Text",
-"Members can login to book a session or to control the telescope within a booked session:"
+"Member login:"
 ],
 [
 "ClosedPart",
@@ -2799,6 +2620,237 @@ false,
 }
 }
 },
+"members": {
+"ident": 6000,
+"brief": "Members area",
+"default_page_name": "index",
+"restricted": false,
+"folders": {
+"restricted": {
+"ident": 6500,
+"brief": "Members pages - restricted",
+"default_page_name": "index",
+"restricted": false,
+"folders": {},
+"pages": {
+"members_template": {
+"ident": 6501,
+"brief": "The template for the members page",
+"TemplatePage": {
+"show_backcol": false,
+"last_scroll": true,
+"lang": "en",
+"backcol": "#11216a",
+"default_error_widget": [
+"header",
+"top_error"
+]
+},
+"head": [
+"Part",
+{
+"tag_name": "head",
+"brief": "The head section of the page",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"ClosedPart",
+{
+"tag_name": "meta",
+"brief": "The charset meta declaration",
+"show": true,
+"attribs": {
+"charset": "utf-8"
+}
+}
+],
+[
+"ClosedPart",
+{
+"tag_name": "meta",
+"brief": "The viewport meta declaration",
+"show": true,
+"attribs": {
+"content": "width=device-width, initial-scale=1",
+"name": "viewport"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "title",
+"brief": "The page title element",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"Text",
+"Index"
+]
+]
+}
+],
+[
+"ClosedPart",
+{
+"tag_name": "link",
+"brief": "css link to font_css",
+"show": true,
+"attribs": {
+"href": "{font_css}",
+"rel": "stylesheet",
+"type": "text/css"
+}
+}
+],
+[
+"ClosedPart",
+{
+"tag_name": "link",
+"brief": "css link to ski_css",
+"show": true,
+"attribs": {
+"href": "{ski_css}",
+"rel": "stylesheet",
+"type": "text/css"
+}
+}
+],
+[
+"Comment",
+{
+"text": "HTML5shiv - included as a TextBlock"
+}
+],
+[
+"TextBlock",
+{
+"textref": "html5shiv",
+"failmessage": "failed to read textblocks database with ref html5shiv",
+"show": true,
+"escape": false,
+"linebreaks": false
+}
+],
+[
+"Part",
+{
+"tag_name": "script",
+"brief": "script link to jquery_core",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"src": "{jquery_core}"
+},
+"parts": []
+}
+],
+[
+"Part",
+{
+"tag_name": "script",
+"brief": "script link to skipole_js",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"src": "{skipole_js}"
+},
+"parts": []
+}
+]
+]
+}
+],
+"body": [
+"Part",
+{
+"tag_name": "body",
+"brief": "The body section of the page",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "container",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "ski_container"
+},
+"parts": [
+[
+"SectionPlaceHolder",
+{
+"brief": "Page header",
+"section_name": "header",
+"placename": "header"
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "centre",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "ski_centre"
+},
+"parts": [
+[
+"Part",
+{
+"tag_name": "p",
+"brief": "Top paragraph",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"Text",
+"Members page."
+]
+]
+}
+]
+]
+}
+],
+[
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+]
+]
+}
+]
+]
+}
+]
+}
+}
+}
+},
+"pages": {
+"index": {
+"ident": 6001,
+"brief": "Responder for members index page",
+"RespondPage": {
+"class": "NoOperation",
+"original_args": {
+"target_ident": 6501
+},
+"original_fields": {}
+}
+}
+}
+},
 "public": {
 "ident": 7000,
 "brief": "Public pages",
@@ -2990,7 +3042,7 @@ false,
 "parts": [
 [
 "Text",
-"These web pages allow control of the robotic telescope. Anyone can view the sensor inputs and current operations, members can book sessions to control the telescope."
+"Public page"
 ]
 ]
 }
