@@ -27,6 +27,7 @@ _UNPROTECTED_PAGES = [1,               # index
 
 # These pages can be accessed by anyone who is logged in
 _LOGGED_IN_PAGES = [5003,              # logout
+                                                     6001,              # Members index
                                                      8001,              # user settings index
                                                      8002,              # new password
                                                      8003              # new email
@@ -155,6 +156,7 @@ _HEADER_TEXT = { 2001 : "Home Page",
                  5520: "PIN Required",
                  5530: "Authenticated",
                  5540: "PIN Fail",
+                 6501: "Members Page",
                  7501: "Public Page",
                  8501: "Your Settings Page",
                  8601: "New PIN",
@@ -173,6 +175,7 @@ _NAV_BUTTONS = {2001:[['public','Public', True, '']],
                 5520: [['home','Home', True, ''], ['public','Public', True, '']],
                 5530: [['home','Home', True, ''], ['public','Public', True, '']],
                 5540: [['public','Public', True, '']],
+                6501: [['home','Home', True, ''], ['public','Public', True, '']],
                 7501: [['home','Home', True, '']],
                 8501: [['home','Home', True, ''], ['public','Public', True, '']],
                 8601: [['home','Home', True, ''], ['public','Public', True, '']],
@@ -184,35 +187,52 @@ def end_call(page_ident, page_type, call_data, page_data, proj_data, lang):
        it can also return an optional ident_data string to embed into forms."""
     if page_type != "TemplatePage":
         return
+
+    message_string = database_ops.get_all_messages()
+    if message_string:
+        page_data['navigation', 'messages', 'para_text'] = message_string
+
     page_num = page_ident[1]
-    if page_num in _HEADER_TEXT:
-        page_data['header','headtitle','tag_text'] = proj_data["org_name"]
-        page_data['header', 'headpara', 'para_text']  = _HEADER_TEXT[page_num]
-        if call_data['loggedin']:
-            page_data['header', 'user', 'para_text']  = "Logged in : " + call_data['username']
-            page_data['header', 'user', 'show']  = True
-    if page_num in _NAV_BUTTONS:
-        page_data['navigation', 'navbuttons', 'nav_links'] = _NAV_BUTTONS[page_num][:]
-        message_string = database_ops.get_all_messages()
-        if message_string:
-            page_data['navigation', 'messages', 'para_text'] = message_string
-        if ('loggedin' not in call_data) or (not call_data['loggedin']):
-            # user is not logged in
-            if page_num != 5501:
-                # If not already at the login page, then add a Login option to nav buttons
-                page_data['navigation', 'navbuttons', 'nav_links'].append( ['login','Login', True, ''])
-            return
-        # user logged in, has logout option
-        page_data['navigation', 'navbuttons', 'nav_links'].append( ['logout','Logout', True, ''])
-        if page_num != 8501:
-            page_data['navigation', 'navbuttons', 'nav_links'].append( ['usersettings','Your Settings', True, ''])
-        if call_data['role'] == 'ADMIN':
-            # admin users have access to setup page and tests page
-            if page_num != 8601:
-                page_data['navigation', 'navbuttons', 'nav_links'].append( ['setpin','New PIN', True, ''])
-            if page_num != 3501:
-                page_data['navigation', 'navbuttons', 'nav_links'].append( ['setup','Setup', True, ''])
-            if page_num != 9501:
-                page_data['navigation', 'navbuttons', 'nav_links'].append( ['tests','Tests', True, ''])
 
+    page_data['header','headtitle','tag_text'] = proj_data["org_name"]
+    page_data['header', 'headpara', 'para_text']  = _HEADER_TEXT[page_num]
+    if call_data['loggedin']:
+        page_data['header', 'user', 'para_text']  = "Logged in : " + call_data['username']
+        page_data['header', 'user', 'show']  = True
 
+    # All template pages apart from home have a home link
+    # All template pages apart from public have a public link
+    if page_num == 2001:
+        nav_buttons = [['public','Public', True, '']]
+    elif page_num == 7501:
+        nav_buttons = [['home','Home', True, '']]
+    else:
+        nav_buttons = [['home','Home', True, ''], ['public','Public', True, '']]
+
+    if not call_data['loggedin']:
+        # user is not logged in
+        if page_num != 5501:
+            # If not already at the login page, then add a Login option to nav buttons
+            nav_buttons.append( ['login','Login', True, ''])
+        page_data['navigation', 'navbuttons', 'nav_links'] = nav_buttons
+        return
+
+    # user logged in has access to membership pages
+    if page_num != 6501:
+        nav_buttons.append( ['members','Members', True, ''])
+    if page_num != 8501:
+        nav_buttons.append( ['usersettings','Your Settings', True, ''])
+    # user logged in, has logout option
+    nav_buttons.append( ['logout','Logout', True, ''])
+
+    # logged in administrators have access to further pages
+    if call_data['role'] == 'ADMIN':
+        # admin users have access to setpin,  setup page and tests page
+        if page_num != 8601:
+            nav_buttons.append( ['setpin','New PIN', True, ''])
+        if page_num != 3501:
+            nav_buttons.append( ['setup','Setup', True, ''])
+        if page_num != 9501:
+            nav_buttons.append( ['tests','Tests', True, ''])
+
+    page_data['navigation', 'navbuttons', 'nav_links'] = nav_buttons
