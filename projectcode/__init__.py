@@ -67,7 +67,7 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
     ####### If the user is logged in, populate call_data
 
     if received_cookies:
-        user = database_ops.logged_in(project, received_cookies)
+        user = database_ops.logged_in(received_cookies)
     else:
         user = None
 

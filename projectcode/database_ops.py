@@ -588,12 +588,12 @@ def get_user_if_logged_in(user_id, cookie, con=None):
     return user
 
 
-def logged_in(project, received_cookies):
+def logged_in(received_cookies):
     """Check for a valid cookie with name 'project2', if logged in, return (user_id, username, role, authenticated)
           If not, return None"""
     if not received_cookies:
         return
-    cookie_name = project + '2'
+    cookie_name = _PROJECT + '2'
     if cookie_name not in received_cookies:
         return
     cookie_string = received_cookies[cookie_name]

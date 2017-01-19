@@ -17,7 +17,6 @@ def create_index(caller_ident, ident_list, submit_list, submit_dict, call_data, 
 
     page_data['setup_buttons', 'nav_links'] = [['3010','Add User', True, ''],
                                                 ['editusers','Edit Users', True, ''],
-                                                ['home','Sessions', True, ''],
                                                 ['3020','Server', True, '']]
 
 
