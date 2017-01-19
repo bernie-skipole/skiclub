@@ -6019,7 +6019,7 @@ false
 "brief": "The template for the server setup page",
 "TemplatePage": {
 "show_backcol": true,
-"last_scroll": true,
+"last_scroll": false,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -6388,186 +6388,6 @@ false
 "Part",
 {
 "tag_name": "p",
-"brief": "About RaspberryPi settings",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"Set RaspberryPi Pi01 parameters:"
-]
-]
-}
-],
-[
-"Widget",
-{
-"class": "inputforms.SubmitForm1",
-"name": "pi01",
-"brief": "Form for pi01 settings",
-"fields": {
-"action": 3023,
-"action_json": "",
-"button_class": "",
-"button_text": "Submit",
-"clear_error": false,
-"div_class": "",
-"error_class": "",
-"hidden_field1": "",
-"hidden_field2": "",
-"hidden_field3": "",
-"hidden_field4": "",
-"left_class": "ski_left_label",
-"left_label": "Submit PI01 settings:",
-"right_class": "",
-"right_label": "",
-"show": true,
-"show_error": "",
-"widget_class": "ski_top_bot_10"
-},
-"container_0": [
-"Part",
-{
-"tag_name": "div",
-"brief": "Holds form items",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Widget",
-{
-"class": "inputtext.TextInput2",
-"name": "pi01_address",
-"brief": "IP address of pi01",
-"fields": {
-"clear_error": false,
-"disabled": false,
-"error_class": "",
-"input_accepted_class": "",
-"input_errored_class": "",
-"input_text": "",
-"label": "IP Address:",
-"label_class": "ski_left_label",
-"maxlength": "",
-"redstar": true,
-"required": true,
-"set_input_accepted": false,
-"set_input_errored": false,
-"show": true,
-"show_error": "",
-"size": "",
-"widget_class": ""
-}
-}
-],
-[
-"Widget",
-{
-"class": "inputtext.TextInput2",
-"name": "pi01_port",
-"brief": "port on which calls are received",
-"fields": {
-"clear_error": false,
-"disabled": false,
-"error_class": "",
-"input_accepted_class": "",
-"input_errored_class": "",
-"input_text": "8000",
-"label": "Port:",
-"label_class": "ski_left_label",
-"maxlength": "",
-"redstar": true,
-"required": true,
-"set_input_accepted": false,
-"set_input_errored": false,
-"show": true,
-"show_error": "",
-"size": "",
-"widget_class": ""
-}
-}
-],
-[
-"Widget",
-{
-"class": "inputtext.TextInput2",
-"name": "pi01_username",
-"brief": "Sets pi01 access username",
-"fields": {
-"clear_error": false,
-"disabled": false,
-"error_class": "",
-"input_accepted_class": "",
-"input_errored_class": "",
-"input_text": "",
-"label": "Username:",
-"label_class": "ski_left_label",
-"maxlength": "",
-"redstar": true,
-"required": true,
-"set_input_accepted": false,
-"set_input_errored": false,
-"show": true,
-"show_error": "",
-"size": "",
-"widget_class": ""
-}
-}
-],
-[
-"Widget",
-{
-"class": "inputtext.Password2",
-"name": "pi01_password",
-"brief": "Sets pi01 access password",
-"fields": {
-"clear_error": false,
-"disabled": false,
-"error_class": "",
-"input_accepted_class": "",
-"input_errored_class": "",
-"input_text": "",
-"label": "Password:",
-"label_class": "ski_left_label",
-"maxlength": "",
-"redstar": true,
-"required": true,
-"set_input_accepted": false,
-"set_input_errored": false,
-"show": true,
-"show_error": "",
-"size": "",
-"widget_class": ""
-}
-}
-]
-]
-}
-]
-}
-],
-[
-"Widget",
-{
-"class": "paras.ShowPara",
-"name": "pi01settings",
-"brief": "Paragraph showing pi01 results",
-"fields": {
-"clear_error": false,
-"error_class": "ski_errorcol",
-"para_class": "",
-"para_text": "Pi01 parameters have been set.",
-"show": true,
-"show_error": "",
-"show_para": false,
-"widget_class": ""
-}
-}
-],
-[
-"Part",
-{
-"tag_name": "p",
 "brief": "about backup",
 "show": true,
 "hide_if_empty": false,
@@ -6618,6 +6438,9 @@ false
 "brief": "About restore from backup.",
 "show": true,
 "hide_if_empty": false,
+"attribs": {
+"class": "ski_top_bot_10"
+},
 "parts": [
 [
 "Text",
@@ -6655,7 +6478,7 @@ false
 "required": true,
 "show": true,
 "show_error": "",
-"submitbutton_label": "Upload and restore from backup:",
+"submitbutton_label": "Restore from backup:",
 "submitbutton_text": "Upload",
 "submitbuttonlabel_class": "ski_left_label",
 "submitinput_class": "",
@@ -7340,35 +7163,6 @@ false,
 },
 "original_fields": {
 "setstatus:input_text": ""
-}
-}
-},
-"set_pi01_settings": {
-"ident": 3023,
-"brief": "Sets the pi01 settings",
-"RespondPage": {
-"class": "AllowStore",
-"original_args": {
-"allowed_callers": [
-3520
-],
-"alternate_ident": "home",
-"fail_ident": 3020,
-"submit_list": [
-"admin",
-"server",
-"set_pi01_settings"
-],
-"submit_option": true,
-"target_ident": 3020,
-"validate_fail_ident": null,
-"validate_option": false
-},
-"original_fields": {
-"pi01_address:input_text": "",
-"pi01_password:input_text": "",
-"pi01_port:input_text": "",
-"pi01_username:input_text": ""
 }
 }
 },
