@@ -7651,7 +7651,7 @@ false,
 "parts": [
 [
 "Text",
-"These web pages allow control of the robotic telescope. Anyone can view the sensor inputs and current operations, members can book sessions to control the telescope."
+"Pages for Admin test functions."
 ]
 ]
 }
