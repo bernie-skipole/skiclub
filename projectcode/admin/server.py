@@ -49,20 +49,6 @@ def server_settings(caller_ident, ident_list, submit_list, submit_dict, call_dat
     if emailpassword:
         page_data['emailpassword', 'input_text'] = emailpassword
 
-    ##### Pi01 settings
-    pi01server = database_ops.get_pi_config("01")
-    if not pi01server:
-        raise FailPage('Database access failure.')
-    pi01_address, pi01_port, pi01_username, pi01_password = pi01server
-    if pi01_address:
-        page_data['pi01_address', 'input_text'] = pi01_address
-    if pi01_port:
-        page_data['pi01_port', 'input_text'] = pi01_port
-    if pi01_username:
-        page_data['pi01_username', 'input_text'] = pi01_username
-    if pi01_password:
-        page_data['pi01_password', 'input_text'] = pi01_password
-
 
 
 def set_server_email_settings(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
@@ -87,23 +73,6 @@ def set_server_email_settings(caller_ident, ident_list, submit_list, submit_dict
     else:
         raise FailPage('Unable to set smtp server settings into database', displaywidgetname = 'emailsettings')
 
-
-def set_pi01_settings(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
-    """Sets the pi01 settings in the database"""
-
-    # called by responder 3023
-
-    try:
-        pi01_address = call_data['pi01_address', 'input_text']
-        pi01_port = call_data['pi01_port', 'input_text']
-        pi01_username = call_data['pi01_username', 'input_text']
-        pi01_password = call_data['pi01_password', 'input_text']
-    except:
-        raise FailPage('Invalid settings.', displaywidgetname = 'pi01settings')
-    if database_ops.set_pi_config('01', pi01_address, pi01_port, pi01_username, pi01_password):
-        page_data['pi01settings', 'show_para'] = True
-    else:
-        raise FailPage('Unable to set pi01 settings into database', displaywidgetname = 'pi01settings')
 
 
 def add_message(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):

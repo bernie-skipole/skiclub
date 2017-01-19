@@ -24,10 +24,6 @@ _PIN = "1234"
 _CHARS = "abcdefghkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXYZ2346789"
 _CHARSPUNCT = _CHARS + "$%*+?"
 
-# Default pi values, of pi id, ip address, port, access username, access password
-# add further tuples for each attached pi
-_PI = [ ('01', '192.168.1.71', '8000', 'astro', 'station')  ]
-
 # Default message
 _MESSAGE = "New database created"
 
@@ -86,8 +82,6 @@ def start_database(project, projectfiles):
         con.execute("create table admins (USER_ID INTEGER PRIMARY KEY, authenticated INTEGER, rnd INTEGER, pair INTEGER, tries INTEGER, time timestamp, pin1_2 BLOB, pin1_3 BLOB, pin1_4 BLOB, pin2_3 BLOB, pin2_4 BLOB, pin3_4 BLOB, FOREIGN KEY (USER_ID) REFERENCES users (USER_ID) ON DELETE CASCADE)")
         # Make a table for server settings
         con.execute("create table serversettings (server_id TEXT PRIMARY KEY,  emailuser TEXT, emailpassword TEXT, emailserver TEXT, no_reply TEXT, starttls integer)")
-        # Make a table for connected raspberry pi's
-        con.execute("create table pi (pi_id TEXT PRIMARY KEY, ip TEXT, port TEXT, username TEXT, password TEXT)")
         # create table of status message
         con.execute("create table messages (mess_id integer primary key autoincrement, message TEXT, time timestamp, username TEXT)")
         # Create trigger to maintain only n messages
@@ -107,9 +101,6 @@ def start_database(project, projectfiles):
         con.execute("insert into serversettings (server_id,  emailuser, emailpassword, emailserver, no_reply, starttls) values (?, ?, ?, ?, ?, ?)", ('1', None, None, 'smtp.googlemail.com', 'no_reply@skipole.co.uk', 1))
         # set first message
         set_message( _USERNAME, _MESSAGE, con)
-        # And for each pi
-        for pi in _PI:
-            con.execute("insert into pi (pi_id, ip, port, username, password) values (?, ?, ?, ?, ?)", pi)
         con.commit()
     finally:
         con.close()
@@ -345,46 +336,6 @@ def check_password_of_user_id(user_id, password):
         # password valid
         return True
     return False
-
-
-
-def get_pi_config(pi_id, con=None):
-    "Return (ip, port, username, password) for pi_id, return None on failure"
-    if not  _DATABASE_EXISTS:
-        return
-    if con is None:
-        con = open_database()
-        result = get_pi_config(pi_id, con)
-        con.close()
-    else:
-        cur = con.cursor()
-        cur.execute("select ip, port, username, password from pi where pi_id = ?", (pi_id,))
-        result = cur.fetchone()
-        if not result:
-            return
-    return result
-
-
-def set_pi_config(pi_id, ip, port, username, password, con=None):
-    "Return True on success, False on failure, if con given does not commit"
-    if not  _DATABASE_EXISTS:
-        return False
-    if con is None:
-        try:
-            con = open_database()
-            result = set_pi_config(pi_id, ip, port, username, password, con)
-            if result:
-                con.commit()
-            con.close()
-            return result
-        except:
-            return False
-    else:
-        try:
-            con.execute("update pi set ip = ?, port = ?, username = ?, password = ? where pi_id = ?",  (ip, port, username, password, pi_id))
-        except:
-            return False
-    return True
 
 
 def get_user_id(username, con=None):
