@@ -682,7 +682,7 @@ def restoredatabase(sql_script):
     try:
         con = open_database()
         cur = con.cursor()
-        cur.execute("select username, seed, password, role, cookie, time, email, member, user_id from users where user_id = 1")
+        cur.execute("select username, password, role, cookie, time, email, member, user_id from users where user_id = 1")
         admin_user = cur.fetchone()
         cur.execute("select authenticated, rnd, pair, tries, time, pin1_2, pin1_3, pin1_4, pin2_3, pin2_4, pin3_4, user_id from admins where user_id = 1")
         admin = cur.fetchone()
@@ -708,7 +708,7 @@ def restoredatabase(sql_script):
     try:
         con = open_database()
         # Now re-insert Admin user
-        con.execute("update users set username = ?, seed = ?, password = ?, role = ?, cookie = ?, time = ?, email = ?, member = ? where user_id = ?", admin_user)
+        con.execute("update users set username = ?, password = ?, role = ?, cookie = ?, time = ?, email = ?, member = ? where user_id = ?", admin_user)
         con.execute("update admins set authenticated = ?, rnd = ?, pair = ?, tries = ?, time = ?, pin1_2 = ?, pin1_3 = ?, pin1_4 = ?, pin2_3 = ?, pin2_4 = ?, pin3_4 = ? where user_id = ?", admin)
         con.commit()
     except:
