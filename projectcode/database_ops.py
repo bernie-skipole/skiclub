@@ -1,3 +1,8 @@
+"""
+Module to create and query the members sqlite database
+
+"""
+
 
 import os, sqlite3, hashlib, random, shutil
 
@@ -5,40 +10,44 @@ from datetime import datetime, date, timedelta
 
 from ...skilift import FailPage, GoTo, ValidateError, ServerError
 
-_DATABASE_DIR_NAME =  'members_database'
-_DATABASE_NAME = 'members.db'
+# These global values will be set when start_database is called
 _DATABASE_DIR = ''
 _DATABASE_PATH = ''
 _DATABASE_EXISTS = False
 _PROJECT = ''
 
-
+# The following are set here, and could be changed if required
+_DATABASE_DIR_NAME =  'members_database'
+_DATABASE_NAME = 'members.db'
 # This is the default admin username
 _USERNAME = "admin"
 # This is the default  admin password
 _PASSWORD = "password"
 # This is the default  admin PIN
 _PIN = "1234"
-
 # characters used in generated passwords - letters avoiding 0, O, 1, l, I, i, j, S, 5
 _CHARS = "abcdefghkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXYZ2346789"
 _CHARSPUNCT = _CHARS + "$%*+?"
-
 # Default message
 _MESSAGE = "New database created"
-
 # The number of messages to retain
 _N_MESSAGES = 10
+# email server defaults
+_MAIL_SERVER = 'smtp.googlemail.com'
+_NO_REPLY = 'no_reply@xx.xx.xx'
 
 
 def get_admin_user():
     return _USERNAME
 
+
 def get_default_password():
     return _PASSWORD
 
+
 def get_default_pin():
     return _PIN
+
 
 def hash_password(user_id, password):
     "Return hashed password, on failure return None"
@@ -46,14 +55,14 @@ def hash_password(user_id, password):
     if not _PROJECT:
         return
     seed_password = _PROJECT + str(user_id) +  password
-    hashed_password = hashlib.sha512(   seed_password.encode('utf-8')  ).digest()
+    hashed_password = hashlib.sha512( seed_password.encode('utf-8') ).digest()
     return hashed_password
 
 
 def hash_pin(pin, seed):
     "Return hashed pin, on failure return None"
-    seed_pin = seed +  pin
-    hashed_pin = hashlib.sha512(   seed_pin.encode('utf-8')  ).digest()
+    seed_pin = seed + pin
+    hashed_pin = hashlib.sha512( seed_pin.encode('utf-8') ).digest()
     return hashed_pin
 
 
@@ -64,8 +73,8 @@ def start_database(project, projectfiles):
         return
     # Set global variables
     _PROJECT = project
-    _DATABASE_DIR =   database_directory(projectfiles)
-    _DATABASE_PATH  = database_path(_DATABASE_DIR)
+    _DATABASE_DIR = database_directory(projectfiles)
+    _DATABASE_PATH = database_path(_DATABASE_DIR)
     _DATABASE_EXISTS = os.path.isfile(_DATABASE_PATH)
     if _DATABASE_EXISTS:
         return
@@ -73,12 +82,12 @@ def start_database(project, projectfiles):
     if not os.path.isdir(_DATABASE_DIR):
         os.mkdir(_DATABASE_DIR)
     _DATABASE_EXISTS = True
-   # create the database
+    # create the database
     con = open_database()
     try:
-        # make admin user password, role is one of 'ADMIN', 'MEMBER', 'GUEST'
+        # make table of users
         con.execute("create table users (USER_ID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, password BLOB, role TEXT, cookie TEXT, time timestamp, email TEXT, member TEXT)")
-        # make table for admin pins
+        # make table for admins, with pins
         con.execute("create table admins (USER_ID INTEGER PRIMARY KEY, authenticated INTEGER, rnd INTEGER, pair INTEGER, tries INTEGER, time timestamp, pin1_2 BLOB, pin1_3 BLOB, pin1_4 BLOB, pin2_3 BLOB, pin2_4 BLOB, pin3_4 BLOB, FOREIGN KEY (USER_ID) REFERENCES users (USER_ID) ON DELETE CASCADE)")
         # Make a table for server settings
         con.execute("create table serversettings (server_id TEXT PRIMARY KEY,  emailuser TEXT, emailpassword TEXT, emailserver TEXT, no_reply TEXT, starttls integer)")
@@ -90,15 +99,14 @@ def start_database(project, projectfiles):
      DELETE FROM messages WHERE mess_id <= (SELECT mess_id FROM messages ORDER BY mess_id DESC LIMIT %s, 1);
    END;""" % (_N_MESSAGES,)
         con.execute(n_messages)
-
-        # insert default values
+        # create database contents by inserting initial default values
         # make admin user password, role is 'ADMIN', user_id is 1
         hashed_password = hash_password(1, _PASSWORD)
         con.execute("insert into users (USER_ID, username, password, role, cookie, time, email, member) values (?, ?, ?, ?, ?, ?, ?, ?)", (None, _USERNAME, hashed_password,  'ADMIN', None, datetime.utcnow(), None, None))
         # set admin pin
         set_pin(1, _PIN, False, con)
         # set email server settings
-        con.execute("insert into serversettings (server_id,  emailuser, emailpassword, emailserver, no_reply, starttls) values (?, ?, ?, ?, ?, ?)", ('1', None, None, 'smtp.googlemail.com', 'no_reply@skipole.co.uk', 1))
+        con.execute("insert into serversettings (server_id,  emailuser, emailpassword, emailserver, no_reply, starttls) values (?, ?, ?, ?, ?, ?)", ('1', None, None, _MAIL_SERVER, _NO_REPLY, 1))
         # set first message
         set_message( _USERNAME, _MESSAGE, con)
         con.commit()
@@ -124,7 +132,7 @@ def database_path(database_dir):
 def open_database():
     "Opens the database, and returns the database connection"
     if not _DATABASE_EXISTS:
-        raise ServerError(message="Database directory does not exist.")
+        raise ServerError(message="Database does not exist.")
     if not _DATABASE_PATH:
        raise ServerError(message="Unknown database path.")
     # connect to database
@@ -156,6 +164,7 @@ def get_emailuserpass(con=None):
         if not result:
             return None
     return result
+
 
 def get_emailserver(con=None):
     "Return (emailserver, no_reply, starttls) for server email account, return None on failure"
@@ -676,7 +685,7 @@ def dumpdatabase():
 
 
 def restoredatabase(sql_script):
-    "Restore database"
+    "Restore database, apart from current admin password and pin"
     global _DATABASE_DIR, _DATABASE_EXISTS
     # get special Admin user details
     try:
@@ -719,6 +728,7 @@ def restoredatabase(sql_script):
         con.close()
     return True
 
+
 def get_users(limit=None, offset=None, names=True, con=None):
     "Return list of lists [user_id, username, role, membership number] apart from Admin user with user id 1"
     if not  _DATABASE_EXISTS:
@@ -758,7 +768,7 @@ def get_users(limit=None, offset=None, names=True, con=None):
 
 def delete_user_id(user_id, con=None):
     """Delete user with given user_id. Return True on success, False on failure, if con given does not commit
-          Trying to delete user_id of 1 is a failure - cannot delete special user Admin"""
+       Trying to delete user_id of 1 is a failure - cannot delete special user Admin"""
     if (not  _DATABASE_EXISTS) or (not user_id):
         return False
     if user_id == 1:
