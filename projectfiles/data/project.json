@@ -2630,8 +2630,7 @@ false,
 "restricted": {
 "ident": 6500,
 "brief": "Members pages - restricted",
-"default_page_name": "index",
-"restricted": false,
+"restricted": true,
 "folders": {},
 "pages": {
 "members_template": {
