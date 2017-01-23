@@ -86,27 +86,27 @@ def start_database(project, projectfiles):
     con = open_database()
     try:
         # make table of users
-        con.execute("create table users (USER_ID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, password BLOB, role TEXT, cookie TEXT, time timestamp, email TEXT, member TEXT)")
+        con.execute("CREATE TABLE users (user_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, password BLOB, role TEXT, cookie TEXT, time TIMESTAMP, email TEXT, member TEXT)")
         # make table for admins, with pins
-        con.execute("create table admins (USER_ID INTEGER PRIMARY KEY, authenticated INTEGER, rnd INTEGER, pair INTEGER, tries INTEGER, time timestamp, pin1_2 BLOB, pin1_3 BLOB, pin1_4 BLOB, pin2_3 BLOB, pin2_4 BLOB, pin3_4 BLOB, FOREIGN KEY (USER_ID) REFERENCES users (USER_ID) ON DELETE CASCADE)")
+        con.execute("CREATE TABLE admins (user_id INTEGER PRIMARY KEY, authenticated INTEGER, rnd INTEGER, pair INTEGER, tries INTEGER, time TIMESTAMP, pin1_2 BLOB, pin1_3 BLOB, pin1_4 BLOB, pin2_3 BLOB, pin2_4 BLOB, pin3_4 BLOB, FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE)")
         # Make a table for server settings
-        con.execute("create table serversettings (server_id TEXT PRIMARY KEY,  emailuser TEXT, emailpassword TEXT, emailserver TEXT, no_reply TEXT, starttls integer)")
+        con.execute("CREATE TABLE serversettings (server_id TEXT PRIMARY KEY, emailuser TEXT, emailpassword TEXT, emailserver TEXT, no_reply TEXT, starttls INTEGER)")
         # create table of status message
-        con.execute("create table messages (mess_id integer primary key autoincrement, message TEXT, time timestamp, username TEXT)")
+        con.execute("CREATE TABLE messages (mess_id INTEGER PRIMARY KEY AUTOINCREMENT, message TEXT, time TIMESTAMP, username TEXT)")
         # Create trigger to maintain only n messages
         n_messages = """CREATE TRIGGER n_messages_only AFTER INSERT ON messages
    BEGIN
-     DELETE FROM messages WHERE mess_id <= (SELECT mess_id FROM messages ORDER BY mess_id DESC LIMIT %s, 1);
+     DELETE FROM messages WHERE mess_id <= (SELECT mess_id FROM messages ORDER BY mess_id DESC LIMIT 1 OFFSET %s);
    END;""" % (_N_MESSAGES,)
         con.execute(n_messages)
         # create database contents by inserting initial default values
         # make admin user password, role is 'ADMIN', user_id is 1
         hashed_password = hash_password(1, _PASSWORD)
-        con.execute("insert into users (USER_ID, username, password, role, cookie, time, email, member) values (?, ?, ?, ?, ?, ?, ?, ?)", (None, _USERNAME, hashed_password,  'ADMIN', None, datetime.utcnow(), None, None))
+        con.execute("INSERT INTO users (user_id, username, password, role, cookie, time, email, member) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (None, _USERNAME, hashed_password,  'ADMIN', None, datetime.utcnow(), None, None))
         # set admin pin
         set_pin(1, _PIN, False, con)
         # set email server settings
-        con.execute("insert into serversettings (server_id,  emailuser, emailpassword, emailserver, no_reply, starttls) values (?, ?, ?, ?, ?, ?)", ('1', None, None, _MAIL_SERVER, _NO_REPLY, 1))
+        con.execute("INSERT INTO serversettings (server_id,  emailuser, emailpassword, emailserver, no_reply, starttls) VALUES (?, ?, ?, ?, ?, ?)", ('1', None, None, _MAIL_SERVER, _NO_REPLY, 1))
         # set first message
         set_message( _USERNAME, _MESSAGE, con)
         con.commit()
