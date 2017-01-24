@@ -75,13 +75,12 @@ def start_database(project, projectfiles):
     _PROJECT = project
     _DATABASE_DIR = database_directory(projectfiles)
     _DATABASE_PATH = database_path(_DATABASE_DIR)
-    _DATABASE_EXISTS = os.path.isfile(_DATABASE_PATH)
-    if _DATABASE_EXISTS:
-        return
-    # make directory
-    if not os.path.isdir(_DATABASE_DIR):
-        os.mkdir(_DATABASE_DIR)
     _DATABASE_EXISTS = True
+    # make directory
+    try:
+        os.mkdir(_DATABASE_DIR)
+    except FileExistsError:
+        return
     # create the database
     con = open_database()
     try:
