@@ -221,9 +221,9 @@ false,
 "restricted": false,
 "folders": {},
 "pages": {
-"astro.css": {
+"ski.css": {
 "ident": 1001,
-"brief": "A CSS page for the astro site",
+"brief": "A CSS page for the skiclub site",
 "CSS": {
 "enable_cache": false,
 "style": {
@@ -408,7 +408,7 @@ false,
 ],
 [
 "padding",
-"4px 6px 6px 4px"
+"4px 6px 4px 6px"
 ],
 [
 "text-align",
@@ -484,7 +484,7 @@ false,
 ],
 [
 "padding",
-"4px 6px 6px 4px"
+"4px 6px 4px 6px"
 ],
 [
 "text-align",
@@ -752,7 +752,7 @@ false,
 ],
 [
 "padding",
-"4px 6px 6px 4px"
+"4px 6px 4px 6px"
 ],
 [
 "text-align",
@@ -998,7 +998,7 @@ false,
 ],
 [
 "padding",
-"4px 6px 6px 4px"
+"4px 6px 4px 6px"
 ],
 [
 "text-align",
@@ -1058,7 +1058,7 @@ false,
 ],
 [
 "padding",
-"4px 6px 6px 4px"
+"4px 6px 4px 6px"
 ],
 [
 "position",
@@ -2630,6 +2630,7 @@ false,
 "restricted": {
 "ident": 6500,
 "brief": "Members pages - restricted",
+"default_page_name": "index",
 "restricted": true,
 "folders": {},
 "pages": {
@@ -5215,6 +5216,7 @@ false,
 "error_class": "",
 "get_field1": "",
 "get_field2": "",
+"hide": false,
 "json_ident": "make_pin",
 "link_ident": "no_javascript",
 "show": true,
@@ -5831,6 +5833,7 @@ false,
 "force_ident": true,
 "get_field1": "",
 "get_field2": "",
+"hide": false,
 "link_ident": "editmembers",
 "new_window": false,
 "show": true,
@@ -5934,6 +5937,7 @@ false
 "force_ident": true,
 "get_field1": "",
 "get_field2": "",
+"hide": false,
 "link_ident": "home",
 "new_window": false,
 "show": true,
@@ -5955,6 +5959,7 @@ false
 "force_ident": true,
 "get_field1": "",
 "get_field2": "",
+"hide": false,
 "link_ident": "home",
 "new_window": false,
 "show": true,
@@ -6419,6 +6424,7 @@ false
 "force_ident": true,
 "get_field1": "",
 "get_field2": "",
+"hide": false,
 "link_ident": 3022,
 "new_window": false,
 "show": true,
