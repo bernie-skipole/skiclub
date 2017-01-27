@@ -34,6 +34,11 @@ _LOGGED_IN_PAGES = [5003,        # logout
 
 # Any other pages, the user must be both logged in and have admin role
 
+# Lists requests for JSON pages
+_JSON_PAGES = []
+# This list is required to ensure code knows a JSON call has been requested
+
+
 def start_project(project, projectfiles, path, option):
     """On a project being loaded, and before the wsgi service is started, this is called once,
        and should return a dictionary (typically an empty dictionary if this value is not used).
@@ -58,10 +63,11 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
     # set initial call_data values
     page_data = {}
     call_data = { "project":project,
-                               "org_name":proj_data["org_name"],
-                               "authenticated":False,
-                               "loggedin":False,
-                               "role":""}
+                   "org_name":proj_data["org_name"],
+                   "authenticated":False,
+                   "loggedin":False,
+                   "role":"",
+                   "json_requested":False}
 
     if called_ident is None:
         # Force url not found if no called_ident
@@ -86,6 +92,10 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
     ### Check the page being called
     page_num = called_ident[1]
 
+    if page_num in _JSON_PAGES:
+        call_data['json_requested'] = True
+        
+
     ####### unprotected pages
 
     if page_num in _UNPROTECTED_PAGES:
@@ -93,9 +103,13 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
         return called_ident, call_data, page_data, lang
 
     # if user not logged in, cannot choose any other page
-    # So divert to page not found
     if user is None:
-        return None,  call_data, page_data, lang
+        if call_data['json_requested']:
+            # divert to the home page
+            page_data["JSONtoHTML"] = 'home'
+            return "general_json", call_data, page_data, lang
+        # otherwise divert to page not found
+        return None, call_data, page_data, lang
 
     ###### So user is logged in, and call_data is populated
 
@@ -104,6 +118,9 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
         return called_ident, call_data, page_data, lang
 
     ###### So for any remaining page the user must have ADMIN role
+
+    # note - no admin functions are provided by JSON calls
+    # so json diverts do not need to be handled
 
     # if not admin, send to page not found
     if call_data['role'] != 'ADMIN':
