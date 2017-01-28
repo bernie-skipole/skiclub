@@ -24,6 +24,7 @@
 "font_css": "https://fonts.googleapis.com/css?family=Poppins",
 "general_json": 570,
 "home": 1,
+"input_pin": 5515,
 "jquery_core": "lib,jquery_core",
 "json_confirm_delete_member": 3075,
 "json_confirm_delete_user": 3065,

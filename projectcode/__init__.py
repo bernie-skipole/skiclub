@@ -35,8 +35,10 @@ _LOGGED_IN_PAGES = [5003,        # logout
 # Any other pages, the user must be both logged in and have admin role
 
 # Lists requests for JSON pages
-_JSON_PAGES = []
-# This list is required to ensure code knows a JSON call has been requested
+_JSON_PAGES = [3065,            # json_confirm_delete_user
+               3075             # json_confirm_delete_member
+               ]
+# This list ensures code knows a JSON call has been requested
 
 
 def start_project(project, projectfiles, path, option):
@@ -102,9 +104,9 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
         # Go straight to the page
         return called_ident, call_data, page_data, lang
 
-    # if user not logged in, cannot choose any other page
+    # if user is not logged in, cannot choose any other page
     if user is None:
-        if call_data['json_requested']:
+        if caller_ident and call_data['json_requested']:
             # divert to the home page
             page_data["JSONtoHTML"] = 'home'
             return "general_json", call_data, page_data, lang
@@ -118,12 +120,14 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
         return called_ident, call_data, page_data, lang
 
     ###### So for any remaining page the user must have ADMIN role
-
-    # note - no admin functions are provided by JSON calls
-    # so json diverts do not need to be handled
-
-    # if not admin, send to page not found
+    
+    # if not admin, cannot proceed
     if call_data['role'] != 'ADMIN':
+        if caller_ident and call_data['json_requested']:
+            # divert to the home page
+            page_data["JSONtoHTML"] = 'home'
+            return "general_json", call_data, page_data, lang
+        # otherwise divert to page not found
         return None, call_data, page_data, lang
 
     ### All admin pages require the caller page to set caller_ident
@@ -136,9 +140,13 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
         # unauthenticated admin allowed to call 'check_login' page to become authenticated
         if page_num == 5021:
             return called_ident, call_data, page_data, lang
-        # Unauthenticated call - jump to PIN page
+        # Unauthenticated - jump to PIN page
+        if call_data['json_requested']:
+            # divert to the PIN page
+            page_data["JSONtoHTML"] = 'input_pin'
+            return "general_json", call_data, page_data, lang
         call_data['called_ident'] = called_ident
-        return (project,5515), call_data, page_data, lang
+        return 'input_pin', call_data, page_data, lang
 
     # So user is both a logged in Admin user, and authenticated,
 
