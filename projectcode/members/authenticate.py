@@ -48,7 +48,7 @@ def fill_input_pin(caller_ident, ident_list, submit_list, submit_dict, call_data
     # we need the original page to call again after authentication,
     # so store this original requested page as a further hidden_field
     # However this only applies to specific pages
-    diverted_page = caller_ident[1]
+    diverted_page = call_data["called_ident"][1]
     if diverted_page in _DIVERT:
         page_data['input_pin', 'hidden_field2'] = str(diverted_page )
 

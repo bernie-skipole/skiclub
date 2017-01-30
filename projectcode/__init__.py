@@ -65,11 +65,12 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
     # set initial call_data values
     page_data = {}
     call_data = { "project":project,
-                   "org_name":proj_data["org_name"],
-                   "authenticated":False,
-                   "loggedin":False,
-                   "role":"",
-                   "json_requested":False}
+                  "called_ident":called_ident,
+                  "org_name":proj_data["org_name"],
+                  "authenticated":False,
+                  "loggedin":False,
+                  "role":"",
+                  "json_requested":False}
 
     if called_ident is None:
         # Force url not found if no called_ident
