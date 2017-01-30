@@ -145,7 +145,6 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
             # divert to the PIN page
             page_data["JSONtoHTML"] = 'input_pin'
             return "general_json", call_data, page_data, lang
-        call_data['called_ident'] = called_ident
         return 'input_pin', call_data, page_data, lang
 
     # So user is both a logged in Admin user, and authenticated,

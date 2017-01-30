@@ -13,12 +13,13 @@ from ....skilift import FailPage, GoTo, ValidateError, ServerError
 
 from .. import database_ops
 
-# These functions require a list of the id numbers of the admin index pages
+# These functions require a list of the id numbers of the admin call pages
 # which after authentication the call can be diverted to
 
-_DIVERT = (3001, 8100, 9001)
+_DIVERT = (3001,   # setup call
+           8100,   # set pin pcall
+           9001)   # tests call
 
-# These being the page numbers of setup,  new pin, tests
 
 
 def fill_input_pin(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
@@ -46,11 +47,10 @@ def fill_input_pin(caller_ident, ident_list, submit_list, submit_dict, call_data
     # As the call to this page is diverted from calling an admin function
     # we need the original page to call again after authentication,
     # so store this original requested page as a further hidden_field
-    if call_data['called_ident'][0] == call_data['project']:
-        # Only allow diversion to specific pages
-        diverted_page = call_data['called_ident'][1]
-        if diverted_page in _DIVERT:
-            page_data['input_pin', 'hidden_field2'] = str(diverted_page )
+    # However this only applies to specific pages
+    diverted_page = caller_ident[1]
+    if diverted_page in _DIVERT:
+        page_data['input_pin', 'hidden_field2'] = str(diverted_page )
 
     # Get the pair of pin characters to be requested
     pair = database_ops.get_pair(user_id)
