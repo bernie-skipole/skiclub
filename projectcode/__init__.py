@@ -70,7 +70,11 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
                   "authenticated":False,
                   "loggedin":False,
                   "role":"",
-                  "json_requested":False}
+                  "json_requested":False,
+                  "rx_ident_data":ident_data}
+
+    # rx_ident_data = received ident_data, not currently used
+    # but may be a useful item to have in call_data for users code
 
     if called_ident is None:
         # Force url not found if no called_ident
@@ -199,8 +203,17 @@ _HEADER_TEXT = { 2001 : "Home Page",
 def end_call(page_ident, page_type, call_data, page_data, proj_data, lang):
     """This function is called at the end of a call prior to filling the returned page with page_data,
        it can also return an optional ident_data string to embed into forms."""
+
+    if "tx_ident_data" in call_data:
+        ident_data = call_data["tx_ident_data"]
+    else:
+        ident_data = None
+
+    # If it is required to send ident_data, users code puts it into call_data["tx_ident_data"]
+    # and it is sent here
+
     if page_type != "TemplatePage":
-        return
+        return ident_data
 
     message_string = database_ops.get_all_messages()
     if message_string:
@@ -232,7 +245,7 @@ def end_call(page_ident, page_type, call_data, page_data, proj_data, lang):
             nav_buttons.append( ['login','Login', True, ''])
         # set these nav_buttons into the widget and return
         page_data['navigation', 'navbuttons', 'nav_links'] = nav_buttons
-        return
+        return ident_data
 
     ## user is logged in ##
 
@@ -257,3 +270,5 @@ def end_call(page_ident, page_type, call_data, page_data, proj_data, lang):
 
     # set these nav_buttons into the widget
     page_data['navigation', 'navbuttons', 'nav_links'] = nav_buttons
+
+    return ident_data
