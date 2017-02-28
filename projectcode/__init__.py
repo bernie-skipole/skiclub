@@ -204,16 +204,14 @@ def end_call(page_ident, page_type, call_data, page_data, proj_data, lang):
     """This function is called at the end of a call prior to filling the returned page with page_data,
        it can also return an optional ident_data string to embed into forms."""
 
-    if "tx_ident_data" in call_data:
-        ident_data = call_data["tx_ident_data"]
-    else:
-        ident_data = None
-
     # If it is required to send ident_data, users code puts it into call_data["tx_ident_data"]
     # and it is sent here
 
+    if "tx_ident_data" in call_data:
+        page_data['ident_data'] = call_data["tx_ident_data"]
+
     if page_type != "TemplatePage":
-        return ident_data
+        return
 
     message_string = database_ops.get_all_messages()
     if message_string:
@@ -245,7 +243,7 @@ def end_call(page_ident, page_type, call_data, page_data, proj_data, lang):
             nav_buttons.append( ['login','Login', True, ''])
         # set these nav_buttons into the widget and return
         page_data['navigation', 'navbuttons', 'nav_links'] = nav_buttons
-        return ident_data
+        return
 
     ## user is logged in ##
 
@@ -271,4 +269,5 @@ def end_call(page_ident, page_type, call_data, page_data, proj_data, lang):
     # set these nav_buttons into the widget
     page_data['navigation', 'navbuttons', 'nav_links'] = nav_buttons
 
-    return ident_data
+    return
+

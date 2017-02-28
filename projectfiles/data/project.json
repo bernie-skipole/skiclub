@@ -3,7 +3,7 @@
 "default_language": "en",
 "brief": "Example club membership project",
 "version": "0.0.1",
-"skipole": "0.0.1",
+"skipole": "0.0.4",
 "subprojects": {
 "lib": "/lib/"
 },
