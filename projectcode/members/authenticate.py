@@ -36,7 +36,7 @@ def fill_input_pin(caller_ident, ident_list, submit_list, submit_dict, call_data
     if tries > 2:
         raise FailPage(message= "Authentication locked out.")
 
-    # Generate a random number, and set it into the database
+    # Generate a random number, unique to the user, and set it into the database
     # and also as an hidden field in the form, so it is submitted when the user submits
     # a PIN and will be checked against the database.
     rnd = random.randint(1, 10000)
@@ -51,6 +51,20 @@ def fill_input_pin(caller_ident, ident_list, submit_list, submit_dict, call_data
     diverted_page = call_data["called_ident"][1]
     if diverted_page in _DIVERT:
         page_data['input_pin', 'hidden_field2'] = str(diverted_page )
+
+    # function database_ops.timed_random_numbers returns two random numbers
+    # one valid for the current two minute time slot, one valid for the previous
+    # two minute time slot.  Four sets of such random numbers are available
+    # specified by argument rndset which should be 0 to 3
+    # This login form uses rndset 1
+    rnd1, rnd2 = database_ops.timed_random_numbers(rndset=1)
+    if rnd1 is None:
+        raise ServerError(message = "Database access failure")
+    page_data['input_pin', 'hidden_field3'] = str(rnd1)
+
+    # When the form is submitted, the received number will be checked against another call
+    # to database_ops.timed_random_numbers, and if it is equal to either of them, it is within
+    # a valid timeout period.
 
     # Get the pair of pin characters to be requested
     pair = database_ops.get_pair(user_id)
@@ -124,9 +138,29 @@ def check_pin(caller_ident, ident_list, submit_list, submit_dict, call_data, pag
         # Increment tries
         if not database_ops.set_tries(user_id, admin[4] +1):
             raise FailPage(message= "Unable to access database")
-        # Test rnd received is the same as the value in the database
+        # Test user rnd received is the same as the value in the database
         if admin[2] != int(call_data['input_pin','hidden_field1']):
             raise FailPage(message= "Invalid input")
+
+        # check timed random number
+        str_rnd = call_data['input_pin','hidden_field3']
+        # check hidden random number is still valid
+        if not str_rnd:
+            raise FailPage(message = "Invalid input")
+        try:
+            int_rnd = int(str_rnd)
+        except:
+            raise FailPage(message = "Invalid input")
+        rnd = database_ops.timed_random_numbers(rndset=1)
+        # rnd is a tuple of two valid random numbers
+        # rnd[0] for the current 2 minute time slot
+        # rnd[1] for the previous 2 minute time slot
+        # int_rnd must be one of these to be valid
+        if rnd[0] is None:
+            raise ServerError(message = "Database access failure")
+        if int_rnd not in rnd:
+            raise FailPage(message = "PIN page expired, please try again.")
+
         # If diverted page is present, check it is valid
         if (('input_pin', 'hidden_field2') in call_data) and call_data[('input_pin', 'hidden_field2')] :
             try:
