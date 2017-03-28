@@ -3,7 +3,7 @@
 "default_language": "en",
 "brief": "Example club membership project",
 "version": "0.0.1",
-"skipole": "0.0.4",
+"skipole": "0.0.13",
 "subprojects": {
 "lib": "/lib/"
 },
@@ -1778,7 +1778,15 @@ false,
 ]
 ]
 }
+],
+"validators": {
+"hidden_field1": [
+{
+"class": "basic.NotEmpty",
+"message": "Invalid submission"
+}
 ]
+}
 }
 ],
 [
@@ -2555,6 +2563,7 @@ false,
 "validate_option": true
 },
 "original_fields": {
+"loginform:hidden_field1": "",
 "password:input_text": "",
 "username:input_text": ""
 }
@@ -2595,8 +2604,14 @@ false,
 "ident": 5001,
 "brief": "Responder for login index page",
 "RespondPage": {
-"class": "NoOperation",
+"class": "SubmitData",
 "original_args": {
+"fail_ident": "home",
+"submit_list": [
+"public",
+"login",
+"create_login_page"
+],
 "target_ident": 5501
 },
 "original_fields": {}
@@ -3322,7 +3337,7 @@ false,
 "parts": [
 [
 "Text",
-"This project may be suitable for a small club or a Raspberry Pi in-house project, but currently the entire skipole framework has not been tested for security. For more serious usage the wsgi application would also need to be served via a https capable server rather than the Python default web server."
+"This project may be suitable for a small club or a Raspberry Pi in-house project, but currently the entire skipole framework has not been tested for security. For more serious usage the wsgi application would also need to be served via a https capable server."
 ]
 ]
 }

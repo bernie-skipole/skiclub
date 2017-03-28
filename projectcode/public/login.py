@@ -13,6 +13,28 @@ from .. import database_ops
 
 
 
+def create_login_page(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+    """Sets a hidden random number in the login form, which is only valid for four minutes
+       This expires the login page, and also makes it difficult to script login calls"""
+
+    # function database_ops.timed_random_numbers returns two random numbers
+    # one valid for the current two minute time slot, one valid for the previous
+    # two minute time slot.  Four sets of such random numbers are available
+    # specified by argument rndset which should be 0 to 3
+    # This login form uses rndset 0
+    rnd1, rnd2 = database_ops.timed_random_numbers(rndset=0)
+    if rnd1 is None:
+        raise ServerError(message = "Database access failure")
+
+    page_data['loginform', 'hidden_field1'] = str(rnd1)
+
+    # When the form is submitted, the received number will be checked against another call
+    # to database_ops.timed_random_numbers, and if it is equal to either of them, it is within
+    # a valid timeout period.
+    return
+
+
+
 def check_login(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
     """The user fills in the username and password widgets on the login template page and
          then submits the data to the responder which calls this function.

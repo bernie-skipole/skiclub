@@ -88,6 +88,8 @@ def start_database(project, projectfiles):
         con.execute("CREATE TABLE users (user_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, password BLOB, role TEXT, cookie TEXT, time TIMESTAMP, email TEXT, member TEXT)")
         # make table for admins, with pins
         con.execute("CREATE TABLE admins (user_id INTEGER PRIMARY KEY, authenticated INTEGER, rnd INTEGER, pair INTEGER, tries INTEGER, time TIMESTAMP, pin1_2 BLOB, pin1_3 BLOB, pin1_4 BLOB, pin2_3 BLOB, pin2_4 BLOB, pin3_4 BLOB, FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE)")
+        # Make table of random numbers
+        con.execute("CREATE TABLE rnd (rnd_id INTEGER PRIMARY KEY AUTOINCREMENT, start TIMESTAMP, rnd1 INTEGER, rnd2 INTEGER)")
         # Make a table for server settings
         con.execute("CREATE TABLE serversettings (server_id TEXT PRIMARY KEY, emailuser TEXT, emailpassword TEXT, emailserver TEXT, no_reply TEXT, starttls INTEGER)")
         # create table of status message
@@ -106,6 +108,12 @@ def start_database(project, projectfiles):
         set_pin(1, _PIN, False, con)
         # set email server settings
         con.execute("INSERT INTO serversettings (server_id,  emailuser, emailpassword, emailserver, no_reply, starttls) VALUES (?, ?, ?, ?, ?, ?)", ('1', None, None, _MAIL_SERVER, _NO_REPLY, 1))
+        # create four sets of random numbers
+        now = datetime.now()
+        con.execute("INSERT INTO rnd (rnd_id, start, rnd1, rnd2) VALUES (?, ?, ?, ?)", (None, now, random.randint(10000000, 99999999), random.randint(10000000, 99999999)))
+        con.execute("INSERT INTO rnd (rnd_id, start, rnd1, rnd2) VALUES (?, ?, ?, ?)", (None, now, random.randint(10000000, 99999999), random.randint(10000000, 99999999)))
+        con.execute("INSERT INTO rnd (rnd_id, start, rnd1, rnd2) VALUES (?, ?, ?, ?)", (None, now, random.randint(10000000, 99999999), random.randint(10000000, 99999999)))
+        con.execute("INSERT INTO rnd (rnd_id, start, rnd1, rnd2) VALUES (?, ?, ?, ?)", (None, now, random.randint(10000000, 99999999), random.randint(10000000, 99999999)))
         # set first message
         set_message( _USERNAME, _MESSAGE, con)
         con.commit()
@@ -1130,4 +1138,62 @@ def get_administrators(con=None):
     if not result:
         return
     return result
+
+
+def timed_random_numbers(rndset):
+    """This  function returns two random numbers
+       one valid for the current two minute time slot, one valid for the previous
+       two minute time slot.  Four sets of such random numbers are available
+       specified by argument rndset which should be 0 to 3.
+       returns None, None on failure"""
+
+    if rndset not in (0,1,2,3):
+        return None, None
+
+    # auto increementing id starts at 1
+    rnd_id = rndset + 1
+
+    now = datetime.now()
+    delta2 = timedelta(minutes=2)
+
+    try:
+        con = open_database()
+        cur = con.cursor()
+        cur.execute("select start, rnd1, rnd1 from rnd where rnd_id = ?", (rnd_id,))
+        result = cur.fetchone()
+        con.close()
+        if not result:
+            return None, None
+
+        start, rnd1, rnd2 = result
+
+        if now < start + delta2:
+            # now is within 2 minutes of start time, so current random numbers are valid
+            return rnd1, rnd2
+
+        elif now < start + delta2 + delta2:
+            # now is within 4 minutes of start time, so rnd1 has expired. but rnd2 is valid
+            # set rnd2 equal to rnd1 and create new rnd1
+            rnd2 = rnd1
+            rnd1 = random.randint(10000000, 99999999)
+            con = open_database()
+            con.execute("update rnd set start = ?, rnd1 = ?, rnd2 = ? where rnd_id = ?", (now, rnd1, rnd2, rnd_id))
+            con.commit()
+            con.close()
+            return rnd1, rnd2
+
+        else:
+            # now is greater than four minutes after start time, ro rnd1 and rnd2 are invalid, create new ones
+            rnd1 = random.randint(10000000, 99999999)
+            rnd2 = random.randint(10000000, 99999999)
+            con = open_database()
+            con.execute("update rnd set start = ?, rnd1 = ?, rnd2 = ? where rnd_id = ?", (now, rnd1, rnd2, rnd_id))
+            con.commit()
+            con.close()
+            return rnd1, rnd2
+
+    except:
+        pass
+
+    return None, None
 

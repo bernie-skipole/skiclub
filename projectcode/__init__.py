@@ -43,9 +43,10 @@ _JSON_PAGES = [3065,            # json_confirm_delete_user
 
 def start_project(project, projectfiles, path, option):
     """On a project being loaded, and before the wsgi service is started, this is called once,
-       and should return a dictionary (typically an empty dictionary if this value is not used).
-       This function can be used to set any initial parameters, and the dictionary returned will
-       be passed as 'proj_data' to subsequent start_call functions."""
+       Note: it may be called multiple times if your web server starts multiple processes.
+       This function should return a dictionary (typically an empty dictionary if this value is not used).
+       Can be used to set any initial parameters, and the dictionary returned will be passed as
+       'proj_data' to subsequent start_call functions."""
     # This function will be called with the following arguments
     # project - the project name
     # projectfiles - the path to the projectfiles/projectname directory
