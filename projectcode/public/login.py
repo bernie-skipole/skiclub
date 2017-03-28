@@ -48,6 +48,27 @@ def check_login(caller_ident, ident_list, submit_list, submit_dict, call_data, p
 
     username = call_data['username', 'input_text']
     password = call_data['password', 'input_text']
+    str_rnd = call_data['loginform', 'hidden_field1']
+
+    # check hidden random number is still valid
+    if not str_rnd:
+        raise FailPage(message = "Invalid input")
+    try:
+        int_rnd = int(str_rnd)
+    except:
+        raise FailPage(message = "Invalid input")
+
+    rnd = database_ops.timed_random_numbers(rndset=0)
+    # rnd is a tuple of two valid random numbers
+    # rnd[0] for the current 2 minute time slot
+    # rnd[1] for the previous 2 minute time slot
+    # int_rnd must be one of these to be valid
+    if rnd[0] is None:
+        raise ServerError(message = "Database access failure")
+    if int_rnd not in rnd:
+        raise FailPage(message = "Login page expired, please try again.")
+    
+
     if not username:
         raise FailPage(message= "Login fail: missing username", displaywidgetname='loginform')
     if not password:
