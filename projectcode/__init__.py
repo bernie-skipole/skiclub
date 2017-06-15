@@ -18,7 +18,9 @@ from . import public, members, admin, database_ops
 # called the responder passes the call on to further responders or templates
 # which do not have to be listed here.
 _UNPROTECTED_PAGES = [1,         # index
-                      1001,      # CSS page
+                      1002,      # CSS page
+                      1004,      # CSS page
+                      1006,      # CSS page
                       7001,      # Public index
                       5001,      # logon page
                       5002       # check login
