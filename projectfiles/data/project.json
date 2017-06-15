@@ -79,11 +79,11 @@
 "Section",
 {
 "tag_name": "div",
-"brief": "header div with class ski_top",
+"brief": "header div",
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_top"
+"class": "w3-panel w3-theme-d1"
 },
 "parts": [
 [
@@ -94,7 +94,7 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_top_right"
+"class": "w3-right"
 },
 "parts": [
 [
@@ -155,7 +155,7 @@
 "hide": true,
 "show": true,
 "show_error": "",
-"widget_class": "ski_errorcol",
+"widget_class": "w3-red",
 "widget_style": ""
 }
 }
@@ -171,7 +171,7 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_left"
+"style": "float:left;width:20%"
 },
 "parts": [
 [
@@ -181,7 +181,7 @@
 "name": "navbuttons",
 "brief": "List of navigation buttons",
 "fields": {
-"button_class": "ski_leftbutton",
+"button_class": "w3-button w3-round w3-theme-l1",
 "clear_error": false,
 "error_class": "",
 "li_class": "",
@@ -195,8 +195,8 @@ false,
 ],
 "show": true,
 "show_error": "",
-"ul_class": "ski_no_bullets",
-"widget_class": "",
+"ul_class": "w3-ul w3-center",
+"widget_class": "w3-card-4",
 "widget_style": ""
 }
 }
@@ -469,7 +469,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -488,7 +488,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -698,7 +698,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -717,7 +717,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -768,12 +768,12 @@ false,
 "fields": {
 "action": "check_login",
 "action_json": "",
-"button_class": "",
+"button_class": "w3-button w3-theme-d4",
 "button_text": "Submit",
 "clear_error": false,
 "div_class": "",
 "enctype": "",
-"error_class": "ski_errorcol",
+"error_class": "w3-panel w3-red",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
@@ -784,7 +784,7 @@ false,
 "right_label": "",
 "show": true,
 "show_error": "",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 },
 "container_0": [
@@ -804,11 +804,11 @@ false,
 "fields": {
 "clear_error": false,
 "disabled": false,
-"error_class": "",
-"input_accepted_class": "",
-"input_class": "",
+"error_class": "w3-panel w3-red",
+"input_accepted_class": "ski_input_accepted",
+"input_class": "ski_input",
 "input_disabled_class": "",
-"input_errored_class": "",
+"input_errored_class": "ski_input_errored",
 "input_text": "",
 "inputdiv_class": "",
 "label": "Username:",
@@ -824,7 +824,7 @@ false,
 "size": "",
 "title": "",
 "type": "text",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 },
 "validators": {
@@ -855,9 +855,9 @@ false,
 "fields": {
 "clear_error": false,
 "disabled": false,
-"error_class": "",
-"input_accepted_class": "",
-"input_errored_class": "",
+"error_class": "w3-panel w3-red",
+"input_accepted_class": "ski_input_accepted",
+"input_errored_class": "ski_input_errored",
 "input_text": "",
 "label": "Password:",
 "label_class": "ski_left_label",
@@ -869,7 +869,7 @@ false,
 "show": true,
 "show_error": "",
 "size": "",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 },
 "validators": {
@@ -1130,7 +1130,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -1149,7 +1149,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -1359,7 +1359,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -1378,7 +1378,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -1588,7 +1588,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -1607,7 +1607,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -1968,7 +1968,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -1987,7 +1987,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -2212,7 +2212,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -2231,7 +2231,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -2303,7 +2303,7 @@ false,
 "ident": 2001,
 "brief": "The template for the index page",
 "TemplatePage": {
-"show_backcol": true,
+"show_backcol": false,
 "last_scroll": true,
 "lang": "en",
 "backcol": "#11216a",
@@ -2458,7 +2458,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -2470,6 +2470,14 @@ false,
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -2477,7 +2485,8 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -2556,14 +2565,6 @@ false,
 }
 ]
 ]
-}
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
 }
 ]
 ]
@@ -2880,7 +2881,7 @@ false,
 "brief": "Shows the error message",
 "fields": {
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "hide": true,
 "show": true,
 "show_error": "No error message available",
@@ -3370,7 +3371,7 @@ false,
 "brief": "Shows the error message",
 "fields": {
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "hide": true,
 "show": true,
 "show_error": "No error message available",
@@ -3819,7 +3820,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -3838,7 +3839,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -3920,25 +3921,25 @@ false,
 "fields": {
 "action": "edit_role",
 "action_json": "",
-"button_class": "",
+"button_class": "w3-button w3-theme-d4 w3-margin-left",
 "button_text": "Submit",
 "clear_error": false,
 "disabled": false,
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
 "hidden_field4": "",
 "hide": false,
-"inputdiv_class": "",
+"inputdiv_class": "w3-section",
 "label": "Role:",
 "label_class": "ski_left_label",
 "option_list": [],
-"select_class": "",
+"select_class": "ski_input",
 "selectvalue": "",
 "show": true,
 "show_error": "",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -3952,20 +3953,20 @@ false,
 "fields": {
 "action": "edit_username",
 "action_json": "",
-"button_class": "",
+"button_class": "w3-button w3-theme-d4 w3-margin-left",
 "button_text": "Submit",
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
 "hidden_field4": "",
 "hide": false,
 "input_accepted_class": "ski_input_accepted",
-"input_class": "",
+"input_class": "ski_input",
 "input_errored_class": "ski_input_errored",
 "input_text": "",
-"inputdiv_class": "",
+"inputdiv_class": "w3-section",
 "label": "Username:",
 "label_class": "ski_left_label",
 "maxlength": "",
@@ -3979,7 +3980,7 @@ false,
 "size": "",
 "title": "",
 "type": "text",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -3993,20 +3994,20 @@ false,
 "fields": {
 "action": "edit_member_number",
 "action_json": "",
-"button_class": "",
+"button_class": "w3-button w3-theme-d4 w3-margin-left",
 "button_text": "Submit",
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
 "hidden_field4": "",
 "hide": false,
 "input_accepted_class": "ski_input_accepted",
-"input_class": "",
+"input_class": "ski_input",
 "input_errored_class": "ski_input_errored",
 "input_text": "",
-"inputdiv_class": "",
+"inputdiv_class": "w3-section",
 "label": "Member number:",
 "label_class": "ski_left_label",
 "maxlength": "",
@@ -4020,7 +4021,7 @@ false,
 "size": "",
 "title": "",
 "type": "text",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -4034,20 +4035,20 @@ false,
 "fields": {
 "action": "edit_email",
 "action_json": "",
-"button_class": "",
+"button_class": "w3-button w3-theme-d4 w3-margin-left",
 "button_text": "Submit",
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
 "hidden_field4": "",
 "hide": false,
 "input_accepted_class": "ski_input_accepted",
-"input_class": "",
+"input_class": "ski_input",
 "input_errored_class": "ski_input_errored",
 "input_text": "",
-"inputdiv_class": "",
+"inputdiv_class": "w3-section",
 "label": "Email:",
 "label_class": "ski_left_label",
 "maxlength": "",
@@ -4061,7 +4062,7 @@ false,
 "size": "",
 "title": "",
 "type": "text",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -4170,23 +4171,23 @@ false,
 "fields": {
 "action": "make_password",
 "action_json": "",
-"button_class": "ski_midbutton",
+"button_class": "w3-button w3-theme-d4",
 "button_text": "Generate new password",
 "clear_error": false,
 "div_class": "",
 "enctype": "",
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
 "hidden_field4": "",
-"left_class": "",
+"left_class": "ski_left_label",
 "left_label": "",
 "right_class": "",
 "right_label": "",
 "show": true,
 "show_error": "",
-"widget_class": "ski_top_bot_10",
+"widget_class": "w3-section",
 "widget_style": ""
 },
 "container_0": [
@@ -4205,18 +4206,18 @@ false,
 "brief": "If checked, emails the new password",
 "fields": {
 "checkbox": "emailpassword",
-"checkbox_class": "",
+"checkbox_class": "w3-check",
 "checked": true,
 "clear_error": false,
 "div_class": "",
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "left_class": "ski_left_label",
 "left_label": "Email new password:",
 "right_class": "",
 "right_label": "",
 "show": true,
 "show_error": "",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -4448,7 +4449,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -4467,7 +4468,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -4523,7 +4524,7 @@ false,
 "button_text": "Generate PIN",
 "button_wait_text": "Please wait...",
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-button w3-block w3-theme-action",
 "get_field1": "",
 "get_field2": "",
 "hide": false,
@@ -4531,7 +4532,7 @@ false,
 "link_ident": "no_javascript",
 "show": true,
 "show_error": "",
-"widget_class": "ski_midbutton",
+"widget_class": "w3-button w3-block w3-theme-d4",
 "widget_style": ""
 }
 }
@@ -4731,7 +4732,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -4750,7 +4751,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -4777,12 +4778,12 @@ false,
 "fields": {
 "action": 3011,
 "action_json": "",
-"button_class": "",
+"button_class": "w3-button w3-theme-d4",
 "button_text": "Submit",
 "clear_error": false,
 "div_class": "",
 "enctype": "",
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
@@ -4793,7 +4794,7 @@ false,
 "right_label": "",
 "show": true,
 "show_error": "",
-"widget_class": "ski_top_bot_10",
+"widget_class": "w3-section",
 "widget_style": ""
 },
 "container_0": [
@@ -4813,17 +4814,17 @@ false,
 "fields": {
 "clear_error": false,
 "div_class": "",
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "left_class": "ski_left_label",
 "left_label": "Role:",
 "option_list": [],
 "right_class": "",
 "right_label": "",
-"select_class": "",
+"select_class": "ski_input",
 "selectvalue": "",
 "show": true,
 "show_error": "",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -4837,11 +4838,11 @@ false,
 "fields": {
 "clear_error": false,
 "disabled": false,
-"error_class": "",
-"input_accepted_class": "",
-"input_class": "",
+"error_class": "w3-panel w3-red",
+"input_accepted_class": "ski_input_accepted",
+"input_class": "ski_input",
 "input_disabled_class": "",
-"input_errored_class": "",
+"input_errored_class": "ski_input_errored",
 "input_text": "",
 "inputdiv_class": "",
 "label": "Username:",
@@ -4857,7 +4858,7 @@ false,
 "size": "",
 "title": "",
 "type": "text",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -4871,11 +4872,11 @@ false,
 "fields": {
 "clear_error": false,
 "disabled": false,
-"error_class": "",
-"input_accepted_class": "",
-"input_class": "",
+"error_class": "w3-panel w3-red",
+"input_accepted_class": "ski_input_accepted",
+"input_class": "ski_input",
 "input_disabled_class": "",
-"input_errored_class": "",
+"input_errored_class": "ski_input_errored",
 "input_text": "",
 "inputdiv_class": "",
 "label": "Member number:",
@@ -4891,7 +4892,7 @@ false,
 "size": "",
 "title": "",
 "type": "text",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -4905,11 +4906,11 @@ false,
 "fields": {
 "clear_error": false,
 "disabled": false,
-"error_class": "",
-"input_accepted_class": "",
-"input_class": "",
+"error_class": "w3-panel w3-red",
+"input_accepted_class": "ski_input_accepted",
+"input_class": "ski_input",
 "input_disabled_class": "",
-"input_errored_class": "",
+"input_errored_class": "ski_input_errored",
 "input_text": "",
 "inputdiv_class": "",
 "label": "Email:",
@@ -4925,7 +4926,7 @@ false,
 "size": "",
 "title": "",
 "type": "text",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -4938,18 +4939,18 @@ false,
 "brief": "Tick to send email",
 "fields": {
 "checkbox": "send",
-"checkbox_class": "",
+"checkbox_class": "w3-check",
 "checked": false,
 "clear_error": false,
 "div_class": "",
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "left_class": "ski_left_label",
 "left_label": "Email password:",
 "right_class": "",
 "right_label": "",
 "show": true,
 "show_error": "",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -5136,7 +5137,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -5155,7 +5156,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -5193,7 +5194,7 @@ false,
 "fields": {
 "button_text": "membership number",
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-button w3-block w3-theme-action",
 "force_ident": true,
 "get_field1": "",
 "get_field2": "",
@@ -5202,7 +5203,7 @@ false,
 "new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ski_button",
+"widget_class": "w3-button w3-block w3-theme-d4",
 "widget_style": ""
 }
 }
@@ -5266,7 +5267,7 @@ false
 "json_ident2": "",
 "link_ident1": "edituser",
 "link_ident2": "home",
-"odd_class": "ski_table_odd",
+"odd_class": "w3-theme-d2",
 "show": true,
 "title1": "Username",
 "title2": "Role",
@@ -5299,7 +5300,7 @@ false
 "fields": {
 "button_text": "previous",
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-button w3-block w3-theme-action",
 "force_ident": true,
 "get_field1": "",
 "get_field2": "",
@@ -5308,7 +5309,7 @@ false
 "new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ski_prev",
+"widget_class": "w3-button w3-block w3-theme-d4",
 "widget_style": ""
 }
 }
@@ -5322,7 +5323,7 @@ false
 "fields": {
 "button_text": "next",
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-button w3-block w3-theme-action",
 "force_ident": true,
 "get_field1": "",
 "get_field2": "",
@@ -5331,7 +5332,7 @@ false
 "new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ski_next",
+"widget_class": "w3-button w3-block w3-theme-d4",
 "widget_style": ""
 }
 }
@@ -5546,7 +5547,7 @@ false
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -5565,7 +5566,7 @@ false
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -5592,12 +5593,12 @@ false
 "fields": {
 "action": 3021,
 "action_json": "",
-"button_class": "",
+"button_class": "w3-button w3-theme-d4",
 "button_text": "Submit",
 "clear_error": false,
 "div_class": "",
 "enctype": "",
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
@@ -5608,7 +5609,7 @@ false
 "right_label": "",
 "show": true,
 "show_error": "",
-"widget_class": "ski_top_bot_10",
+"widget_class": "w3-section",
 "widget_style": ""
 },
 "container_0": [
@@ -5628,11 +5629,11 @@ false
 "fields": {
 "clear_error": false,
 "disabled": false,
-"error_class": "",
-"input_accepted_class": "",
-"input_class": "",
+"error_class": "w3-panel w3-red",
+"input_accepted_class": "ski_input_accepted",
+"input_class": "ski_input",
 "input_disabled_class": "",
-"input_errored_class": "",
+"input_errored_class": "ski_input_errored",
 "input_text": "",
 "inputdiv_class": "",
 "label": "SMTP Server:",
@@ -5648,7 +5649,7 @@ false
 "size": "",
 "title": "",
 "type": "text",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -5662,11 +5663,11 @@ false
 "fields": {
 "clear_error": false,
 "disabled": false,
-"error_class": "",
-"input_accepted_class": "",
-"input_class": "",
+"error_class": "w3-panel w3-red",
+"input_accepted_class": "ski_input_accepted",
+"input_class": "ski_input",
 "input_disabled_class": "",
-"input_errored_class": "",
+"input_errored_class": "ski_input_errored",
 "input_text": "",
 "inputdiv_class": "",
 "label": "No-Reply address:",
@@ -5682,7 +5683,7 @@ false
 "size": "",
 "title": "",
 "type": "text",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -5696,11 +5697,11 @@ false
 "fields": {
 "clear_error": false,
 "disabled": false,
-"error_class": "",
-"input_accepted_class": "",
-"input_class": "",
+"error_class": "w3-panel w3-red",
+"input_accepted_class": "ski_input_accepted",
+"input_class": "ski_input",
 "input_disabled_class": "",
-"input_errored_class": "",
+"input_errored_class": "ski_input_errored",
 "input_text": "",
 "inputdiv_class": "",
 "label": "SMTP username:",
@@ -5716,7 +5717,7 @@ false
 "size": "",
 "title": "",
 "type": "text",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -5757,18 +5758,18 @@ false
 "brief": "Sets smtp authenticated encryption",
 "fields": {
 "checkbox": "checked",
-"checkbox_class": "",
+"checkbox_class": "w3-check",
 "checked": true,
 "clear_error": false,
 "div_class": "",
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "left_class": "ski_left_label",
 "left_label": "TLS Mode:",
 "right_class": "",
 "right_label": "",
 "show": true,
 "show_error": "",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -5786,14 +5787,14 @@ false
 "brief": "Shows smtp settings result",
 "fields": {
 "clear_error": false,
-"error_class": "ski_errorcol",
+"error_class": "w3-panel w3-red",
 "para_class": "",
 "para_text": "The SMTP server settings have been saved.",
 "pre_line": true,
 "show": true,
 "show_error": "",
 "show_para": false,
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -5830,7 +5831,7 @@ false
 "fields": {
 "button_text": "Download backup",
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-button w3-block w3-theme-action",
 "force_ident": true,
 "get_field1": "",
 "get_field2": "",
@@ -5839,7 +5840,7 @@ false
 "new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ski_midbutton",
+"widget_class": "w3-button w3-block w3-theme-d4",
 "widget_style": ""
 }
 }
@@ -5882,11 +5883,11 @@ false
 "fields": {
 "action": 3030,
 "clear_error": false,
-"error_class": "",
-"filebutton_class": "",
+"error_class": "w3-panel w3-red",
+"filebutton_class": "w3-button w3-theme-d4",
 "filebutton_label": "Choose file:",
 "filebuttonlabel_class": "ski_left_label",
-"fileinputdiv_class": "",
+"fileinputdiv_class": "w3-section",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
@@ -5895,12 +5896,12 @@ false
 "required": true,
 "show": true,
 "show_error": "",
-"submitbutton_class": "",
+"submitbutton_class": "w3-button w3-theme-d4",
 "submitbutton_label": "Restore from backup:",
 "submitbutton_text": "Upload",
 "submitbuttonlabel_class": "ski_left_label",
-"submitinputdiv_class": "",
-"widget_class": "",
+"submitinputdiv_class": "w3-section",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -6100,7 +6101,7 @@ false
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -6119,7 +6120,7 @@ false
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -6144,7 +6145,7 @@ false
 "name": "setup_buttons",
 "brief": "Buttons shown on setup index page",
 "fields": {
-"button_class": "ski_midbutton",
+"button_class": "w3-button w3-round w3-theme-l1",
 "clear_error": false,
 "error_class": "",
 "li_class": "",
@@ -6158,7 +6159,7 @@ false,
 ],
 "show": true,
 "show_error": "",
-"ul_class": "ski_no_bullets",
+"ul_class": "w3-ul",
 "widget_class": "",
 "widget_style": ""
 }
@@ -6212,11 +6213,11 @@ false,
 "brief": "set message",
 "fields": {
 "action": 3002,
-"button_class": "ski_midbutton",
+"button_class": "w3-button w3-theme-d4 w3-margin-left",
 "button_text": "Submit",
 "clear_error": false,
 "cols": "40",
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
@@ -6226,8 +6227,8 @@ false,
 "rows": "6",
 "show": true,
 "show_error": "",
-"textarea_class": "",
-"widget_class": "ski_left_20",
+"textarea_class": "ski_input",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -6861,7 +6862,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -6880,7 +6881,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -7105,7 +7106,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -7124,7 +7125,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -7276,15 +7277,15 @@ false,
 ]
 ],
 "even_class": "ski_table_even",
-"header_class": "ski_table_header",
+"header_class": "w3-theme-d3",
 "hide": false,
 "json_ident": "make_pin2",
 "link_ident": "no_javascript",
-"odd_class": "ski_table_odd",
+"odd_class": "w3-theme-d2",
 "show": true,
 "title1": "Username",
 "title2": "Membership Number",
-"widget_class": "ski_table",
+"widget_class": "w3-table w3-theme-d1 w3-border w3-bordered",
 "widget_style": ""
 }
 }
@@ -7466,7 +7467,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -7485,7 +7486,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_centre"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -7515,12 +7516,12 @@ false,
 "fields": {
 "action": 8002,
 "action_json": "",
-"button_class": "",
+"button_class": "w3-button w3-theme-d4",
 "button_text": "Submit",
 "clear_error": false,
 "div_class": "",
 "enctype": "",
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
@@ -7531,7 +7532,7 @@ false,
 "right_label": "",
 "show": true,
 "show_error": "",
-"widget_class": "ski_top_bot_10",
+"widget_class": "w3-section",
 "widget_style": ""
 },
 "container_0": [
@@ -7551,11 +7552,11 @@ false,
 "fields": {
 "clear_error": false,
 "disabled": false,
-"error_class": "",
-"input_accepted_class": "",
-"input_class": "",
+"error_class": "w3-panel w3-red",
+"input_accepted_class": "ski_input_accepted",
+"input_class": "ski_input",
 "input_disabled_class": "",
-"input_errored_class": "",
+"input_errored_class": "ski_input_errored",
 "input_text": "",
 "inputdiv_class": "",
 "label": "Current password:",
@@ -7571,7 +7572,7 @@ false,
 "size": "",
 "title": "",
 "type": "text",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -7585,11 +7586,11 @@ false,
 "fields": {
 "clear_error": false,
 "disabled": false,
-"error_class": "",
-"input_accepted_class": "",
-"input_class": "",
+"error_class": "w3-panel w3-red",
+"input_accepted_class": "ski_input_accepted",
+"input_class": "ski_input",
 "input_disabled_class": "",
-"input_errored_class": "",
+"input_errored_class": "ski_input_errored",
 "input_text": "",
 "inputdiv_class": "",
 "label": "New password:",
@@ -7605,7 +7606,7 @@ false,
 "size": "",
 "title": "",
 "type": "text",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -7619,11 +7620,11 @@ false,
 "fields": {
 "clear_error": false,
 "disabled": false,
-"error_class": "",
-"input_accepted_class": "",
-"input_class": "",
+"error_class": "w3-panel w3-red",
+"input_accepted_class": "ski_input_accepted",
+"input_class": "ski_input",
 "input_disabled_class": "",
-"input_errored_class": "",
+"input_errored_class": "ski_input_errored",
 "input_text": "",
 "inputdiv_class": "",
 "label": "New password again:",
@@ -7639,7 +7640,7 @@ false,
 "size": "",
 "title": "",
 "type": "text",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -7657,14 +7658,14 @@ false,
 "brief": "Shows result when password has changed",
 "fields": {
 "clear_error": false,
-"error_class": "ski_errorcol",
+"error_class": "w3-panel w3-red",
 "para_class": "",
 "para_text": "The password has changed.",
 "pre_line": true,
 "show": true,
 "show_error": "",
 "show_para": false,
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -7711,28 +7712,28 @@ false,
 "fields": {
 "action": 8003,
 "action_json": "",
-"button_class": "",
+"button_class": "w3-button w3-theme-d4",
 "button_label": "Set email:",
 "button_label_class": "ski_left_label",
 "button_text": "Submit",
-"buttondiv_class": "",
+"buttondiv_class": "w3-section",
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
 "hidden_field4": "",
 "hide": false,
 "input_accepted_class": "ski_input_accepted",
-"input_class": "",
+"input_class": "ski_input",
 "input_errored_class": "ski_input_errored",
 "input_text": "",
-"inputdiv_class": "",
+"inputdiv_class": "w3-section",
 "label": "Email:",
 "label_class": "ski_left_label",
 "maxlength": "",
 "new_window": false,
-"outer_class": "",
+"outer_class": "w3-section",
 "para_text": "",
 "pattern": "",
 "required": false,
@@ -7746,7 +7747,7 @@ false,
 "textblock_ref": "",
 "title": "",
 "type": "text",
-"widget_class": "ski_top_bot_10",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -7759,14 +7760,14 @@ false,
 "brief": "Shows user email result",
 "fields": {
 "clear_error": false,
-"error_class": "ski_errorcol",
+"error_class": "w3-panel w3-red",
 "para_class": "",
 "para_text": "Email has successfully changed.",
 "pre_line": true,
 "show": true,
 "show_error": "",
 "show_para": false,
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -8090,7 +8091,7 @@ false,
 "brief": "ErrorDiv",
 "fields": {
 "clear_error": false,
-"error_class": "ski_errorcol",
+"error_class": "w3-panel w3-red",
 "hide": true,
 "show": true,
 "show_error": "",
