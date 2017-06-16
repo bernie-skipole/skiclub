@@ -5312,8 +5312,10 @@ false
 "brief": "cancel or confirm user removal",
 "fields": {
 "boxdiv_class": "w3-modal-content w3-panel w3-theme-l1",
-"button1_class": "w3-button w3-theme-d4",
-"button2_class": "w3-button w3-theme-d4",
+"button1_class": "w3-button w3-round w3-theme-d4",
+"button1_style": "width:40%;margin-right:10%;",
+"button2_class": "w3-button w3-round w3-theme-d4",
+"button2_style": "width:40%; margin-left:10%;",
 "button_text1": "Cancel",
 "button_text2": "Confirm",
 "buttondiv_class": "w3-bar",
@@ -5328,6 +5330,7 @@ false
 "link_ident2": "delete_user",
 "para_class": "",
 "para_text": "",
+"paradiv_class": "w3-panel",
 "show": true,
 "widget_class": "w3-modal",
 "widget_style": ""
