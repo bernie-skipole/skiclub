@@ -88,12 +88,14 @@ def show_edit_users_page(page_data, offset=0, names=True):
         page_data['order', 'button_text'] = 'membership number'
         page_data['order', 'link_ident'] = 'editmembers'
         page_data['next', 'link_ident'] = 'nextusers'
+        page_data['previous', 'link_ident'] = 'nextusers'
         page_data['users', 'link_ident2'] = 'confirm_delete_user'
         page_data['users', 'json_ident2'] = 'json_confirm_delete_user'
     else:
         page_data['order', 'button_text'] = 'username'
         page_data['order', 'link_ident'] = 'editusers'
         page_data['next', 'link_ident'] = 'nextmembers'
+        page_data['previous', 'link_ident'] = 'nextmembers'
         page_data['users', 'link_ident2'] = 'confirm_delete_member'
         page_data['users', 'json_ident2'] = 'json_confirm_delete_member'
 
