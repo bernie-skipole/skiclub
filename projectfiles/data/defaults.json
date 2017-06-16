@@ -309,8 +309,9 @@
 "boxdiv_class": "w3-modal-content w3-panel w3-theme-l1",
 "para_class": "",
 "buttondiv_class": "w3-bar",
-"button1_class": "w3-button w3-theme-d4",
-"button2_class": "w3-button w3-theme-d4"
+"button1_class": "w3-button w3-round w3-theme-d4",
+"button2_class": "w3-button w3-round w3-theme-d4",
+"paradiv_class": "w3-panel"
 }
 }
 }
