@@ -302,6 +302,16 @@
 "button_class": "w3-button w3-theme-d4",
 "error_class": "w3-panel w3-red"
 }
+},
+"confirm": {
+"ConfirmBox2": {
+"widget_class": "w3-modal",
+"boxdiv_class": "w3-modal-content w3-panel w3-theme-l1",
+"para_class": "",
+"buttondiv_class": "w3-bar",
+"button1_class": "w3-button w3-theme-d4",
+"button2_class": "w3-button w3-theme-d4"
+}
 }
 }
 }

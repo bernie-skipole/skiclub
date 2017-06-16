@@ -5311,12 +5311,12 @@ false
 "name": "confirm",
 "brief": "cancel or confirm user removal",
 "fields": {
-"boxdiv_class": "ski_confirm",
-"button1_class": "ski_confirm_butt1",
-"button2_class": "ski_confirm_butt2",
+"boxdiv_class": "w3-modal-content w3-panel w3-theme-l1",
+"button1_class": "w3-button w3-theme-d4",
+"button2_class": "w3-button w3-theme-d4",
 "button_text1": "Cancel",
 "button_text2": "Confirm",
-"buttondiv_class": "ski_confirm_buttondiv",
+"buttondiv_class": "w3-bar",
 "get_field1_1": "",
 "get_field1_2": "",
 "get_field1_3": "",
@@ -5326,10 +5326,10 @@ false
 "hide": true,
 "link_ident1": "cancel_delete",
 "link_ident2": "delete_user",
-"para_class": "ski_confirm_para",
+"para_class": "",
 "para_text": "",
 "show": true,
-"widget_class": "ski_confirm_background",
+"widget_class": "w3-modal",
 "widget_style": ""
 }
 }
