@@ -171,7 +171,8 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"style": "float:left;width:20%"
+"class": "w3-sidebar w3-bar-block w3-theme-d1 w3-container",
+"style": "width:20%"
 },
 "parts": [
 [
@@ -181,7 +182,7 @@
 "name": "navbuttons",
 "brief": "List of navigation buttons",
 "fields": {
-"button_class": "w3-button w3-round w3-theme-l1",
+"button_class": "w3-button w3-block w3-round w3-theme-l1",
 "clear_error": false,
 "error_class": "",
 "li_class": "",
@@ -195,8 +196,8 @@ false,
 ],
 "show": true,
 "show_error": "",
-"ul_class": "w3-ul w3-center",
-"widget_class": "w3-card-4",
+"ul_class": "w3-ul",
+"widget_class": "",
 "widget_style": ""
 }
 }
@@ -210,7 +211,7 @@ false,
 "fields": {
 "para_text": "",
 "show": true,
-"widget_class": "ski_margin_left_10",
+"widget_class": "w3-panel",
 "widget_style": ""
 }
 }
@@ -710,6 +711,14 @@ false,
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -717,7 +726,8 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -731,30 +741,6 @@ false,
 [
 "Text",
 "Member login:"
-],
-[
-"ClosedPart",
-{
-"tag_name": "br",
-"brief": "Line break",
-"show": true
-}
-],
-[
-"ClosedPart",
-{
-"tag_name": "br",
-"brief": "Line break",
-"show": true
-}
-],
-[
-"ClosedPart",
-{
-"tag_name": "br",
-"brief": "Line break",
-"show": true
-}
 ]
 ]
 }
@@ -857,8 +843,11 @@ false,
 "disabled": false,
 "error_class": "w3-panel w3-red",
 "input_accepted_class": "ski_input_accepted",
+"input_class": "ski_input",
+"input_disabled_class": "",
 "input_errored_class": "ski_input_errored",
 "input_text": "",
+"inputdiv_class": "",
 "label": "Password:",
 "label_class": "ski_left_label",
 "maxlength": "",
@@ -913,22 +902,6 @@ false,
 "hide_if_empty": false,
 "parts": [
 [
-"ClosedPart",
-{
-"tag_name": "br",
-"brief": "Line break",
-"show": true
-}
-],
-[
-"ClosedPart",
-{
-"tag_name": "br",
-"brief": "Line break",
-"show": true
-}
-],
-[
 "Text",
 "This site uses cookies: On logging in, a short data string is saved to your computer and on subsequent calls to this web site is submitted to confirm your identity and logged in status.\r\nThis cookie data is necessary for the operation of the site. Please do not log in if you do not accept this usage."
 ]
@@ -936,14 +909,6 @@ false,
 }
 ]
 ]
-}
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
 }
 ]
 ]
@@ -2224,6 +2189,14 @@ false,
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -2231,7 +2204,8 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -2250,14 +2224,6 @@ false,
 }
 ]
 ]
-}
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
 }
 ]
 ]
@@ -5733,8 +5699,11 @@ false
 "disabled": false,
 "error_class": "",
 "input_accepted_class": "",
+"input_class": "",
+"input_disabled_class": "",
 "input_errored_class": "",
 "input_text": "",
+"inputdiv_class": "",
 "label": "SMTP password:",
 "label_class": "ski_left_label",
 "maxlength": "",
