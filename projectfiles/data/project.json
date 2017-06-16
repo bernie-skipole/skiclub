@@ -482,6 +482,14 @@ false,
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -489,7 +497,8 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -523,14 +532,6 @@ false,
 }
 ]
 ]
-}
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
 }
 ]
 ]
@@ -1565,6 +1566,14 @@ false,
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -1572,7 +1581,8 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -1601,12 +1611,13 @@ false,
 "brief": "input a PIN widget",
 "fields": {
 "action": "check_pin",
-"butt_div_class": "ski_top_bot_10",
-"button_class": "",
+"butt_div_class": "w3-section",
+"button_class": "w3-button w3-theme-d4",
 "button_text": "Submit",
-"char_div_class": "ski_left_pos_30",
+"char_div_class": "",
+"char_div_style": "margin-left:30%;",
 "clear_error": false,
-"error_class": "ski_errorcol",
+"error_class": "w3-panel w3-red",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
@@ -1623,7 +1634,7 @@ false,
 "right_label": "",
 "show": true,
 "show_error": "",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 },
 "container_0": [
@@ -1643,14 +1654,6 @@ false,
 }
 ]
 ]
-}
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
 }
 ]
 ]
@@ -1945,6 +1948,14 @@ false,
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -1952,7 +1963,8 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -1971,14 +1983,6 @@ false,
 }
 ]
 ]
-}
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
 }
 ]
 ]
@@ -3798,6 +3802,14 @@ false,
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -3805,7 +3817,8 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -4102,9 +4115,6 @@ false,
 "brief": "New Tag",
 "show": true,
 "hide_if_empty": false,
-"attribs": {
-"class": "boldfont"
-},
 "parts": [
 [
 "Text",
@@ -4148,7 +4158,7 @@ false,
 "hidden_field3": "",
 "hidden_field4": "",
 "left_class": "ski_left_label",
-"left_label": "",
+"left_label": "New password:",
 "right_class": "",
 "right_label": "",
 "show": true,
@@ -4192,27 +4202,8 @@ false,
 }
 ]
 }
-],
-[
-"ClosedPart",
-{
-"tag_name": "hr",
-"brief": "New Tag",
-"show": true,
-"attribs": {
-"class": "ski_top_bot_10"
-}
-}
 ]
 ]
-}
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
 }
 ]
 ]
@@ -4710,6 +4701,14 @@ false,
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -4717,7 +4716,8 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -4928,14 +4928,6 @@ false,
 ]
 ]
 }
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
-}
 ]
 ]
 }
@@ -5115,6 +5107,14 @@ false,
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -5122,7 +5122,8 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -5207,7 +5208,7 @@ false,
 "name": "users",
 "brief": "table  of users",
 "fields": {
-"button_class": "ski_table_button",
+"button_class": "w3-button w3-padding-small w3-small w3-theme-dark",
 "button_text1": "Edit",
 "button_text2": "Remove",
 "contents": [
@@ -5223,12 +5224,12 @@ false,
 false
 ]
 ],
-"even_class": "ski_table_even",
+"even_class": "",
 "get_field1_1": true,
 "get_field1_2": true,
 "get_field2_1": true,
 "get_field2_2": true,
-"header_class": "ski_table_header",
+"header_class": "w3-theme-d3",
 "json_ident1": "",
 "json_ident2": "",
 "link_ident1": "edituser",
@@ -5238,7 +5239,7 @@ false
 "title1": "Username",
 "title2": "Role",
 "title3": "Membership No.",
-"widget_class": "ski_table",
+"widget_class": "w3-table w3-theme-d1 w3-border w3-bordered",
 "widget_style": ""
 }
 }
@@ -5337,14 +5338,6 @@ false
 }
 ]
 ]
-}
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
 }
 ]
 ]
@@ -5525,6 +5518,14 @@ false
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -5532,7 +5533,8 @@ false
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -5697,11 +5699,11 @@ false
 "fields": {
 "clear_error": false,
 "disabled": false,
-"error_class": "",
-"input_accepted_class": "",
-"input_class": "",
+"error_class": "w3-panel w3-red",
+"input_accepted_class": "ski_input_accepted",
+"input_class": "ski_input",
 "input_disabled_class": "",
-"input_errored_class": "",
+"input_errored_class": "ski_input_errored",
 "input_text": "",
 "inputdiv_class": "",
 "label": "SMTP password:",
@@ -5714,7 +5716,7 @@ false
 "show": true,
 "show_error": "",
 "size": "",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -5790,6 +5792,9 @@ false
 "brief": "div holds download button",
 "show": true,
 "hide_if_empty": false,
+"attribs": {
+"style": "margin-left:30%;width:25%"
+},
 "parts": [
 [
 "Widget",
@@ -5894,14 +5899,6 @@ false
 }
 ]
 ]
-}
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
 }
 ]
 ]
@@ -6082,6 +6079,14 @@ false
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -6089,7 +6094,8 @@ false
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -6114,9 +6120,9 @@ false
 "name": "setup_buttons",
 "brief": "Buttons shown on setup index page",
 "fields": {
-"button_class": "w3-button w3-round w3-theme-l1",
+"button_class": "w3-button w3-block w3-round w3-theme-l1",
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "li_class": "",
 "nav_links": [
 [
@@ -6130,7 +6136,7 @@ false,
 "show_error": "",
 "ul_class": "w3-ul",
 "widget_class": "",
-"widget_style": ""
+"widget_style": "margin-left:30%; width:30%;"
 }
 }
 ],
@@ -6157,7 +6163,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ski_mid_div ski_top_bot_10"
+"class": "w3-section"
 },
 "parts": [
 [
@@ -6198,7 +6204,7 @@ false,
 "show_error": "",
 "textarea_class": "ski_input",
 "widget_class": "w3-section",
-"widget_style": ""
+"widget_style": "margin-left:30%;"
 }
 }
 ]
@@ -6206,14 +6212,6 @@ false,
 }
 ]
 ]
-}
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
 }
 ]
 ]
@@ -6843,6 +6841,14 @@ false,
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -6850,7 +6856,8 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -6869,14 +6876,6 @@ false,
 }
 ]
 ]
-}
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
 }
 ]
 ]
@@ -7087,6 +7086,14 @@ false,
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -7094,7 +7101,8 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -7105,12 +7113,13 @@ false,
 "brief": "Sets a new pin",
 "fields": {
 "action": "newpin",
-"butt_div_class": "ski_top_bot_10",
-"button_class": "",
+"butt_div_class": "w3-section",
+"button_class": "w3-button w3-theme-d4",
 "button_text": "Submit",
-"char_div_class": "ski_left_pos_30",
+"char_div_class": "",
+"char_div_style": "margin-left:30%;",
 "clear_error": false,
-"error_class": "ski_errorcol",
+"error_class": "w3-panel w3-red",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
@@ -7260,14 +7269,6 @@ false,
 }
 ]
 ]
-}
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
 }
 ]
 ]
@@ -7448,6 +7449,14 @@ false,
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -7455,7 +7464,8 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -7742,14 +7752,6 @@ false,
 }
 ]
 ]
-}
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
 }
 ]
 ]
