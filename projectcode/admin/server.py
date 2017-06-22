@@ -63,7 +63,7 @@ def set_server_email_settings(caller_ident, ident_list, submit_list, submit_dict
         no_reply = call_data['no_reply', 'input_text']
         starttls = call_data['starttls', 'checkbox']
     except:
-        raise FailPage('Invalid settings.', displaywidgetname = 'emailsettings')
+        raise FailPage('Invalid settings.', widget = 'emailsettings')
     if starttls == 'checked':
         starttls = True
     else:
@@ -71,7 +71,7 @@ def set_server_email_settings(caller_ident, ident_list, submit_list, submit_dict
     if database_ops.set_emailserver(emailuser, emailpassword, emailserver, no_reply, starttls):
         page_data['emailsettings', 'show_para'] = True
     else:
-        raise FailPage('Unable to set smtp server settings into database', displaywidgetname = 'emailsettings')
+        raise FailPage('Unable to set smtp server settings into database', widget = 'emailsettings')
 
 
 

@@ -33,8 +33,8 @@ def upload(caller_ident, ident_list, submit_list, submit_dict, call_data, page_d
     # Called by responder 3030
 
     if (('upload','action') not in call_data) or (not call_data['upload','action']):
-        raise FailPage("Invalid file.", displaywidgetname = 'upload' )
+        raise FailPage("Invalid file.", widget = 'upload' )
     try:
         database_ops.restoredatabase(call_data['upload','action'].decode('utf-8'))
     except:
-        raise FailPage('Restore Failed.', displaywidgetname = 'upload')
+        raise FailPage('Restore Failed.', widget = 'upload')

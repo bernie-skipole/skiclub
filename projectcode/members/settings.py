@@ -35,25 +35,25 @@ def new_password(caller_ident, ident_list, submit_list, submit_dict, call_data, 
     newpassword2 = call_data['newpassword2', 'input_text']
 
     if (not oldpassword) or (not newpassword1) or (not newpassword2):
-        raise FailPage('Password missing', displaywidgetname = 'passwordstatus')
+        raise FailPage('Password missing', widget = 'passwordstatus')
 
     if newpassword1 != newpassword2:
-        raise FailPage("New password fields do not match", displaywidgetname = 'passwordstatus')
+        raise FailPage("New password fields do not match", widget = 'passwordstatus')
 
     if len(newpassword1) < 5:
-        raise FailPage("New password too short - five or more characters please", displaywidgetname = 'passwordstatus')
+        raise FailPage("New password too short - five or more characters please", widget = 'passwordstatus')
 
     if newpassword1 == oldpassword:
-        raise FailPage("The new password should be different to the old one", displaywidgetname = 'passwordstatus')
+        raise FailPage("The new password should be different to the old one", widget = 'passwordstatus')
 
     if not database_ops.check_password_of_user_id(user_id, oldpassword):
         # old password invalid
-        raise FailPage('Invalid current password', displaywidgetname = 'passwordstatus')
+        raise FailPage('Invalid current password', widget = 'passwordstatus')
 
     # All ok, set the new password into the database
     if not database_ops.set_password(user_id, newpassword1):
         # Something failed
-        raise FailPage('Unable to update database', displaywidgetname = 'passwordstatus')
+        raise FailPage('Unable to update database', widget = 'passwordstatus')
 
     # password updated, show status message
     page_data['passwordstatus', 'show_para'] = True
@@ -68,7 +68,7 @@ def set_email(caller_ident, ident_list, submit_list, submit_dict, call_data, pag
 
     user_id = call_data['user_id']
     if ('email', 'input_text') not in call_data:
-        raise FailPage('email missing', displaywidgetname = 'emailstatus')
+        raise FailPage('email missing', widget = 'emailstatus')
     email = call_data['email', 'input_text']
     if not email:
         email = ""
@@ -76,7 +76,7 @@ def set_email(caller_ident, ident_list, submit_list, submit_dict, call_data, pag
     if database_ops.set_email(user_id, email):
         page_data['email', 'input_text'] = email
     else:
-        raise FailPage('Unable to set email into database', displaywidgetname = 'emailstatus')
+        raise FailPage('Unable to set email into database', widget = 'emailstatus')
 
     # email updated, show status message
     page_data['emailstatus', 'show_para'] = True
