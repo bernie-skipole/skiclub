@@ -70,11 +70,11 @@ def check_login(caller_ident, ident_list, submit_list, submit_dict, call_data, p
     
 
     if not username:
-        raise FailPage(message= "Login fail: missing username", displaywidgetname='loginform')
+        raise FailPage(message= "Login fail: missing username", widget='loginform')
     if not password:
-        raise FailPage(message= "Login fail: missing password", displaywidgetname='loginform')
+        raise FailPage(message= "Login fail: missing password", widget='loginform')
     if not database_ops.check_password(username, password):
-        raise FailPage(message= "Login fail: invalid username-password", displaywidgetname='loginform')
+        raise FailPage(message= "Login fail: invalid username-password", widget='loginform')
 
     # password ok, get user information
     user = database_ops.get_user_from_username(username)
@@ -82,13 +82,13 @@ def check_login(caller_ident, ident_list, submit_list, submit_dict, call_data, p
 
     if user is None:
         # something wrong, unable to get user information
-        raise FailPage(message= "Login Fail: unable to retrieve user details", displaywidgetname='loginform')
+        raise FailPage(message= "Login Fail: unable to retrieve user details", widget='loginform')
     if user[1] == 'ADMIN':
         # At this stage, the admin user may be logged in, but will not be authenticated
         # so at this point ensure his authenticated status is set to False on the database
         if not database_ops.set_authenticated(user[0], False):
             # failed to set authenticated to False
-            raise FailPage(message= "Login Fail: unable to reset Admin authentication", displaywidgetname='loginform')
+            raise FailPage(message= "Login Fail: unable to reset Admin authentication", widget='loginform')
         # The admin user will be asked to authenticate when he tries to access an administrative function
         # The pair of PIN characters he will be asked for will be set at this stage, so it changes every time he logs in.
         # This is done by setting a random number between 1 and 6 into database

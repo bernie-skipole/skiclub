@@ -25,11 +25,11 @@ def submit_add_user(caller_ident, ident_list, submit_list, submit_dict, call_dat
     # Called from responder 3011
     newuser = call_data['newuser', 'input_text']
     if not newuser:
-        raise FailPage("The new username is missing.", displaywidgetname = 'newuserresult' )
+        raise FailPage("The new username is missing.", widget = 'newuserresult' )
     # check newuser does not currently exist in database
     if database_ops.get_user_id(newuser):
         # user id found for this user
-        raise FailPage("This username already exits.", displaywidgetname = 'newuserresult' )
+        raise FailPage("This username already exits.", widget = 'newuserresult' )
     if call_data['newrole','selectvalue'] == "Admin":
         # role initially set to member, changed to admin when a PIN is input
         newrole = 'MEMBER'
@@ -45,7 +45,7 @@ def submit_add_user(caller_ident, ident_list, submit_list, submit_dict, call_dat
         newemail = None
     result = database_ops.adduser(newuser, newrole, newmember, newemail)
     if not result:
-        raise FailPage("Unable to add new user", displaywidgetname = 'newuserresult')
+        raise FailPage("Unable to add new user", widget = 'newuserresult')
     new_user_id, password = result
     # user added with new user id
     call_data['edited_user_id'] = new_user_id

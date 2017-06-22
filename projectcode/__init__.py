@@ -8,7 +8,7 @@ build the project pages
 import os
 
 
-from ...skilift import FailPage, GoTo, ValidateError, ServerError
+from .. import FailPage, GoTo, ValidateError, ServerError
 
 from . import public, members, admin, database_ops
 
