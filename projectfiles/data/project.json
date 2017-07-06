@@ -3,7 +3,7 @@
 "default_language": "en",
 "brief": "Example club membership project",
 "version": "0.0.1",
-"skipole": "0.0.22",
+"skipole": "0.0.25",
 "subprojects": {
 "lib": "/lib/"
 },
@@ -236,7 +236,7 @@ false,
 "ident": 1006,
 "brief": "CSS file page, ski.css",
 "FilePage": {
-"filepath": "skiclub/static/ski.css",
+"filepath": "skiclub/static/css/ski.css",
 "enable_cache": true,
 "mimetype": "text/css"
 }
@@ -245,7 +245,7 @@ false,
 "ident": 1004,
 "brief": "CSS file page, w3-theme-ski.css",
 "FilePage": {
-"filepath": "skiclub/static/w3-theme-ski.css",
+"filepath": "skiclub/static/css/w3-theme-ski.css",
 "enable_cache": true,
 "mimetype": "text/css"
 }
@@ -254,7 +254,7 @@ false,
 "ident": 1002,
 "brief": "CSS file page, w3.css",
 "FilePage": {
-"filepath": "skiclub/static/w3.css",
+"filepath": "skiclub/static/css/w3.css",
 "enable_cache": true,
 "mimetype": "text/css"
 }
