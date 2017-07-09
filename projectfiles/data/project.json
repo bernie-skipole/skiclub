@@ -2,7 +2,7 @@
 "url": "/",
 "default_language": "en",
 "brief": "Example club membership project",
-"version": "0.0.1",
+"version": "0.0.2",
 "skipole": "0.0.25",
 "subprojects": {
 "lib": "/lib/"
@@ -2515,21 +2515,6 @@ false,
 [
 "Text",
 "This project may be suitable for a small club or a Raspberry Pi in-house project, but currently the entire skipole framework has not been tested for security. For more serious usage the wsgi application would also need to be served via a https capable server."
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "h2",
-"brief": "New Tag",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"Therefore to be specific : This project should only be used for none-critical purposes. The security features are not to be relied upon."
 ]
 ]
 }
