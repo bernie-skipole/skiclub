@@ -125,13 +125,6 @@ def database_directory():
     return os.path.dirname(_DATABASE_PATH)
 
 
-def database_path(database_dir):
-    global _DATABASE_NAME, _DATABASE_PATH
-    if _DATABASE_PATH:
-        return _DATABASE_PATH
-    return os.path.join(database_dir, _DATABASE_NAME)
-
-
 def open_database():
     "Opens the database, and returns the database connection"
     if not _DATABASE_EXISTS:
