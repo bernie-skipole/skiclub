@@ -3,9 +3,11 @@
 "default_language": "en",
 "brief": "Example club membership project",
 "version": "0.0.2",
-"skipole": "0.0.25",
+"skipole": "0.0.32",
 "subprojects": {
-"lib": {"path":"/lib/"}
+"lib": {
+"path": "/lib/"
+}
 },
 "specialpages": {
 "cancel_delete": 3080,

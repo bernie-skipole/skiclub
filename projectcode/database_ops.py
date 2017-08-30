@@ -11,7 +11,6 @@ from datetime import datetime, date, timedelta
 from ...skilift import FailPage, GoTo, ValidateError, ServerError
 
 # These global values will be set when start_database is called
-_DATABASE_DIR = ''
 _DATABASE_PATH = ''
 _DATABASE_EXISTS = False
 _PROJECT = ''
@@ -68,17 +67,17 @@ def hash_pin(pin, seed):
 
 def start_database(project, projectfiles):
     """Must be called first, before any other database operation to set globals"""
-    global _DATABASE_DIR, _DATABASE_PATH, _DATABASE_EXISTS, _PROJECT
+    global _DATABASE_PATH, _DATABASE_EXISTS, _PROJECT
     if _DATABASE_EXISTS:
         return
     # Set global variables
     _PROJECT = project
-    _DATABASE_DIR = database_directory(projectfiles)
-    _DATABASE_PATH = database_path(_DATABASE_DIR)
+    database_dir = os.path.join(projectfiles, _DATABASE_DIR_NAME)
+    _DATABASE_PATH = os.path.join(database_dir, _DATABASE_NAME)
     _DATABASE_EXISTS = True
     # make directory
     try:
-        os.mkdir(_DATABASE_DIR)
+        os.mkdir(database_dir)
     except FileExistsError:
         return
     # create the database
@@ -121,12 +120,9 @@ def start_database(project, projectfiles):
         con.close()
 
 
-def database_directory(projectfiles):
+def database_directory():
     "Returns database directory"
-    global _DATABASE_DIR_NAME, _DATABASE_DIR
-    if _DATABASE_DIR:
-        return _DATABASE_DIR
-    return os.path.join(projectfiles, _DATABASE_DIR_NAME)
+    return os.path.dirname(_DATABASE_PATH)
 
 
 def database_path(database_dir):
@@ -693,7 +689,7 @@ def dumpdatabase():
 
 def restoredatabase(sql_script):
     "Restore database, apart from current admin password and pin"
-    global _DATABASE_DIR, _DATABASE_EXISTS
+    global _DATABASE_EXISTS
     # get special Admin user details
     try:
         con = open_database()
@@ -707,16 +703,17 @@ def restoredatabase(sql_script):
     finally:
         con.close()
     # remove directory contents
-    shutil.rmtree(_DATABASE_DIR)
+    database_dir = database_directory()
+    shutil.rmtree(database_dir)
     # make directory
-    os.mkdir(_DATABASE_DIR)
+    os.mkdir(database_dir)
     try:
         con = sqlite3.connect(_DATABASE_PATH, detect_types=sqlite3.PARSE_DECLTYPES)
         con.execute("PRAGMA foreign_keys = 0")
         cur = con.cursor()
         cur.executescript(sql_script)
     except:
-        shutil.rmtree(_DATABASE_DIR)
+        shutil.rmtree(database_dir)
         _DATABASE_EXISTS = False
         return False
     finally:
@@ -728,7 +725,7 @@ def restoredatabase(sql_script):
         con.execute("update admins set authenticated = ?, rnd = ?, pair = ?, tries = ?, time = ?, pin1_2 = ?, pin1_3 = ?, pin1_4 = ?, pin2_3 = ?, pin2_4 = ?, pin3_4 = ? where user_id = ?", admin)
         con.commit()
     except:
-        shutil.rmtree(_DATABASE_DIR)
+        shutil.rmtree(database_dir)
         _DATABASE_EXISTS = False
         return False
     finally:
