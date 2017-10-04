@@ -51,7 +51,7 @@ def start_project(project, projectfiles, path, option):
        'proj_data' to subsequent start_call functions."""
     # This function will be called with the following arguments
     # project - the project name
-    # projectfiles - the path to the projectfiles/projectname directory
+    # projectfiles - the path to the projectfiles directory
     # path - the url path to this project
     # option - an optional value given on the command line
 
