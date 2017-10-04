@@ -3,7 +3,7 @@
 "default_language": "en",
 "brief": "Example club membership project",
 "version": "0.0.2",
-"skipole": "0.0.32",
+"skipole": "0.0.37",
 "subprojects": {
 "lib": {
 "path": "/lib/"
@@ -319,6 +319,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -549,6 +551,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -945,6 +949,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -1174,6 +1180,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -1403,6 +1411,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -1785,6 +1795,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -2030,6 +2042,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -2277,6 +2291,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -2537,6 +2553,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": false,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -2670,6 +2688,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": false,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -2909,6 +2929,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": false,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -3160,6 +3182,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": false,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -3624,6 +3648,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -3932,6 +3958,7 @@ false,
 "input_class": "ski_input",
 "input_errored_class": "ski_input_errored",
 "input_text": "",
+"inputandbutton_class": "",
 "inputdiv_class": "w3-section",
 "label": "Username:",
 "label_class": "ski_left_label",
@@ -3973,6 +4000,7 @@ false,
 "input_class": "ski_input",
 "input_errored_class": "ski_input_errored",
 "input_text": "",
+"inputandbutton_class": "",
 "inputdiv_class": "w3-section",
 "label": "Member number:",
 "label_class": "ski_left_label",
@@ -4014,6 +4042,7 @@ false,
 "input_class": "ski_input",
 "input_errored_class": "ski_input_errored",
 "input_text": "",
+"inputandbutton_class": "",
 "inputdiv_class": "w3-section",
 "label": "Email:",
 "label_class": "ski_left_label",
@@ -4240,6 +4269,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -4523,6 +4554,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -4929,6 +4962,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -5343,6 +5378,8 @@ false
 "TemplatePage": {
 "show_backcol": true,
 "last_scroll": false,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -5904,6 +5941,8 @@ false
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -6666,6 +6705,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -6911,6 +6952,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -7274,6 +7317,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [
@@ -7899,6 +7944,8 @@ false,
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#11216a",
 "default_error_widget": [

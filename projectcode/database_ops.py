@@ -72,7 +72,7 @@ def start_database(project, projectfiles):
         return
     # Set global variables
     _PROJECT = project
-    database_dir = os.path.join(projectfiles, _DATABASE_DIR_NAME)
+    database_dir = os.path.join(projectfiles, project, _DATABASE_DIR_NAME)
     _DATABASE_PATH = os.path.join(database_dir, _DATABASE_NAME)
     _DATABASE_EXISTS = True
     # make directory
