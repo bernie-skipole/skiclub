@@ -18,12 +18,14 @@ _PROJECT = ''
 # The following are set here, and could be changed if required
 _DATABASE_DIR_NAME =  'members_database'
 _DATABASE_NAME = 'members.db'
+
 # This is the default admin username
 _USERNAME = "admin"
 # This is the default  admin password
 _PASSWORD = "password"
 # This is the default  admin PIN
 _PIN = "1234"
+
 # characters used in generated passwords - letters avoiding 0, O, 1, l, I, i, j, S, 5
 _CHARS = "abcdefghkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXYZ2346789"
 _CHARSPUNCT = _CHARS + "$%*+?"
@@ -84,9 +86,9 @@ def start_database(project, projectfiles):
     con = open_database()
     try:
         # make table of users
-        con.execute("CREATE TABLE users (user_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, password BLOB, role TEXT, cookie TEXT, time TIMESTAMP, email TEXT, member TEXT)")
+        con.execute("create table users (USER_ID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, password BLOB, role TEXT, email TEXT, member TEXT)")
         # make table for admins, with pins
-        con.execute("CREATE TABLE admins (user_id INTEGER PRIMARY KEY, authenticated INTEGER, rnd INTEGER, pair INTEGER, tries INTEGER, time TIMESTAMP, pin1_2 BLOB, pin1_3 BLOB, pin1_4 BLOB, pin2_3 BLOB, pin2_4 BLOB, pin3_4 BLOB, FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE)")
+        con.execute("CREATE TABLE admins (user_id INTEGER PRIMARY KEY, pin1_2 BLOB, pin1_3 BLOB, pin1_4 BLOB, pin2_3 BLOB, pin2_4 BLOB, pin3_4 BLOB, FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE)")
         # Make table of random numbers
         con.execute("CREATE TABLE rnd (rnd_id INTEGER PRIMARY KEY AUTOINCREMENT, start TIMESTAMP, rnd1 INTEGER, rnd2 INTEGER)")
         # Make a table for server settings
