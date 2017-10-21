@@ -89,8 +89,6 @@ def start_database(project, projectfiles):
         con.execute("create table users (USER_ID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, password BLOB, role TEXT, email TEXT, member TEXT)")
         # make table for admins, with pins
         con.execute("CREATE TABLE admins (user_id INTEGER PRIMARY KEY, pin1_2 BLOB, pin1_3 BLOB, pin1_4 BLOB, pin2_3 BLOB, pin2_4 BLOB, pin3_4 BLOB, FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE)")
-        # Make table of random numbers
-        con.execute("CREATE TABLE rnd (rnd_id INTEGER PRIMARY KEY AUTOINCREMENT, start TIMESTAMP, rnd1 INTEGER, rnd2 INTEGER)")
         # Make a table for server settings
         con.execute("CREATE TABLE serversettings (server_id TEXT PRIMARY KEY, emailuser TEXT, emailpassword TEXT, emailserver TEXT, no_reply TEXT, starttls INTEGER)")
         # create table of status message
@@ -104,17 +102,11 @@ def start_database(project, projectfiles):
         # create database contents by inserting initial default values
         # make admin user password, role is 'ADMIN', user_id is 1
         hashed_password = hash_password(1, _PASSWORD)
-        con.execute("INSERT INTO users (user_id, username, password, role, cookie, time, email, member) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (None, _USERNAME, hashed_password,  'ADMIN', None, datetime.utcnow(), None, None))
-        # set admin pin
-        set_pin(1, _PIN, False, con)
+        con.execute("insert into users (USER_ID, username, password, role, email, member) values (?, ?, ?, ?, ?, ?)", (None, _USERNAME, hashed_password,  'ADMIN', None, None))
+        # set admin pin, with user_id 1
+        set_pin(1, _PIN, con)
         # set email server settings
         con.execute("INSERT INTO serversettings (server_id,  emailuser, emailpassword, emailserver, no_reply, starttls) VALUES (?, ?, ?, ?, ?, ?)", ('1', None, None, _MAIL_SERVER, _NO_REPLY, 1))
-        # create four sets of random numbers
-        now = datetime.now()
-        con.execute("INSERT INTO rnd (rnd_id, start, rnd1, rnd2) VALUES (?, ?, ?, ?)", (None, now, random.randint(10000000, 99999999), random.randint(10000000, 99999999)))
-        con.execute("INSERT INTO rnd (rnd_id, start, rnd1, rnd2) VALUES (?, ?, ?, ?)", (None, now, random.randint(10000000, 99999999), random.randint(10000000, 99999999)))
-        con.execute("INSERT INTO rnd (rnd_id, start, rnd1, rnd2) VALUES (?, ?, ?, ?)", (None, now, random.randint(10000000, 99999999), random.randint(10000000, 99999999)))
-        con.execute("INSERT INTO rnd (rnd_id, start, rnd1, rnd2) VALUES (?, ?, ?, ?)", (None, now, random.randint(10000000, 99999999), random.randint(10000000, 99999999)))
         # set first message
         set_message( _USERNAME, _MESSAGE, con)
         con.commit()
@@ -220,7 +212,7 @@ def adduser(username, role="MEMBER", member="0000", email=None, con=None):
     else:
         try:
             # create a user, initially without a password
-            con.execute("insert into users (USER_ID, username, password, role, cookie, time, email, member) values (?, ?, ?, ?, ?, ?, ?, ?)", (None, username, None,  role, None, datetime.utcnow(), email, member))
+            con.execute("insert into users (USER_ID, username, password, role, email, member) values (?, ?, ?, ?, ?, ?)", (None, username, None,  role, email, member))
             cur = con.cursor()
             cur.execute("select user_id from users where username = ?", (username,))
             selectresult = cur.fetchone()
@@ -454,142 +446,6 @@ def set_email(user_id, email, con=None):
     return True
 
 
-def set_cookie(user_id, cookie, con=None):
-    "Return True on success, False on failure, this updates an existing user, if con given does not commit"
-    if (not  _DATABASE_EXISTS) or (not cookie):
-        return False
-    if con is None:
-        try:
-            con = open_database()
-            result = set_cookie(user_id, cookie, con)
-            if result:
-                con.commit()
-            con.close()
-            return result
-        except:
-            return False
-    else:
-        try:
-            con.execute("update users set cookie = ?, time = ? where user_id = ?", (cookie, datetime.utcnow(), user_id))
-        except:
-            return False
-    return True
-
-
-def update_cookie_timestamp(user_id, con=None):
-    "Return True on success, False on failure, this updates a cookie timestamp for another two hours, if con given does not commit"
-    if (not  _DATABASE_EXISTS) or (not user_id):
-        return False
-    if con is None:
-        try:
-            con = open_database()
-            result = update_cookie_timestamp(user_id, con)
-            if result:
-                con.commit()
-            con.close()
-            return result
-        except:
-            return False
-    else:
-        try:
-            con.execute("update users set  time = ? where user_id = ?", (datetime.utcnow(), user_id))
-        except:
-            return False
-    return True
-
-
-def del_cookie(user_id, con=None):
-    "Return True on success, False on failure, this updates an existing user, if con given does not commit"
-    if (not  _DATABASE_EXISTS) or (not user_id):
-        return False
-    if con is None:
-        try:
-            con = open_database()
-            result = del_cookie(user_id, con)
-            if result:
-                con.commit()
-            con.close()
-            return result
-        except:
-            return False
-    else:
-        try:
-            con.execute("update users set cookie = ? where user_id = ?", (None, user_id))
-        except:
-            return False
-    return True
-
-
-def get_user_if_logged_in(user_id, cookie, con=None):
-    "Return (username,  role) if user_id and cookie found, and not expired or None if not"
-    if (not  _DATABASE_EXISTS) or (not cookie):
-        return
-    if con is None:
-        con = open_database()
-        user = get_user_if_logged_in(user_id, cookie, con)
-        con.close()
-    else:
-        cur = con.cursor()
-        cur.execute("select username, role, cookie, time from users where user_id = ?", (user_id,))
-        result = cur.fetchone()
-        if not result:
-            return
-        # Is cookie the same
-        if cookie != result[2]:
-            return
-        # expires after two hours
-        expiretime = result[3] + timedelta(hours=2)
-        if expiretime < datetime.utcnow():
-            # expired
-            return
-        user = (result[0], result[1])     
-    return user
-
-
-def logged_in(received_cookies):
-    """Check for a valid cookie with name 'project2', if logged in, return (user_id, username, role, authenticated)
-          If not, return None"""
-    if not received_cookies:
-        return
-    cookie_name = _PROJECT + '2'
-    if cookie_name not in received_cookies:
-        return
-    cookie_string = received_cookies[cookie_name]
-    if (not cookie_string) or (cookie_string == "noaccess"):
-        return
-    try:
-        str_user_id, maincookie = cookie_string.split("_", 1)
-        user_id = int(str_user_id)
-    except:
-        # invalid user_id, so not logged on
-        return
-    if (not user_id) or (not maincookie):
-        return
-    # open a database connection
-    con = open_database()
-    user = get_user_if_logged_in(user_id, cookie_string, con)
-    # user should be a tuple of (username, role) if logged in
-    if not user:
-        # user_id,cookie string not found in database
-        con.close()
-        return
-    username, role = user
-    if (not username) or (not role):
-        con.close()
-        return
-    # and update timestamp in database
-    if not update_cookie_timestamp(user_id, con):
-        con.close()
-        return
-    if role == 'ADMIN':
-        authenticated = is_authenticated(user_id, con)
-    else:
-        authenticated = False
-    con.commit()
-    con.close()
-    return ( user_id, username,  role, authenticated )
-
-
 def get_user_from_id(user_id, con=None):
     "Return (username, role, email, member) or None on failure"
     if not _DATABASE_EXISTS:
@@ -622,7 +478,6 @@ def get_user_from_username(username, con=None):
         if not user:
             return
     return user
-
 
 def set_message(username, message, con=None):
     "Return True on success, False on failure, this inserts the message, if con given, does not commit"
@@ -683,15 +538,15 @@ def dumpdatabase():
 
 
 def restoredatabase(sql_script):
-    "Restore database, apart from current admin password and pin"
+    "Restore database"
     global _DATABASE_EXISTS
     # get special Admin user details
     try:
         con = open_database()
         cur = con.cursor()
-        cur.execute("select username, password, role, cookie, time, email, member, user_id from users where user_id = 1")
+        cur.execute("select username, password, role, email, member, user_id from users where user_id = 1")
         admin_user = cur.fetchone()
-        cur.execute("select authenticated, rnd, pair, tries, time, pin1_2, pin1_3, pin1_4, pin2_3, pin2_4, pin3_4, user_id from admins where user_id = 1")
+        cur.execute("select pin1_2, pin1_3, pin1_4, pin2_3, pin2_4, pin3_4, user_id from admins where user_id = 1")
         admin = cur.fetchone()
     except:
         return False
@@ -716,8 +571,8 @@ def restoredatabase(sql_script):
     try:
         con = open_database()
         # Now re-insert Admin user
-        con.execute("update users set username = ?, password = ?, role = ?, cookie = ?, time = ?, email = ?, member = ? where user_id = ?", admin_user)
-        con.execute("update admins set authenticated = ?, rnd = ?, pair = ?, tries = ?, time = ?, pin1_2 = ?, pin1_3 = ?, pin1_4 = ?, pin2_3 = ?, pin2_4 = ?, pin3_4 = ? where user_id = ?", admin)
+        con.execute("update users set username = ?, password = ?, role = ?, email = ?, member = ? where user_id = ?", admin_user)
+        con.execute("update admins set pin1_2 = ?, pin1_3 = ?, pin1_4 = ?, pin2_3 = ?, pin2_4 = ?, pin3_4 = ? where user_id = ?", admin)
         con.commit()
     except:
         shutil.rmtree(database_dir)
@@ -837,14 +692,14 @@ def set_membership_number(user_id, new_member, con=None):
     return True
 
 
-def set_pin(user_id, new_pin, authenticated, con=None):
+def set_pin(user_id, new_pin, con=None):
     "Return True on success, False on failure, this updates an existing admin, if con given does not commit"
     if (not  _DATABASE_EXISTS) or (not user_id):
         return False
     if con is None:
         try:
             con = open_database()
-            result = set_pin(user_id, new_pin, authenticated, con)
+            result = set_pin(user_id, new_pin, con)
             if result:
                 con.commit()
             con.close()
@@ -854,10 +709,6 @@ def set_pin(user_id, new_pin, authenticated, con=None):
     else:
         # The seed for each hash will consist of project + user_id + pair numbers
         part_seed = _PROJECT + str(user_id)
-        if authenticated:
-            auth = 1
-        else:
-            auth = 0
         pin1_2 = hash_pin(new_pin[0] + new_pin[1], seed=part_seed+'1')
         pin1_3 = hash_pin(new_pin[0] + new_pin[2], seed=part_seed+'2')
         pin1_4 = hash_pin(new_pin[0] + new_pin[3], seed=part_seed+'3')
@@ -865,95 +716,9 @@ def set_pin(user_id, new_pin, authenticated, con=None):
         pin2_4 = hash_pin(new_pin[1] + new_pin[3], seed=part_seed+'5')
         pin3_4 = hash_pin(new_pin[2] + new_pin[3], seed=part_seed+'6')
         try:
-            con.execute("insert or replace into admins (user_id, authenticated, rnd, pair, tries, time, pin1_2, pin1_3, pin1_4, pin2_3, pin2_4, pin3_4) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                                         (user_id, auth, 0, 1, 0, datetime.utcnow(), pin1_2, pin1_3, pin1_4, pin2_3, pin2_4, pin3_4))
+            con.execute("insert or replace into admins (user_id, pin1_2, pin1_3, pin1_4, pin2_3, pin2_4, pin3_4) values (?, ?, ?, ?, ?, ?, ?)", (user_id, pin1_2, pin1_3, pin1_4, pin2_3, pin2_4, pin3_4))
         except:
             return False
-    return True
-
-
-def set_authenticated(user_id, authenticated, con=None):
-    "Return True on success, False on failure, this updates an existing admin, if con given does not commit"
-    if (not  _DATABASE_EXISTS) or (not user_id):
-        return False
-    if con is None:
-        try:
-            con = open_database()
-            result = set_authenticated(user_id, authenticated, con)
-            if result:
-                con.commit()
-            con.close()
-            return result
-        except:
-            return False
-    else:
-        if authenticated:
-            auth = 1
-        else:
-            auth = 0
-        try:
-            if auth:
-                con.execute("update admins set authenticated = ?, tries=?, time=? where user_id = ?", (auth, 0, datetime.utcnow(), user_id))
-            else:
-                con.execute("update admins set authenticated = ? where user_id = ?", (auth, user_id))
-        except:
-            return False
-    return True
-
-
-def is_authenticated(user_id, con=None):
-    "Return True if authenticated, or False if not"
-    if (not  _DATABASE_EXISTS) or (not user_id):
-        return False
-    if con is None:
-        con = open_database()
-        authenticated = is_authenticated(user_id, con)
-        con.commit()
-        con.close()
-        return authenticated
-    cur = con.cursor()
-    cur.execute("select authenticated, time from admins where user_id = ?", (user_id,))
-    result = cur.fetchone()
-    if not result:
-        return False
-    if result[0] != 1:
-        # Not authenticated
-        return False
-    # authenticated is True, check timestamp, authentication expires after ten minutes inactivity
-    expiretime = result[1] + timedelta(minutes=10)
-    if expiretime < datetime.utcnow():
-        # expired
-        try:
-            con.execute("update admins set authenticated = ? where user_id = ?", (0, user_id))
-        except:
-            pass
-        return False
-    try:
-        # Authentication is True, and activity has occurred, so reset time and tries
-        con.execute("update admins set tries=?, time=? where user_id = ?", (0, datetime.utcnow(), user_id))
-    except:
-        return False
-    return True
-
-
-def set_rnd(user_id, rnd, con=None):
-    "Return True on success, False on failure, this updates an existing admin, if con given does not commit"
-    if (not  _DATABASE_EXISTS) or (not user_id):
-        return False
-    if con is None:
-        try:
-            con = open_database()
-            result = set_rnd(user_id, rnd, con)
-            if result:
-                con.commit()
-            con.close()
-            return result
-        except:
-            return False
-    try:
-        con.execute("update admins set rnd = ? where user_id = ?", (rnd, user_id))
-    except:
-        return False
     return True
 
     
@@ -964,8 +729,6 @@ def get_admin(user_id, con=None):
     if con is None:
         con = open_database()
         result = get_admin(user_id, con)
-        if result:
-            con.commit()
         con.close()
     else:
         cur = con.cursor()
@@ -973,114 +736,11 @@ def get_admin(user_id, con=None):
         result = cur.fetchone()
         if not result:
             return
+        # result is
+        # user_id, pin1_2, pin1_3, pin1_4, pin2_3, pin2_4, pin3_4
         # set result as list rather than tuple, so it can be changed
         result = list(result)
-        # If tries > 2 and current time is greater than two hours then set tries to zero
-        if result[4] > 2:
-            # cannot be authenticated
-            result[2] = 0
-            waittime = result[5] + timedelta(hours=2)
-            nowtime = datetime.utcnow()
-            if waittime < nowtime:
-                result[4] = 0
-                result[5] = nowtime
-                try:
-                    con.execute("update admins set tries = ?, time=? where user_id = ?", (0, nowtime, user_id))
-                except:
-                    return
     return result
-
-
-def set_pair(user_id, pair, con=None):
-    "Return True on success, False on failure, this updates an existing admin, if con given does not commit"
-    if (not  _DATABASE_EXISTS) or (not user_id):
-        return False
-    if con is None:
-        try:
-            con = open_database()
-            result = set_pair(user_id, pair, con)
-            if result:
-                con.commit()
-            con.close()
-            return result
-        except:
-            return False
-    try:
-        con.execute("update admins set pair = ? where user_id = ?", (pair, user_id))
-    except:
-        return False
-    return True
-
-
-def get_pair(user_id, con=None):
-    "Return pair on success, None on failure"
-    if (not  _DATABASE_EXISTS) or (not user_id):
-        return
-    if con is None:
-        con = open_database()
-        pair = get_pair(user_id, con)
-        con.close()
-        return pair
-    cur = con.cursor()
-    cur.execute("select pair from admins where user_id = ?", (user_id,))
-    result = cur.fetchone()
-    if result is None:
-        return
-    pair = result[0]
-    if not pair:
-        return
-    return pair
-
-
-def set_tries(user_id, tries, con=None):
-    "Return True on success, False on failure, this updates an existing admin, if con given does not commit"
-    if (not  _DATABASE_EXISTS) or (not user_id):
-        return False
-    if con is None:
-        try:
-            con = open_database()
-            result = set_tries(user_id, tries, con)
-            if result:
-                con.commit()
-            con.close()
-        except:
-            return False
-        return result
-    try:
-        con.execute("update admins set tries = ?, time=? where user_id = ?", (tries, datetime.utcnow(), user_id))
-    except:
-        return False
-    return True
-
-
-def get_tries(user_id, con=None):
-    "Return tries on success, None on failure"
-    if (not  _DATABASE_EXISTS) or (not user_id):
-        return
-    if con is None:
-        con = open_database()
-        tries = get_tries(user_id, con)
-        if tries is not None:
-            con.commit()
-        con.close()
-        return tries
-    cur = con.cursor()
-    cur.execute("select tries, time from admins where user_id = ?", (user_id,))
-    result = cur.fetchone()
-    if result is None:
-        return
-    tries = result[0]
-    # If tries > 2 and current time is greater than two hours then set tries to zero
-    if tries > 2:
-        waittime = result[1] + timedelta(hours=2)
-        nowtime = datetime.utcnow()
-        if waittime < nowtime:
-            tries = 0
-            try:
-                con.execute("update admins set tries = ?, time=? where user_id = ?", (0, nowtime, user_id))
-            except:
-                return
-    return tries
 
 
 def make_admin(user_id, con=None):
@@ -1102,9 +762,8 @@ def make_admin(user_id, con=None):
             return
         return result
     # generate a pin
-    authenticated = is_authenticated(user_id, con)
     new_pin = ''.join(random.choice(_CHARSPUNCT) for x in range(4))
-    if not set_pin(user_id, new_pin, authenticated, con):
+    if not set_pin(user_id, new_pin, con):
         return
     if not set_role(user_id, 'ADMIN', con):
         return
@@ -1131,61 +790,4 @@ def get_administrators(con=None):
         return
     return result
 
-
-def timed_random_numbers(rndset):
-    """This  function returns two random numbers
-       one valid for the current two minute time slot, one valid for the previous
-       two minute time slot.  Four sets of such random numbers are available
-       specified by argument rndset which should be 0 to 3.
-       returns None, None on failure"""
-
-    if rndset not in (0,1,2,3):
-        return None, None
-
-    # auto increementing id starts at 1
-    rnd_id = rndset + 1
-
-    now = datetime.now()
-    delta2 = timedelta(minutes=2)
-
-    try:
-        con = open_database()
-        cur = con.cursor()
-        cur.execute("select start, rnd1, rnd1 from rnd where rnd_id = ?", (rnd_id,))
-        result = cur.fetchone()
-        con.close()
-        if not result:
-            return None, None
-
-        start, rnd1, rnd2 = result
-
-        if now < start + delta2:
-            # now is within 2 minutes of start time, so current random numbers are valid
-            return rnd1, rnd2
-
-        elif now < start + delta2 + delta2:
-            # now is within 4 minutes of start time, so rnd1 has expired. but rnd2 is valid
-            # set rnd2 equal to rnd1 and create new rnd1
-            rnd2 = rnd1
-            rnd1 = random.randint(10000000, 99999999)
-            con = open_database()
-            con.execute("update rnd set start = ?, rnd1 = ?, rnd2 = ? where rnd_id = ?", (now, rnd1, rnd2, rnd_id))
-            con.commit()
-            con.close()
-            return rnd1, rnd2
-
-        else:
-            # now is greater than four minutes after start time, ro rnd1 and rnd2 are invalid, create new ones
-            rnd1 = random.randint(10000000, 99999999)
-            rnd2 = random.randint(10000000, 99999999)
-            con = open_database()
-            con.execute("update rnd set start = ?, rnd1 = ?, rnd2 = ? where rnd_id = ?", (now, rnd1, rnd2, rnd_id))
-            con.commit()
-            con.close()
-            return rnd1, rnd2
-
-    except:
-        pass
-
-    return None, None
 

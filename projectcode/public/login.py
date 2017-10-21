@@ -9,7 +9,7 @@ import random
 
 from ....skilift import FailPage, GoTo, ValidateError, ServerError
 
-from .. import database_ops
+from .. import database_ops, redis_ops
 
 
 
@@ -17,20 +17,18 @@ def create_login_page(caller_ident, ident_list, submit_list, submit_dict, call_d
     """Sets a hidden random number in the login form, which is only valid for four minutes
        This expires the login page, and also makes it difficult to script login calls"""
 
-    # function database_ops.timed_random_numbers returns two random numbers
+    # function redis_ops.two_min_numbers returns two random numbers
     # one valid for the current two minute time slot, one valid for the previous
     # two minute time slot.  Four sets of such random numbers are available
     # specified by argument rndset which should be 0 to 3
     # This login form uses rndset 0
-    rnd1, rnd2 = database_ops.timed_random_numbers(rndset=0)
+    rnd1, rnd2 = redis_ops.two_min_numbers(rndset=0, rconn=call_data.get("rconn_0"))
     if rnd1 is None:
         raise ServerError(message = "Database access failure")
 
     page_data['loginform', 'hidden_field1'] = str(rnd1)
 
-    # When the form is submitted, the received number will be checked against another call
-    # to database_ops.timed_random_numbers, and if it is equal to either of them, it is within
-    # a valid timeout period.
+    # When the form is submitted, the received number will be checked
     return
 
 
@@ -58,7 +56,7 @@ def check_login(caller_ident, ident_list, submit_list, submit_dict, call_data, p
     except:
         raise FailPage(message = "Invalid input")
 
-    rnd = database_ops.timed_random_numbers(rndset=0)
+    rnd = redis_ops.two_min_numbers(rndset=0, rconn=call_data.get("rconn_0"))
     # rnd is a tuple of two valid random numbers
     # rnd[0] for the current 2 minute time slot
     # rnd[1] for the previous 2 minute time slot
@@ -68,7 +66,6 @@ def check_login(caller_ident, ident_list, submit_list, submit_dict, call_data, p
     if int_rnd not in rnd:
         raise FailPage(message = "Login page expired, please try again.")
     
-
     if not username:
         raise FailPage(message= "Login fail: missing username", widget='loginform')
     if not password:
@@ -83,20 +80,10 @@ def check_login(caller_ident, ident_list, submit_list, submit_dict, call_data, p
     if user is None:
         # something wrong, unable to get user information
         raise FailPage(message= "Login Fail: unable to retrieve user details", widget='loginform')
-    if user[1] == 'ADMIN':
-        # At this stage, the admin user may be logged in, but will not be authenticated
-        # so at this point ensure his authenticated status is set to False on the database
-        if not database_ops.set_authenticated(user[0], False):
-            # failed to set authenticated to False
-            raise FailPage(message= "Login Fail: unable to reset Admin authentication", widget='loginform')
-        # The admin user will be asked to authenticate when he tries to access an administrative function
-        # The pair of PIN characters he will be asked for will be set at this stage, so it changes every time he logs in.
-        # This is done by setting a random number between 1 and 6 into database
-        if not database_ops.set_pair(user[0], random.randint(1,6)):
-            raise FailPage(message="Login Fail: unable to access database")
 
     # login ok, populate call_data and return
     call_data['user_id'] = user[0]
     call_data['role'] =  user[1]
     call_data['username'] =  username
     call_data['loggedin'] =  True
+
