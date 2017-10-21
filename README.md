@@ -14,7 +14,7 @@ Within the directory, use python3 to run the file:
 
 sudo python3 \_\_main\_\_.py -p 80
 
-and this will run the web server. You will be able to connect to it from a browser using the ip address of the pi.
+and this will run the web server. You will be able to connect to it from a browser.
 
 **Optionally use the Waitress web server**
 
