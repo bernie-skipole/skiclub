@@ -3,7 +3,7 @@
 "default_language": "en",
 "brief": "Example club membership project",
 "version": "0.0.2",
-"skipole": "0.0.37",
+"skipole": "0.0.39",
 "subprojects": {
 "lib": {
 "path": "/lib/"
@@ -2487,7 +2487,7 @@ false,
 "parts": [
 [
 "Text",
-"This is an example project, which uses an sqlite database to provide user membership and administrator logon capabilities."
+"This is an example project, which uses an sqlite database for user storage and a redis database for session control. A redis database must be provided (set details in cfg.py) and the python3-redis package must be available."
 ]
 ]
 }
@@ -2511,7 +2511,7 @@ false,
 "Part",
 {
 "tag_name": "p",
-"brief": "Paragraph about session times",
+"brief": "Paragraph",
 "show": true,
 "hide_if_empty": false,
 "parts": [
@@ -3109,7 +3109,6 @@ false,
 "clear_error": false,
 "error_class": "errorcol",
 "linebreaks": true,
-"project_ident": "",
 "replace_strings": [],
 "show": true,
 "show_error": "",
@@ -6232,6 +6231,7 @@ false,
 "show": true,
 "show_error": "",
 "textarea_class": "ski_input",
+"textarea_style": "",
 "widget_class": "w3-section",
 "widget_style": "margin-left:30%;"
 }
@@ -8127,7 +8127,8 @@ false,
 "failmessage": "Javascript failure - This page requires javascript to be enabled in your browser.",
 "show": true,
 "escape": true,
-"linebreaks": true
+"linebreaks": true,
+"decode": false
 }
 ]
 ]
