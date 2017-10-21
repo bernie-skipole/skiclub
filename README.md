@@ -86,7 +86,7 @@ Enable the service
 
 sudo systemctl daemon-reload
 
-sudo systemctl enable myproj.service
+sudo systemctl enable skiclub.service
 
 This starts /opt/skiclub/\_\_main\_\_.py serving on port 80 on boot up.
 
