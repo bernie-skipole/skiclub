@@ -10,7 +10,7 @@ import os
 
 from .. import FailPage, GoTo, ValidateError, ServerError
 
-from . import public, members, admin, database_ops
+from . import public, members, admin, database_ops, redis_ops
 
 
 # These pages can be accessed by anyone, without the need to login
@@ -57,9 +57,16 @@ def start_project(project, projectfiles, path, option):
 
     # checks members database exists, if not create it
     database_ops.start_database(project, projectfiles)
+    # create a redis connection for miscellaneous use
+    rconn_0 = redis_ops.open_redis(redis_db=0)
+    # create a redis connection for logged in users
+    rconn_1 = redis_ops.open_redis(redis_db=1)
+    # and another for authenticated admins
+    rconn_2 = redis_ops.open_redis(redis_db=2)
+    # and another for user_id
+    rconn_3 = redis_ops.open_redis(redis_db=3)
     # Set the organisation name into proj_data, used in page header and automated email
-    proj_data = {"org_name":"Example club membership project"}
-    return proj_data
+    return {"org_name":"Example club membership project", 'rconn_0':rconn_0, 'rconn_1':rconn_1, 'rconn_2':rconn_2, 'rconn_3':rconn_3}
 
 
 def start_call(environ, path, project, called_ident, caller_ident, received_cookies, ident_data, lang, option, proj_data):
@@ -74,7 +81,11 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
                   "loggedin":False,
                   "role":"",
                   "json_requested":False,
-                  "rx_ident_data":ident_data}
+                  "rx_ident_data":ident_data,
+                  "rconn_0":proj_data["rconn_0"],
+                  "rconn_1":proj_data["rconn_1"],
+                  "rconn_2":proj_data["rconn_2"],
+                  "rconn_3":proj_data["rconn_3"]}
 
     # rx_ident_data = received ident_data, not currently used
     # but may be a useful item to have in call_data for users code
@@ -85,19 +96,31 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
 
     ####### If the user is logged in, populate call_data
 
+    user = None
     if received_cookies:
-        user = database_ops.logged_in(received_cookies)
-    else:
-        user = None
-
-    # user is (user_id, username, role, authenticated) if logged in or None
-
-    if user:
-        call_data['loggedin'] = True
-        call_data['user_id'] =  user[0]
-        call_data['username'] = user[1]
-        call_data['role'] =  user[2]
-        call_data['authenticated'] = user[3]
+        cookie_name = project + '2'
+        if cookie_name in received_cookies:
+            cookie_string = received_cookies[cookie_name]
+            # so a recognised cookie has arrived, check redis 1 to see if the user has logged in
+            rconn_1 = call_data.get("rconn_1")
+            user_id = redis_ops.logged_in(cookie_string, rconn_1)
+            if user_id:
+                user = database_ops.get_user_from_id(user_id)
+                # user is (username, role, email, member) on None on failure
+                if user:
+                    call_data['loggedin'] = True
+                    call_data['user_id'] =  user_id
+                    call_data['username'] = user[0]
+                    call_data['role'] = user[1]
+                    call_data['email'] = user[2]
+                    call_data['member'] = user[3]
+                    call_data['cookie'] = cookie_string
+                    if user[1] != 'ADMIN':
+                        call_data['authenticated'] = False
+                    else:
+                        # Is this user authenticated, check redis 2 to see if authenticated
+                        rconn_2 = call_data.get("rconn_2")
+                        call_data['authenticated'] = redis_ops.is_authenticated(cookie_string, rconn_2)
 
     ### Check the page being called
     page_num = called_ident[1]

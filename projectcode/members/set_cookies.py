@@ -11,7 +11,7 @@ from http import cookies
 
 from ....skilift import FailPage, GoTo, ValidateError, ServerError, projectURLpaths
 
-from .. import database_ops
+from .. import redis_ops
 
 
 def logout(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
@@ -23,13 +23,19 @@ def logout(caller_ident, ident_list, submit_list, submit_dict, call_data, page_d
 
     call_data['loggedin'] =  False
     call_data['authenticated'] = False
+    call_data['role'] = ""
     if 'username' in call_data:
         del call_data['username'] 
-    # If user_id given remove cookie from user in database
     if 'user_id' in call_data:
-        user_id = call_data['user_id']
-        database_ops.del_cookie(user_id)
         del call_data['user_id']
+    if 'email' in call_data:
+        del call_data['email']
+    if 'member' in call_data:
+        del call_data['member']
+    # Remove cookie from redis database
+    if 'cookie' in call_data:
+        redis_ops.del_cookie(call_data['cookie'], call_data.get("rconn_1"))
+        del call_data['cookie']
 
     # set a cookie 'project2:noaccess'
     project = call_data['project']
@@ -56,7 +62,7 @@ def set_cookie(caller_ident, ident_list, submit_list, submit_dict, call_data, pa
     project = call_data['project']
     user_id = call_data['user_id']
     # generate a cookie string
-    ck_string = str(user_id) + '_' + uuid.uuid4().hex
+    ck_string = uuid.uuid4().hex
     ck_key = project +"2"
     cki = cookies.SimpleCookie()
     cki[ck_key] = ck_string
@@ -66,7 +72,8 @@ def set_cookie(caller_ident, ident_list, submit_list, submit_dict, call_data, pa
     url_dict = projectURLpaths()
     cki[ck_key]['path'] = url_dict[project]
     # and set the cookie string into database
-    if not database_ops.set_cookie(user_id, ck_string):
-        raise FailPage(message="Unable to access database")
+    status = redis_ops.set_cookie(ck_string, user_id, call_data.get("rconn_1"))
+    if not status:
+        raise FailPage(message="Unable to access redis database")
     return cki
 

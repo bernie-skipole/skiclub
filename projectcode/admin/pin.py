@@ -53,7 +53,7 @@ def set_your_pin(caller_ident, ident_list, submit_list, submit_dict, call_data, 
     pin4 = call_data['newpin','pin4']
     if not pin4 or (len(pin4) != 1):
         raise FailPage('Invalid PIN', widget = 'newpin')
-    if database_ops.set_pin(user_id, [pin1, pin2, pin3, pin4], True):
+    if database_ops.set_pin(user_id, [pin1, pin2, pin3, pin4]):
         space_pin = pin1+' '+pin2+' '+pin3+' '+pin4
         page_data['showadminpin', 'para_text'] = "New PIN for user %s is %s" % (username, space_pin)
     else:
