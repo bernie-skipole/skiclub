@@ -2,8 +2,8 @@
 "url": "/",
 "default_language": "en",
 "brief": "Example club membership project",
-"version": "0.0.2",
-"skipole": "0.0.9",
+"version": "0.0.4",
+"skipole": "0.1.0",
 "subprojects": {
 "lib": {
 "path": "/lib/"
