@@ -2,8 +2,8 @@
 "url": "/",
 "default_language": "en",
 "brief": "Example club membership project",
-"version": "0.0.4",
-"skipole": "0.1.0",
+"version": "0.1.0",
+"skipole": "0.2.0",
 "subprojects": {
 "lib": {
 "path": "/lib/"
@@ -24,7 +24,7 @@
 "edituser": 3110,
 "editusers": 3040,
 "font_css": "https://fonts.googleapis.com/css?family=Poppins",
-"general_json": "lib,general_json",
+"general_json": 2002,
 "home": 1,
 "input_pin": 5515,
 "jquery_core": "lib,jquery_core",
@@ -2284,6 +2284,14 @@ false,
 "restricted": true,
 "folders": {},
 "pages": {
+"general_json": {
+"ident": 2002,
+"brief": "Empty JSON file for general use",
+"JSON": {
+"enable_cache": false,
+"content": {}
+}
+},
 "index_template": {
 "ident": 2001,
 "brief": "The template for the index page",
