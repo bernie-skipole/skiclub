@@ -6,7 +6,7 @@
 _CONFIG = {
             'redis_ip' : 'localhost',
             'redis_port' : 6379,
-            'redis_auth' : 'creampie'
+            'redis_auth' : ''
           }
 
 

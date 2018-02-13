@@ -1,4 +1,4 @@
 {
-  "html5shiv": "<!--[if lt IE 9]>\r\n<script src=\"//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js\"></script>\r\n<![endif]-->",
+  "about_email": "Your email address is optional. It will only be used for club business - to inform you of events, password changes, and any other strictly club related information.\r\n\r\nIt will be kept on system as long as you remain a registered user of this site. Once your username is removed, the email will be deleted as well.\r\n\r\nDelete your email address here if you do not wish to receive such emails.",
   "no_javascript_text": "JAVASCRIPT FAILURE\r\n\r\nThis page is shown because the script on the previous page has failed to run.\r\n\r\nThis could be due to either a failure in the script, or your browser has javascript disabled."
 }
