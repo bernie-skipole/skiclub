@@ -3,7 +3,7 @@
 "default_language": "en",
 "brief": "Example club membership project",
 "version": "0.1.0",
-"skipole": "0.2.0",
+"skipole": "0.3.0",
 "subprojects": {
 "lib": {
 "path": "/lib/"
@@ -6959,6 +6959,28 @@ false,
 "widget_class": "w3-section",
 "widget_style": ""
 }
+}
+],
+[
+"Part",
+{
+"tag_name": "p",
+"brief": "About email",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"TextBlock",
+{
+"textref": "about_email",
+"failmessage": "TextBlock not found",
+"show": true,
+"escape": true,
+"linebreaks": true,
+"decode": false
+}
+]
+]
 }
 ]
 ]
