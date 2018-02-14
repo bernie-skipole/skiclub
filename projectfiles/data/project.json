@@ -2,7 +2,7 @@
 "url": "/",
 "default_language": "en",
 "brief": "Example club membership project",
-"version": "0.1.0",
+"version": "0.2.0",
 "skipole": "0.3.0",
 "subprojects": {
 "lib": {
@@ -176,7 +176,7 @@
 "hide_if_empty": false,
 "attribs": {
 "class": "w3-sidebar w3-bar-block w3-collapse w3-card-2 w3-theme-d1",
-"style": "width:20%;"
+"style": "width:20%;min-width:200px;"
 },
 "parts": [
 [
@@ -514,6 +514,36 @@ false,
 }
 ],
 [
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:20%;"
+},
+"parts": [
+[
 "Part",
 {
 "tag_name": "div",
@@ -521,8 +551,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -551,6 +580,9 @@ false,
 [
 "Text",
 "Logged in members have access to the membership only pages, and also to a settings page where they can change their password and email."
+]
+]
+}
 ]
 ]
 }
@@ -746,6 +778,36 @@ false,
 }
 ],
 [
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:20%;"
+},
+"parts": [
+[
 "Part",
 {
 "tag_name": "div",
@@ -753,8 +815,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -934,6 +995,9 @@ false,
 [
 "Text",
 "This site uses cookies: On logging in, a short data string is saved to your computer and on subsequent calls to this web site is submitted to confirm your identity and logged in status.\r\nThis cookie data is necessary for the operation of the site. Please do not log in if you do not accept this usage."
+]
+]
+}
 ]
 ]
 }
@@ -1139,6 +1203,44 @@ false,
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:20%;"
+},
+"parts": [
+[
 "Part",
 {
 "tag_name": "div",
@@ -1146,7 +1248,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -1181,13 +1283,8 @@ false,
 ]
 ]
 }
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
+]
+]
 }
 ]
 ]
@@ -1370,6 +1467,44 @@ false,
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:20%;"
+},
+"parts": [
+[
 "Part",
 {
 "tag_name": "div",
@@ -1377,7 +1512,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -1412,13 +1547,8 @@ false,
 ]
 ]
 }
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
+]
+]
 }
 ]
 ]
@@ -1609,6 +1739,36 @@ false,
 }
 ],
 [
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:20%;"
+},
+"parts": [
+[
 "Part",
 {
 "tag_name": "div",
@@ -1616,8 +1776,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -1685,6 +1844,9 @@ false,
 "widget_class": "ski_top_bot_10",
 "widget_style": ""
 }
+}
+]
+]
 }
 ]
 ]
@@ -1995,6 +2157,36 @@ false,
 }
 ],
 [
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:20%;"
+},
+"parts": [
+[
 "Part",
 {
 "tag_name": "div",
@@ -2002,8 +2194,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -2017,6 +2208,9 @@ false,
 [
 "Text",
 "Members page."
+]
+]
+}
 ]
 ]
 }
@@ -2242,6 +2436,36 @@ false,
 }
 ],
 [
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:20%;"
+},
+"parts": [
+[
 "Part",
 {
 "tag_name": "div",
@@ -2249,8 +2473,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -2264,6 +2487,9 @@ false,
 [
 "Text",
 "Public page"
+]
+]
+}
 ]
 ]
 }
@@ -2488,6 +2714,24 @@ false,
 "brief": "Left navigation panel",
 "section_name": "navigation",
 "placename": "navigation"
+}
+],
+[
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
 }
 ],
 [
@@ -3010,6 +3254,36 @@ false,
 }
 ],
 [
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:20%;"
+},
+"parts": [
+[
 "Part",
 {
 "tag_name": "div",
@@ -3017,8 +3291,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -3423,6 +3696,9 @@ false,
 ]
 }
 ]
+]
+}
+]
 },
 "fill_edituser_template": {
 "ident": 3605,
@@ -3631,6 +3907,44 @@ false,
 }
 ],
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation panel",
+"section_name": "navigation",
+"placename": "navigation"
+}
+],
+[
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:20%;"
+},
+"parts": [
+[
 "Part",
 {
 "tag_name": "div",
@@ -3638,7 +3952,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -3723,13 +4037,8 @@ false,
 ]
 ]
 }
-],
-[
-"SectionPlaceHolder",
-{
-"brief": "Left navigation panel",
-"section_name": "navigation",
-"placename": "navigation"
+]
+]
 }
 ]
 ]
@@ -3924,6 +4233,36 @@ false,
 }
 ],
 [
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:20%;"
+},
+"parts": [
+[
 "Part",
 {
 "tag_name": "div",
@@ -3931,8 +4270,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -4153,6 +4491,9 @@ false,
 ]
 }
 ]
+]
+}
+]
 },
 "editusers_template": {
 "ident": 3540,
@@ -4335,6 +4676,36 @@ false,
 }
 ],
 [
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:20%;"
+},
+"parts": [
+[
 "Part",
 {
 "tag_name": "div",
@@ -4342,8 +4713,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -4569,6 +4939,9 @@ false
 ]
 }
 ]
+]
+}
+]
 },
 "serversetup_template": {
 "ident": 3520,
@@ -4751,6 +5124,36 @@ false
 }
 ],
 [
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:20%;"
+},
+"parts": [
+[
 "Part",
 {
 "tag_name": "div",
@@ -4758,8 +5161,7 @@ false
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -5135,6 +5537,9 @@ false
 ]
 }
 ]
+]
+}
+]
 },
 "setup_template": {
 "ident": 3501,
@@ -5317,6 +5722,36 @@ false
 }
 ],
 [
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:20%;"
+},
+"parts": [
+[
 "Part",
 {
 "tag_name": "div",
@@ -5324,8 +5759,7 @@ false
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -5437,6 +5871,9 @@ false,
 "widget_class": "w3-section",
 "widget_style": "margin-left:30%;"
 }
+}
+]
+]
 }
 ]
 ]
@@ -6082,6 +6519,36 @@ false,
 }
 ],
 [
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:20%;"
+},
+"parts": [
+[
 "Part",
 {
 "tag_name": "div",
@@ -6089,8 +6556,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -6104,6 +6570,9 @@ false,
 [
 "Text",
 "Pages for Admin test functions."
+]
+]
+}
 ]
 ]
 }
@@ -6329,6 +6798,36 @@ false,
 }
 ],
 [
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:20%;"
+},
+"parts": [
+[
 "Part",
 {
 "tag_name": "div",
@@ -6336,8 +6835,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -6503,6 +7001,9 @@ false,
 "widget_class": "w3-table w3-theme-d1 w3-border w3-bordered",
 "widget_style": ""
 }
+}
+]
+]
 }
 ]
 ]
@@ -6696,6 +7197,36 @@ false,
 }
 ],
 [
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "opennav",
+"brief": "Opens the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "navigation",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:20%;"
+},
+"parts": [
+[
 "Part",
 {
 "tag_name": "div",
@@ -6703,8 +7234,7 @@ false,
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -7010,6 +7540,9 @@ false,
 "escape": true,
 "linebreaks": true,
 "decode": false
+}
+]
+]
 }
 ]
 ]
