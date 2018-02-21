@@ -31,13 +31,16 @@ _LOGGED_IN_PAGES = [5003,        # logout
                     6001,        # Members index
                     8001,        # user settings index
                     8002,        # new password
-                    8003         # new email
+                    8003,        # new email
+                    8004,        # confirm de-register oneself
+                    8005         # de-register oneself
                     ]
 
 # Any other pages, the user must be both logged in and have admin role
 
 # Lists requests for JSON pages
-_JSON_PAGES = [3065,            # json_confirm_delete_user
+_JSON_PAGES = [8004,            # de-regiser yourself
+               3065,            # json_confirm_delete_user
                3075             # json_confirm_delete_member
                ]
 # This list ensures code knows a JSON call has been requested
