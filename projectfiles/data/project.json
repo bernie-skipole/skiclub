@@ -2,7 +2,7 @@
 "url": "/",
 "default_language": "en",
 "brief": "Example club membership project",
-"version": "0.2.0",
+"version": "0.3.0",
 "skipole": "0.4.0",
 "subprojects": {
 "lib": {
@@ -7306,7 +7306,7 @@ false,
 "brief": "De register yourself",
 "fields": {
 "button_class": "w3-button w3-block w3-theme-d4",
-"button_text": "Remove Thyself",
+"button_text": "De-register",
 "button_wait_text": "Please wait...",
 "buttondiv_class": "ski_mid_button",
 "buttondiv_style": "",
@@ -7700,6 +7700,54 @@ false,
 }
 },
 "pages": {
+"confirm_deregister": {
+"ident": 8004,
+"brief": "Requests confirmation of user de registration",
+"RespondPage": {
+"class": "AllowStore",
+"original_args": {
+"allowed_callers": [
+8501
+],
+"alternate_ident": "home",
+"fail_ident": "general_json",
+"submit_list": [
+"members",
+"settings",
+"confirm_deregister"
+],
+"submit_option": true,
+"target_ident": "general_json",
+"validate_fail_ident": null,
+"validate_option": false
+},
+"original_fields": {}
+}
+},
+"deregister": {
+"ident": 8005,
+"brief": "De-registers a user",
+"RespondPage": {
+"class": "AllowStore",
+"original_args": {
+"allowed_callers": [
+8501
+],
+"alternate_ident": "home",
+"fail_ident": 8001,
+"submit_list": [
+"members",
+"settings",
+"deregister_user"
+],
+"submit_option": true,
+"target_ident": "home",
+"validate_fail_ident": null,
+"validate_option": false
+},
+"original_fields": {}
+}
+},
 "index": {
 "ident": 8001,
 "brief": "Responder for user settings index page",
