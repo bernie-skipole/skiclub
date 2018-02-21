@@ -7038,7 +7038,7 @@ false,
 }
 ]
 },
-"usersettings_template": {
+"user_settings_template": {
 "ident": 8501,
 "brief": "The template for the user settings page",
 "TemplatePage": {
@@ -7047,7 +7047,7 @@ false,
 "interval": 0,
 "interval_target": null,
 "lang": "en",
-"backcol": "#11216a",
+"backcol": "#28069d",
 "default_error_widget": [
 "header",
 "top_error"
@@ -7120,19 +7120,6 @@ false,
 "show": true,
 "attribs": {
 "href": "{w3_theme_ski_css}",
-"rel": "stylesheet",
-"type": "text/css"
-}
-}
-],
-[
-"ClosedPart",
-{
-"tag_name": "link",
-"brief": "css link to font_css",
-"show": true,
-"attribs": {
-"href": "{font_css}",
 "rel": "stylesheet",
 "type": "text/css"
 }
@@ -7227,7 +7214,7 @@ false,
 "fields": {
 "get_field1": "",
 "get_field2": "",
-"link_ident": "no_javascript",
+"link_ident": "",
 "show": true,
 "target_section": "navigation",
 "target_widget": "",
@@ -7262,13 +7249,114 @@ false,
 [
 "Part",
 {
-"tag_name": "p",
-"brief": "Top paragraph",
+"tag_name": "h4",
+"brief": "General Data Protection Regulation:",
 "show": true,
 "hide_if_empty": false,
-"attribs": {
-"class": "boldfont"
-},
+"parts": [
+[
+"Text",
+"General Data Protection Regulation:"
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "p",
+"brief": "gdpr statement",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"TextBlock",
+{
+"textref": "GDPR",
+"failmessage": "TextBlock not found",
+"show": true,
+"escape": true,
+"linebreaks": true,
+"decode": false
+}
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "h4",
+"brief": "Remove yourself",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"Text",
+"De-register yourself:"
+]
+]
+}
+],
+[
+"Widget",
+{
+"class": "links.ButtonLink2",
+"name": "deregister",
+"brief": "De register yourself",
+"fields": {
+"button_class": "w3-button w3-block w3-theme-d4",
+"button_text": "Remove Thyself",
+"button_wait_text": "Please wait...",
+"buttondiv_class": "ski_mid_button",
+"buttondiv_style": "",
+"clear_error": false,
+"error_class": "w3-panel w3-red",
+"get_field1": "",
+"get_field2": "",
+"hide": false,
+"json_ident": 8004,
+"link_ident": "no_javascript",
+"show": true,
+"show_error": "",
+"widget_class": "w3-section",
+"widget_style": ""
+}
+}
+],
+[
+"Widget",
+{
+"class": "error_messages.ErrorClear2",
+"name": "passworderror",
+"brief": "Shows error message if setting new password fails",
+"fields": {
+"boxdiv_class": "",
+"button_class": "w3-bar-item w3-button w3-right w3-theme-l2",
+"buttondiv_class": "w3-bar",
+"buttondiv_style": "",
+"clear_error": false,
+"error_class": "w3-panel w3-red  w3-center",
+"get_field1": "",
+"get_field2": "",
+"get_field3": "",
+"hide": true,
+"link_ident": "no_javascript",
+"pre_line": true,
+"show": true,
+"show_error": "",
+"widget_class": "w3-panel w3-theme-action",
+"widget_style": ""
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "h4",
+"brief": "New password",
+"show": true,
+"hide_if_empty": false,
 "parts": [
 [
 "Text",
@@ -7426,19 +7514,18 @@ false,
 [
 "Widget",
 {
-"class": "paras.ShowPara1",
+"class": "paras.ShowPara2",
 "name": "passwordstatus",
-"brief": "Shows result when password has changed",
+"brief": "Shows a new password has been set",
 "fields": {
-"clear_error": false,
-"error_class": "w3-panel w3-red",
-"para_class": "",
-"para_text": "The password has changed.",
+"close_class": "w3-button w3-round w3-theme-l1 w3-right",
+"close_style": "",
+"hide": true,
+"inner_class": "",
+"para_text": "A new password has been set.",
 "pre_line": true,
 "show": true,
-"show_error": "",
-"show_para": false,
-"widget_class": "w3-section",
+"widget_class": "w3-panel w3-theme-action w3-center",
 "widget_style": ""
 }
 }
@@ -7453,7 +7540,7 @@ false,
 "parts": [
 [
 "Text",
-"This system does not have the security resources of financial sites, therefore when setting a password, please choose one you have not used elsewhere, and will not cause you problems if it is compromised."
+"When setting a password, please choose one you have not used elsewhere."
 ]
 ]
 }
@@ -7461,13 +7548,10 @@ false,
 [
 "Part",
 {
-"tag_name": "p",
+"tag_name": "h4",
 "brief": "Edit email",
 "show": true,
 "hide_if_empty": false,
-"attribs": {
-"class": "boldfont"
-},
 "parts": [
 [
 "Text",
@@ -7528,19 +7612,18 @@ false,
 [
 "Widget",
 {
-"class": "paras.ShowPara1",
+"class": "paras.ShowPara2",
 "name": "emailstatus",
-"brief": "Shows user email result",
+"brief": "Shows a new email has been set",
 "fields": {
-"clear_error": false,
-"error_class": "w3-panel w3-red",
-"para_class": "",
-"para_text": "Email has successfully changed.",
+"close_class": "w3-button w3-round w3-theme-l1 w3-right",
+"close_style": "",
+"hide": false,
+"inner_class": "",
+"para_text": "A new Email address has been set",
 "pre_line": true,
-"show": true,
-"show_error": "",
-"show_para": false,
-"widget_class": "w3-section",
+"show": false,
+"widget_class": "w3-panel w3-theme-action w3-center",
 "widget_style": ""
 }
 }
@@ -7565,6 +7648,39 @@ false,
 }
 ]
 ]
+}
+],
+[
+"Widget",
+{
+"class": "confirm.ConfirmBox2",
+"name": "confirm",
+"brief": "cancel or confirm user removal",
+"fields": {
+"boxdiv_class": "w3-modal-content w3-panel w3-theme-l1",
+"button1_class": "w3-button w3-round w3-theme-d4",
+"button1_style": "",
+"button2_class": "w3-button w3-round w3-theme-d4",
+"button2_style": "",
+"button_text1": "Cancel",
+"button_text2": "Confirm",
+"buttondiv_class": "w3-bar",
+"get_field1_1": "",
+"get_field1_2": "",
+"get_field1_3": "",
+"get_field2_1": "",
+"get_field2_2": "",
+"get_field2_3": "",
+"hide": true,
+"link_ident1": "usersettings",
+"link_ident2": 8005,
+"para_class": "ski_confirm_para",
+"para_text": "",
+"paradiv_class": "w3-panel",
+"show": true,
+"widget_class": "w3-modal",
+"widget_style": ""
+}
 }
 ]
 ]

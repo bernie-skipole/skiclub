@@ -1,4 +1,5 @@
 {
+  "GDPR": "This system records your username/password and activity in the form of web logs, and text created by you, and (optionally) your email address. This information can identify you and your computer IP address. Any such information is held solely for the running of the club.\r\n\r\nBy being registered on this system you consent to this information being held. If you do not agree, or choose to not use the system in future, please delete your username using the option below, or contact the system administrator.",
   "about_email": "Your email address is optional. It will only be used for club business - to inform you of events, password changes, and any other strictly club related information.\r\n\r\nIt will be kept on system as long as you remain a registered user of this site. Once your username is removed, the email will be deleted as well.\r\n\r\nDelete your email address here if you do not wish to receive such emails.",
   "no_javascript_text": "JAVASCRIPT FAILURE\r\n\r\nThis page is shown because the script on the previous page has failed to run.\r\n\r\nThis could be due to either a failure in the script, or your browser has javascript disabled."
 }
