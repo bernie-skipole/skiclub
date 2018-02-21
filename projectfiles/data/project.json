@@ -3,7 +3,7 @@
 "default_language": "en",
 "brief": "Example club membership project",
 "version": "0.2.0",
-"skipole": "0.3.0",
+"skipole": "0.4.0",
 "subprojects": {
 "lib": {
 "path": "/lib/"
@@ -3435,6 +3435,17 @@ false,
 "type": "text",
 "widget_class": "w3-section",
 "widget_style": ""
+},
+"validators": {
+"input_text": [
+{
+"class": "basic.MinLength",
+"message": "A minimum of four characters is required.",
+"val_args": {
+"minlength": "4"
+}
+}
+]
 }
 }
 ],
@@ -4381,6 +4392,17 @@ false,
 "type": "text",
 "widget_class": "w3-section",
 "widget_style": ""
+},
+"validators": {
+"input_text": [
+{
+"class": "basic.MinLength",
+"message": "A minimum of four characters is required.",
+"val_args": {
+"minlength": "4"
+}
+}
+]
 }
 }
 ],
