@@ -537,6 +537,20 @@ def dumpdatabase():
     return sql_list, filelen
 
 
+def stringdump():
+    if not  _DATABASE_EXISTS:
+        return
+    sql_list = []
+    try:
+        con = open_database()
+        sql_list = list(con.iterdump())
+    except:
+        return
+    finally:
+        con.close()
+    return "\n".join(sql_list)
+
+
 def restoredatabase(sql_script):
     "Restore database"
     global _DATABASE_EXISTS

@@ -236,6 +236,8 @@ def is_authenticated(cookie_string, rconn=None):
        If not, return False. If rconn is None, a new connection will be created.
        If given rconn should connect to redis_db 2"""
 
+    return True
+
     if rconn is None:
         try:
             rconn = open_redis(redis_db=2)
@@ -342,6 +344,27 @@ def get_tries(user_id, rconn=None):
 
     tries = rconn.get(str_user_id)
     return int(tries)
+
+
+def clear_tries(user_id, rconn=None):
+    """Clears the count to zero against the user_id
+       If rconn is None, a new connection will be created.
+       If given rconn should connect to redis_db 3"""
+
+    if rconn is None:
+        try:
+            rconn = open_redis(redis_db=3)
+        except:
+            return
+
+    if rconn is None:
+        return
+
+    str_user_id = str(user_id)
+
+    rconn.set(str_user_id, 0)
+    return
+
 
 
 

@@ -216,6 +216,8 @@ def check_pin(caller_ident, ident_list, submit_list, submit_dict, call_data, pag
         if not redis_ops.set_authenticated(call_data['cookie'], user_id, call_data.get('rconn_2')):
             # failed to set authenticated to True
             raise FailPage(message= "Unable to set Authenticate")
+        # clears number of tries
+        redis_ops.clear_tries(user_id, call_data.get('rconn_3'))
         call_data['authenticated'] = True
     except FailPage:
         raise

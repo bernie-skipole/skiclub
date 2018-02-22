@@ -2528,6 +2528,15 @@ false,
 "restricted": true,
 "folders": {},
 "pages": {
+"backup.bak": {
+"ident": 2020,
+"brief": "A backup file",
+"FilePage": {
+"filepath": "skiclub/static/backup.bak",
+"enable_cache": false,
+"mimetype": "application/octet-stream"
+}
+},
 "general_json": {
 "ident": 2002,
 "brief": "Empty JSON file for general use",
@@ -5932,18 +5941,19 @@ false,
 "original_fields": {}
 }
 },
-"backup.sql": {
+"backup.bak": {
 "ident": 3022,
-"brief": "create and download backup file",
+"brief": "Create and download a backup file",
 "RespondPage": {
-"class": "SubmitIterator",
+"class": "SubmitData",
 "original_args": {
 "fail_ident": "home",
 "submit_list": [
 "admin",
 "backup",
 "dumpdatabase"
-]
+],
+"target_ident": 2020
 },
 "original_fields": {}
 }
