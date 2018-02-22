@@ -236,8 +236,6 @@ def is_authenticated(cookie_string, rconn=None):
        If not, return False. If rconn is None, a new connection will be created.
        If given rconn should connect to redis_db 2"""
 
-    return True
-
     if rconn is None:
         try:
             rconn = open_redis(redis_db=2)
