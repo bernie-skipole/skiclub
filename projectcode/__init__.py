@@ -69,7 +69,7 @@ def start_project(project, projectfiles, path, option):
     # and another for user_id
     rconn_3 = redis_ops.open_redis(redis_db=3)
     # Set the organisation name into proj_data, used in page header and automated email
-    return {"org_name":"Example club membership project", 'rconn_0':rconn_0, 'rconn_1':rconn_1, 'rconn_2':rconn_2, 'rconn_3':rconn_3}
+    return {"org_name":"Example club membership project", 'rconn_0':rconn_0, 'rconn_1':rconn_1, 'rconn_2':rconn_2, 'rconn_3':rconn_3, 'projectfiles':projectfiles}
 
 
 def start_call(environ, path, project, called_ident, caller_ident, received_cookies, ident_data, lang, option, proj_data):
@@ -88,7 +88,8 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
                   "rconn_0":proj_data["rconn_0"],
                   "rconn_1":proj_data["rconn_1"],
                   "rconn_2":proj_data["rconn_2"],
-                  "rconn_3":proj_data["rconn_3"]}
+                  "rconn_3":proj_data["rconn_3"],
+                  "projectfiles":proj_data["projectfiles"]}
 
     # rx_ident_data = received ident_data, not currently used
     # but may be a useful item to have in call_data for users code
