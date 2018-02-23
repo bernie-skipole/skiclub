@@ -517,27 +517,8 @@ def get_all_messages(con=None):
     return m_string
 
 
-def dumpdatabase():
-    """Returns a list of sql commands and the length of the binary data, to be used as a database dump"""
-    if not  _DATABASE_EXISTS:
-        return
-    sql_list = []
-    filelen = 0
-    try:
-        con = open_database()
-        for line in con.iterdump():
-            newline = line+'\n'
-            binline = newline.encode('utf-8')
-            filelen += len(binline)
-            sql_list.append(binline)
-    except:
-        return
-    finally:
-        con.close()
-    return sql_list, filelen
-
-
 def stringdump():
+    "Returns a string being a dump of the sql database"
     if not  _DATABASE_EXISTS:
         return
     sql_list = []
