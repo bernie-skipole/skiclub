@@ -2785,6 +2785,21 @@ false,
 "Part",
 {
 "tag_name": "p",
+"brief": "About encryption",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"Text",
+"The site allows administrators to create encrypted backup files, however this uses 'gpg2' (which will generally be available on most Linux machines), and a pass phrase set in cfg.py - which you must change to another phrase."
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "p",
 "brief": "Default user",
 "show": true,
 "hide_if_empty": false,
@@ -2807,21 +2822,6 @@ false,
 [
 "Text",
 "If you wish to use this example as the base of your own project, do not edit skiclub directly (as future versions may be incompatable), rather use the skipole.py -c copy function to create a copy with your own project name, and edit that as you wish."
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "p",
-"brief": "New Tag",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"This project may be suitable for a small club or a Raspberry Pi in-house project, but currently the entire skipole framework has not been tested for security. For more serious usage the wsgi application would also need to be served via a https capable server."
 ]
 ]
 }
