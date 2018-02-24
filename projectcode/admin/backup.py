@@ -35,6 +35,8 @@ def dumpdatabase(caller_ident, ident_list, submit_list, submit_dict, call_data, 
 
     args.append("--batch")
     args.append("-c")
+    args.append("--homedir")
+    args.append(os.path.join(call_data["projectfiles"], call_data["project"]))
     args.append("--passphrase")
     args.append(cfg.get_backup_passphrase())
     args.append("-o")
@@ -58,6 +60,8 @@ def upload(caller_ident, ident_list, submit_list, submit_dict, call_data, page_d
     args = ["gpg2"]
     args.append("--batch")
     args.append("-d")
+    args.append("--homedir")
+    args.append(os.path.join(call_data["projectfiles"], call_data["project"]))
     args.append("--passphrase")
     args.append(cfg.get_backup_passphrase())
     try:
