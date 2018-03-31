@@ -29,6 +29,10 @@ def dumpdatabase(caller_ident, ident_list, submit_list, submit_dict, call_data, 
     if os.path.exists(backupfile):
         os.unlink(backupfile)
 
+    homedir = cfg.get_database_directory()
+    if not homedir:
+        homedir = os.path.join(call_data["projectfiles"], call_data["project"])
+
     # call gpg2 to encrypt the dump
 
     args = ["gpg2"]
@@ -36,7 +40,7 @@ def dumpdatabase(caller_ident, ident_list, submit_list, submit_dict, call_data, 
     args.append("--batch")
     args.append("-c")
     args.append("--homedir")
-    args.append(os.path.join(call_data["projectfiles"], call_data["project"]))
+    args.append(homedir)
     args.append("--passphrase")
     args.append(cfg.get_backup_passphrase())
     args.append("-o")
@@ -56,12 +60,16 @@ def upload(caller_ident, ident_list, submit_list, submit_dict, call_data, page_d
     if (('upload','action') not in call_data) or (not call_data['upload','action']):
         raise FailPage("Invalid file.", widget = 'upload' )
 
+    homedir = cfg.get_database_directory()
+    if not homedir:
+        homedir = os.path.join(call_data["projectfiles"], call_data["project"])
+
     uploaded_data = call_data['upload','action']
     args = ["gpg2"]
     args.append("--batch")
     args.append("-d")
     args.append("--homedir")
-    args.append(os.path.join(call_data["projectfiles"], call_data["project"]))
+    args.append(homedir)
     args.append("--passphrase")
     args.append(cfg.get_backup_passphrase())
     try:

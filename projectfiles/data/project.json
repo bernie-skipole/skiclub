@@ -2,8 +2,8 @@
 "url": "/",
 "default_language": "en",
 "brief": "Example club membership project",
-"version": "0.3.0",
-"skipole": "0.4.0",
+"version": "0.4.0",
+"skipole": "0.7.0",
 "subprojects": {
 "lib": {
 "path": "/lib/"
@@ -502,7 +502,9 @@ false,
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -510,7 +512,9 @@ false,
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -766,7 +770,9 @@ false,
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -774,7 +780,9 @@ false,
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -1199,7 +1207,9 @@ false,
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -1207,7 +1217,9 @@ false,
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -1463,7 +1475,9 @@ false,
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -1471,7 +1485,9 @@ false,
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -1727,7 +1743,9 @@ false,
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -1735,7 +1753,9 @@ false,
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -2145,7 +2165,9 @@ false,
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -2153,7 +2175,9 @@ false,
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -2424,7 +2448,9 @@ false,
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -2432,7 +2458,9 @@ false,
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -2714,7 +2742,9 @@ false,
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -2722,7 +2752,9 @@ false,
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -3251,7 +3283,9 @@ false,
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -3259,7 +3293,9 @@ false,
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -3923,7 +3959,9 @@ false,
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -3931,7 +3969,9 @@ false,
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -4241,7 +4281,9 @@ false,
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -4249,7 +4291,9 @@ false,
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -4695,7 +4739,9 @@ false,
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -4703,7 +4749,9 @@ false,
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -5143,7 +5191,9 @@ false
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -5151,7 +5201,9 @@ false
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -5741,7 +5793,9 @@ false
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -5749,7 +5803,9 @@ false
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -6539,7 +6595,9 @@ false,
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -6547,7 +6605,9 @@ false,
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -6818,7 +6878,9 @@ false,
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -6826,7 +6888,9 @@ false,
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -7204,7 +7268,9 @@ false,
 {
 "brief": "Page header",
 "section_name": "header",
-"placename": "header"
+"placename": "header",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -7212,7 +7278,9 @@ false,
 {
 "brief": "Left navigation panel",
 "section_name": "navigation",
-"placename": "navigation"
+"placename": "navigation",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
