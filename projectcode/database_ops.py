@@ -10,6 +10,8 @@ from datetime import datetime, date, timedelta
 
 from ...skilift import FailPage, GoTo, ValidateError, ServerError
 
+from . import cfg
+
 # These global values will be set when start_database is called
 _DATABASE_PATH = ''
 _DATABASE_EXISTS = False
@@ -74,13 +76,17 @@ def start_database(project, projectfiles):
         return
     # Set global variables
     _PROJECT = project
-    database_dir = os.path.join(projectfiles, project, _DATABASE_DIR_NAME)
+    database_dir = cfg.get_database_directory()
+    if database_dir:
+        database_dir = os.path.join(database_dir, _DATABASE_DIR_NAME)
+    else:
+        database_dir = os.path.join(projectfiles, project, _DATABASE_DIR_NAME)
     _DATABASE_PATH = os.path.join(database_dir, _DATABASE_NAME)
     _DATABASE_EXISTS = True
-    # make directory
-    try:
+    # make the database directory
+    if not os.path.isdir(database_dir):
         os.mkdir(database_dir)
-    except FileExistsError:
+    if os.path.isfile(_DATABASE_PATH):
         return
     # create the database
     con = open_database()
