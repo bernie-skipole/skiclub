@@ -8,9 +8,9 @@ build the project pages
 import os
 
 
-from .. import FailPage, GoTo, ValidateError, ServerError
+from .. import FailPage, GoTo, ValidateError, ServerError, use_submit_list
 
-from . import public, members, admin, database_ops, redis_ops
+from . import database_ops, redis_ops
 
 
 # These pages can be accessed by anyone, without the need to login
@@ -192,19 +192,10 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
     return called_ident, call_data, page_data, lang
 
 
+@use_submit_list
 def submit_data(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
-    "This function is called when a Responder wishes to submit data for processing in some manner"
-
-    # depending on the first item in submit list, send the call to a sub package
-
-    if submit_list and (submit_list[0] == 'public'):
-        return public.submit_data(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang)
-
-    if submit_list and (submit_list[0] == 'members'):
-        return members.submit_data(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang)
-
-    if submit_list and (submit_list[0] == 'admin'):
-        return admin.submit_data(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang)
+    """This function is called when a Responder wishes to submit data for processing in some manner
+       For two or more submit_list values, the decorator ensures the matching function is called instead"""
 
     raise FailPage("submit_list string not recognised")
 
