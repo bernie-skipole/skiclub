@@ -844,150 +844,97 @@ false,
 [
 "Widget",
 {
-"class": "inputforms.SubmitForm1",
-"name": "loginform",
-"brief": "Form of username and password",
+"class": "logins.NamePasswd1",
+"name": "login",
+"brief": "The login form requesting username and password",
 "fields": {
 "action": "check_login",
 "action_json": "",
-"button_class": "w3-button w3-theme-d4",
+"button_class": "w3-button w3-theme-d4 w3-margin",
+"button_style": "margin-left:40%",
 "button_text": "Submit",
-"button_wait_text": "",
 "clear_error": false,
-"container_class": "",
-"div_class": "",
-"enctype": "",
+"disabled1": false,
+"disabled2": false,
+"div1_class": "w3-section",
+"div2_class": "w3-section",
+"div3_class": "ski_left_40_10",
 "error_class": "w3-panel w3-red",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
 "hidden_field4": "",
-"left_class": "ski_left_label",
-"left_label": "Submit to log in:",
-"right_class": "",
-"right_label": "",
-"show": true,
-"show_error": "",
-"widget_class": "w3-section",
-"widget_style": ""
-},
-"container_0": [
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "holds form elements",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Widget",
-{
-"class": "inputtext.TextInput2",
-"name": "username",
-"brief": "Login username",
-"fields": {
-"clear_error": false,
-"disabled": false,
-"error_class": "w3-panel w3-red",
 "input_accepted_class": "ski_input_accepted",
-"input_class": "ski_input",
-"input_disabled_class": "",
+"input_class1": "ski_input w3-margin-left",
+"input_class2": "ski_input  w3-margin-left",
 "input_errored_class": "ski_input_errored",
-"input_text": "",
-"inputdiv_class": "",
-"label": "Username:",
-"label_class": "ski_left_label",
-"maxlength": "",
-"pattern": "",
-"redstar": false,
-"required": true,
-"set_input_accepted": false,
-"set_input_errored": false,
+"input_text1": "",
+"input_text2": "",
+"inputdiv_class": "w3-container",
+"label1": "Username:",
+"label2": "Password:",
+"label_class1": "ski_left_label",
+"label_class2": "ski_left_label",
+"maxlength1": "",
+"maxlength2": "",
+"pattern1": "",
+"pattern2": "",
+"required1": true,
+"required2": true,
+"set_input_accepted1": false,
+"set_input_accepted2": false,
+"set_input_errored1": false,
+"set_input_errored2": false,
 "show": true,
 "show_error": "",
-"size": "",
-"title": "",
-"type": "text",
-"widget_class": "w3-section",
+"size1": "",
+"size2": "",
+"title1": "",
+"title2": "",
+"widget_class": "",
 "widget_style": ""
 },
-"validators": {
-"input_text": [
-{
-"class": "basic.MinLength",
-"message": "username invalid",
-"displaywidget": [
-"",
-"loginform",
-"",
-""
-],
-"val_args": {
-"minlength": "4"
-}
-}
-]
-}
-}
-],
-[
-"Widget",
-{
-"class": "inputtext.Password2",
-"name": "password",
-"brief": "Login password",
-"fields": {
-"clear_error": false,
-"disabled": false,
-"error_class": "w3-panel w3-red",
-"input_accepted_class": "ski_input_accepted",
-"input_class": "ski_input",
-"input_disabled_class": "",
-"input_errored_class": "ski_input_errored",
-"input_text": "",
-"inputdiv_class": "",
-"label": "Password:",
-"label_class": "ski_left_label",
-"maxlength": "",
-"redstar": false,
-"required": true,
-"set_input_accepted": false,
-"set_input_errored": false,
-"show": true,
-"show_error": "",
-"size": "",
-"widget_class": "w3-section",
-"widget_style": ""
-},
-"validators": {
-"input_text": [
-{
-"class": "basic.MinLength",
-"message": "The password must be longer than three characters.",
-"displaywidget": [
-"",
-"loginform",
-"",
-""
-],
-"val_args": {
-"minlength": "4"
-}
-}
-]
-}
-}
-]
-]
-}
-]
-],
 "validators": {
 "hidden_field1": [
 {
 "class": "basic.NotEmpty",
-"message": "Invalid submission"
+"message": "Invalid submission",
+"displaywidget": [
+"",
+"login",
+"",
+""
+]
+}
+],
+"input_text1": [
+{
+"class": "basic.MinLength",
+"message": "Invalid username",
+"displaywidget": [
+"",
+"login",
+"",
+""
+],
+"val_args": {
+"minlength": "4"
+}
+}
+],
+"input_text2": [
+{
+"class": "basic.MinLength",
+"message": "Invalid password",
+"displaywidget": [
+"",
+"login",
+"",
+""
+],
+"val_args": {
+"minlength": "4"
+}
 }
 ]
 }
@@ -1909,9 +1856,9 @@ false,
 "validate_option": true
 },
 "original_fields": {
-"loginform:hidden_field1": "",
-"password:input_text": "",
-"username:input_text": ""
+"login:hidden_field1": "",
+"login:input_text1": "",
+"login:input_text2": ""
 }
 }
 },

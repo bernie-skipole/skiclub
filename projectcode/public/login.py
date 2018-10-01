@@ -26,7 +26,7 @@ def create_login_page(caller_ident, ident_list, submit_list, submit_dict, call_d
     if rnd1 is None:
         raise ServerError(message = "Database access failure")
 
-    page_data['loginform', 'hidden_field1'] = str(rnd1)
+    page_data['login', 'hidden_field1'] = str(rnd1)
 
     # When the form is submitted, the received number will be checked
     return
@@ -44,9 +44,9 @@ def check_login(caller_ident, ident_list, submit_list, submit_dict, call_data, p
     call_data['loggedin'] = False
     call_data['authenticated'] = False
 
-    username = call_data['username', 'input_text']
-    password = call_data['password', 'input_text']
-    str_rnd = call_data['loginform', 'hidden_field1']
+    username = call_data['login', 'input_text1']
+    password = call_data['login', 'input_text2']
+    str_rnd = call_data['login', 'hidden_field1']
 
     # check hidden random number is still valid
     if not str_rnd:
@@ -67,11 +67,11 @@ def check_login(caller_ident, ident_list, submit_list, submit_dict, call_data, p
         raise FailPage(message = "Login page expired, please try again.")
     
     if not username:
-        raise FailPage(message= "Login fail: missing username", widget='loginform')
+        raise FailPage(message= "Login fail: missing username", widget='login')
     if not password:
-        raise FailPage(message= "Login fail: missing password", widget='loginform')
+        raise FailPage(message= "Login fail: missing password", widget='login')
     if not database_ops.check_password(username, password):
-        raise FailPage(message= "Login fail: invalid username-password", widget='loginform')
+        raise FailPage(message= "Login fail: invalid username-password", widget='login')
 
     # password ok, get user information
     user = database_ops.get_user_from_username(username)
@@ -79,7 +79,7 @@ def check_login(caller_ident, ident_list, submit_list, submit_dict, call_data, p
 
     if user is None:
         # something wrong, unable to get user information
-        raise FailPage(message= "Login Fail: unable to retrieve user details", widget='loginform')
+        raise FailPage(message= "Login Fail: unable to retrieve user details", widget='login')
 
     # login ok, populate call_data and return
     call_data['user_id'] = user[0]
