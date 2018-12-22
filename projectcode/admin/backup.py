@@ -13,7 +13,7 @@ from .. import database_ops, cfg
 
 
 
-def dumpdatabase(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def dumpdatabase(skicall):
     """Creates an encrypted database dump to file backup.bak"""
     # To decrypt the file
     # gpg2 --batch --passphrase "passphrase" -d backup.bak
@@ -23,7 +23,7 @@ def dumpdatabase(caller_ident, ident_list, submit_list, submit_dict, call_data, 
     if dump is None:
         raise FailPage("Unable to obtain backup from the database")
     # create backup file location under static so it can be served
-    backupfile = os.path.join(call_data["projectfiles"], call_data["project"], "static", "backup.bak")
+    backupfile = os.path.join(skicall.call_data["projectfiles"], skicall.project, "static", "backup.bak")
 
     # remove any existing backup file
     if os.path.exists(backupfile):
@@ -31,7 +31,7 @@ def dumpdatabase(caller_ident, ident_list, submit_list, submit_dict, call_data, 
 
     homedir = cfg.get_database_directory()
     if not homedir:
-        homedir = os.path.join(call_data["projectfiles"], call_data["project"])
+        homedir = os.path.join(skicall.call_data["projectfiles"], skicall.project)
 
     # call gpg2 to encrypt the dump
 
@@ -52,19 +52,19 @@ def dumpdatabase(caller_ident, ident_list, submit_list, submit_dict, call_data, 
 
 
 
-def upload(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def upload(skicall):
     "Uploads a backup file and restores the membership database"
 
     # Called by responder 3030
 
-    if (('upload','action') not in call_data) or (not call_data['upload','action']):
+    if (('upload','action') not in skicall.call_data) or (not skicall.call_data['upload','action']):
         raise FailPage("Invalid file.", widget = 'upload' )
 
     homedir = cfg.get_database_directory()
     if not homedir:
-        homedir = os.path.join(call_data["projectfiles"], call_data["project"])
+        homedir = os.path.join(skicall.call_data["projectfiles"], skicall.project)
 
-    uploaded_data = call_data['upload','action']
+    uploaded_data = skicall.call_data['upload','action']
     args = ["gpg2"]
     args.append("--batch")
     args.append("-d")

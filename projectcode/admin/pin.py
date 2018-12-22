@@ -11,7 +11,7 @@ from ....skilift import FailPage, GoTo, ValidateError, ServerError
 from .. import database_ops
 
 
-def fill_new_pin(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def fill_new_pin(skicall):
     """Populates the New PIN page, this is the page shown when an administrator chooses
           New PIN from the left navigation buttons"""
 
@@ -26,50 +26,50 @@ def fill_new_pin(caller_ident, ident_list, submit_list, submit_dict, call_data, 
     # col 2 is the get field contents of the button link
 
     if not result:
-        page_data['tabletext', 'show'] = False
-        page_data['admins', 'show'] = False
+        skicall.page_data['tabletext', 'show'] = False
+        skicall.page_data['admins', 'show'] = False
     else:
-        page_data['admins', 'contents'] = result
+        skicall.page_data['admins', 'contents'] = result
 
 
 
-def set_your_pin(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def set_your_pin(skicall):
     """Given the four characters of a pin, for the current logged in user sets it"""
 
     # called from responder 8101
 
-    username = call_data['username']
-    user_id = call_data['user_id']
+    username = skicall.call_data['username']
+    user_id = skicall.call_data['user_id']
 
-    pin1 = call_data['newpin','pin1']
+    pin1 = skicall.call_data['newpin','pin1']
     if not pin1 or (len(pin1) != 1):
         raise FailPage('Invalid PIN', widget = 'newpin')
-    pin2 = call_data['newpin','pin2']
+    pin2 = skicall.call_data['newpin','pin2']
     if not pin2 or (len(pin2) != 1):
         raise FailPage('Invalid PIN', widget = 'newpin')
-    pin3 = call_data['newpin','pin3']
+    pin3 = skicall.call_data['newpin','pin3']
     if not pin3 or (len(pin3) != 1):
         raise FailPage('Invalid PIN', widget = 'newpin')
-    pin4 = call_data['newpin','pin4']
+    pin4 = skicall.call_data['newpin','pin4']
     if not pin4 or (len(pin4) != 1):
         raise FailPage('Invalid PIN', widget = 'newpin')
     if database_ops.set_pin(user_id, [pin1, pin2, pin3, pin4]):
         space_pin = pin1+' '+pin2+' '+pin3+' '+pin4
-        page_data['showadminpin', 'para_text'] = "New PIN for user %s is %s" % (username, space_pin)
+        skicall.page_data['showadminpin', 'para_text'] = "New PIN for user %s is %s" % (username, space_pin)
     else:
         raise FailPage('Unable to set new PIN into database', widget = 'newpin')
 
 
 
-def fill_generate_pin_template(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def fill_generate_pin_template(skicall):
     """Fills the template page to generate a PIN for an edited user, this page is called when a user role
           is changed to Admin"""
 
     # called by responder 3615
 
-    if not 'edited_user_id' in call_data:
+    if not 'edited_user_id' in skicall.call_data:
         raise FailPage('Invalid user')
-    edited_user_id = call_data['edited_user_id']
+    edited_user_id = skicall.call_data['edited_user_id']
 
     if edited_user_id == 1:
         raise FailPage('This function is not available for this user.')
@@ -79,19 +79,19 @@ def fill_generate_pin_template(caller_ident, ident_list, submit_list, submit_dic
     if not edited_user:
         raise FailPage('Invalid user')
 
-    page_data['pagetop','para_text'] = "Set Administrative access PIN for %s" % (edited_user[0],)
-    page_data['newadminpin','get_field1'] = str(edited_user_id)
+    skicall.page_data['pagetop','para_text'] = "Set Administrative access PIN for %s" % (edited_user[0],)
+    skicall.page_data['newadminpin','get_field1'] = str(edited_user_id)
 
 
 
-def make_pin(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def make_pin(skicall):
     """Create a PIN for an edited user and set user to Admin role"""
 
 
     # called by responders 3160 and 3170
 
     try:
-        edited_user_id = int(call_data['newadminpin'])
+        edited_user_id = int(skicall.call_data['newadminpin'])
     except:
         raise FailPage('Invalid edited user')
 
@@ -103,12 +103,12 @@ def make_pin(caller_ident, ident_list, submit_list, submit_dict, call_data, page
     if not edited_user:
         raise FailPage('Invalid user')
 
-    call_data['edited_user_id'] = edited_user_id
+    skicall.call_data['edited_user_id'] = edited_user_id
     # generate new pin
     new_pin = database_ops.make_admin(edited_user_id)
     if new_pin:
         space_pin = ' '.join( c for c in new_pin)
-        page_data['showadminpin', 'para_text'] = 'New PIN for user %s is %s' % (edited_user[0], space_pin)
+        skicall.page_data['showadminpin', 'para_text'] = 'New PIN for user %s is %s' % (edited_user[0], space_pin)
     else:
         raise FailPage('Failed database access, unable to set PIN')
 

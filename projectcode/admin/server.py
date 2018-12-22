@@ -10,17 +10,17 @@ from ....skilift import FailPage, GoTo, ValidateError, ServerError
 from .. import database_ops
 
 
-def create_index(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def create_index(skicall):
     "Fills in the setup index page"
 
     # called by responder 3001
 
-    page_data['setup_buttons', 'nav_links'] = [['3010','Add User', True, ''],
+    skicall.page_data['setup_buttons', 'nav_links'] = [['3010','Add User', True, ''],
                                                 ['editusers','Edit Users', True, ''],
                                                 ['3020','Server', True, '']]
 
 
-def server_settings(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def server_settings(skicall):
     """Populates the server settings page"""
 
     # called by responder 3020
@@ -31,13 +31,13 @@ def server_settings(caller_ident, ident_list, submit_list, submit_dict, call_dat
         raise FailPage('Database access failure.')
     emailserver, no_reply, starttls = smtpserver
     if emailserver:
-        page_data['emailserver', 'input_text'] = emailserver
+        skicall.page_data['emailserver', 'input_text'] = emailserver
     if no_reply:
-        page_data['no_reply', 'input_text'] = no_reply
+        skicall.page_data['no_reply', 'input_text'] = no_reply
     if starttls:
-        page_data['starttls', 'checked'] = True
+        skicall.page_data['starttls', 'checked'] = True
     else:
-        page_data['starttls', 'checked'] = False
+        skicall.page_data['starttls', 'checked'] = False
     userpass = database_ops.get_emailuserpass()
     if not userpass:
         emailusername = ''
@@ -45,23 +45,23 @@ def server_settings(caller_ident, ident_list, submit_list, submit_dict, call_dat
     else:
         emailusername, emailpassword = userpass
     if emailusername:
-        page_data['emailuser', 'input_text'] = emailusername
+        skicall.page_data['emailuser', 'input_text'] = emailusername
     if emailpassword:
-        page_data['emailpassword', 'input_text'] = emailpassword
+        skicall.page_data['emailpassword', 'input_text'] = emailpassword
 
 
 
-def set_server_email_settings(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def set_server_email_settings(skicall):
     """Sets the smtp settings in the database"""
 
     # called by responder 3021
 
     try:
-        emailuser = call_data['emailuser', 'input_text']
-        emailpassword = call_data['emailpassword', 'input_text']
-        emailserver = call_data['emailserver', 'input_text']
-        no_reply = call_data['no_reply', 'input_text']
-        starttls = call_data['starttls', 'checkbox']
+        emailuser = skicall.call_data['emailuser', 'input_text']
+        emailpassword = skicall.call_data['emailpassword', 'input_text']
+        emailserver = skicall.call_data['emailserver', 'input_text']
+        no_reply = skicall.call_data['no_reply', 'input_text']
+        starttls = skicall.call_data['starttls', 'checkbox']
     except:
         raise FailPage('Invalid settings.', widget = 'emailsettings')
     if starttls == 'checked':
@@ -69,25 +69,25 @@ def set_server_email_settings(caller_ident, ident_list, submit_list, submit_dict
     else:
         starttls = False
     if database_ops.set_emailserver(emailuser, emailpassword, emailserver, no_reply, starttls):
-        page_data['emailsettings', 'show_para'] = True
+        skicall.page_data['emailsettings', 'show_para'] = True
     else:
         raise FailPage('Unable to set smtp server settings into database', widget = 'emailsettings')
 
 
 
-def add_message(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def add_message(skicall):
     "Adds a message"
 
     # called by responder 3002
 
     try:
-        message = call_data['setstatus','input_text']
-        username = call_data['username']
+        message = skicall.call_data['setstatus','input_text']
+        username = skicall.call_data['username']
     except:
         raise FailPage('Invalid settings.')
 
     if database_ops.set_message(username, message):
-        page_data['messageresult','para_text'] = "Message set."
+        skicall.page_data['messageresult','para_text'] = "Message set."
     else:
         raise FailPage("Database access failure" )
 

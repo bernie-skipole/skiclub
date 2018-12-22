@@ -9,7 +9,7 @@
 from ....skilift import FailPage, GoTo, ValidateError, ServerError
 
 
-def create_index(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def create_index(skicall):
     "Fills in home index page"
 
     # Called by responder id 1

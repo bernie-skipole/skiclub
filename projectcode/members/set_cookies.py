@@ -14,31 +14,31 @@ from ....skilift import FailPage, GoTo, ValidateError, ServerError, projectURLpa
 from .. import redis_ops
 
 
-def logout(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def logout(skicall):
     """Logs the user out by deleting the user cookie from the database, and also 
           set a cookie in the user browser to 'noaccess' which indicates logged out"""
 
     # When a user chooses logout - this calls responder 5003 which is of type 'SetCookies'
     # The responder calls this function, and expects the function to return a cookie object
 
-    call_data['loggedin'] =  False
-    call_data['authenticated'] = False
-    call_data['role'] = ""
-    if 'username' in call_data:
-        del call_data['username'] 
-    if 'user_id' in call_data:
-        del call_data['user_id']
-    if 'email' in call_data:
-        del call_data['email']
-    if 'member' in call_data:
-        del call_data['member']
+    skicall.call_data['loggedin'] =  False
+    skicall.call_data['authenticated'] = False
+    skicall.call_data['role'] = ""
+    if 'username' in skicall.call_data:
+        del skicall.call_data['username'] 
+    if 'user_id' in skicall.call_data:
+        del skicall.call_data['user_id']
+    if 'email' in skicall.call_data:
+        del skicall.call_data['email']
+    if 'member' in skicall.call_data:
+        del skicall.call_data['member']
     # Remove cookie from redis database
-    if 'cookie' in call_data:
-        redis_ops.del_cookie(call_data['cookie'], call_data.get("rconn_1"))
-        del call_data['cookie']
+    if 'cookie' in skicall.call_data:
+        redis_ops.del_cookie(skicall.call_data['cookie'], skicall.call_data.get("rconn_1"))
+        del skicall.call_data['cookie']
 
     # set a cookie 'project2:noaccess'
-    project = call_data['project']
+    project = skicall.project
     ck_key = project +"2"
     cki = cookies.SimpleCookie()
     cki[ck_key] = "noaccess"
@@ -50,7 +50,7 @@ def logout(caller_ident, ident_list, submit_list, submit_dict, call_data, page_d
 
 
 
-def set_cookie(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def set_cookie(skicall):
     """set cookie for login access"""
 
     # After a user has tried to login and his password successfully checked then
@@ -59,8 +59,8 @@ def set_cookie(caller_ident, ident_list, submit_list, submit_dict, call_data, pa
     # so future access is immediate when a received cookie is compared with the database cookie
 
     # set a cookie for cookie key 'project2'
-    project = call_data['project']
-    user_id = call_data['user_id']
+    project = skicall.project
+    user_id = skicall.call_data['user_id']
     # generate a cookie string
     ck_string = uuid.uuid4().hex
     ck_key = project +"2"
@@ -72,7 +72,7 @@ def set_cookie(caller_ident, ident_list, submit_list, submit_dict, call_data, pa
     url_dict = projectURLpaths()
     cki[ck_key]['path'] = url_dict[project]
     # and set the cookie string into database
-    status = redis_ops.set_cookie(ck_string, user_id, call_data.get("rconn_1"))
+    status = redis_ops.set_cookie(ck_string, user_id, skicall.call_data.get("rconn_1"))
     if not status:
         raise FailPage(message="Unable to access redis database")
     return cki
