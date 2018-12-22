@@ -11,55 +11,55 @@ from ....skilift import FailPage, GoTo, ValidateError, ServerError
 from .. import database_ops
 
 
-def user_settings(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def user_settings(skicall):
     """Populates the user settings page"""
 
     # Called from responder 8001 to insert the users email into the email widget
 
-    user_id = call_data['user_id']
+    user_id = skicall.call_data['user_id']
     email = database_ops.get_email(user_id)
     if email:
-        page_data['email', 'input_text'] = email
+        skicall.page_data['email', 'input_text'] = email
 
 
-def confirm_deregister(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def confirm_deregister(skicall):
     """Confirms the user wishes to de-register himself"""
-    user_id = call_data['user_id']
+    user_id = skicall.call_data['user_id']
     user = database_ops.get_user_from_id(user_id)
     if user is None:
         raise FailPage("User ID not recognised.")
-    page_data['confirm', 'hide'] = False
-    page_data['confirm', 'para_text'] = "Confirm delete user %s" % user[0]
+    skicall.page_data['confirm', 'hide'] = False
+    skicall.page_data['confirm', 'para_text'] = "Confirm delete user %s" % user[0]
 
 
-def deregister_user(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def deregister_user(skicall):
     "deregister a user"
 
     # get user id to delete
-    user_id = call_data['user_id']
+    user_id = skicall.call_data['user_id']
     if user_id == 1:
         raise FailPage("Cannot delete special Admin user")
 
     if not database_ops.delete_user_id(user_id):
         raise FailPage("Database operation failed.")
 
-    call_data["authenticated"] = False
-    call_data["loggedin"] = False
-    call_data["role"] = ""
-    del call_data['user_id']
+    skicall.call_data["authenticated"] = False
+    skicall.call_data["loggedin"] = False
+    skicall.call_data["role"] = ""
+    del skicall.call_data['user_id']
 
 
-def new_password(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def new_password(skicall):
     """Given old password and two copies of a new one, set the password"""
 
     # Users can change their own password
     # This function is called from responder 8002 to set a new password
 
-    user_id = call_data['user_id']
+    user_id = skicall.call_data['user_id']
 
-    oldpassword = call_data['oldpassword', 'input_text']
-    newpassword1 = call_data['newpassword1', 'input_text']
-    newpassword2 = call_data['newpassword2', 'input_text']
+    oldpassword = skicall.call_data['oldpassword', 'input_text']
+    newpassword1 = skicall.call_data['newpassword1', 'input_text']
+    newpassword2 = skicall.call_data['newpassword2', 'input_text']
 
     if (not oldpassword) or (not newpassword1) or (not newpassword2):
         raise FailPage('Password missing', widget = 'passworderror')
@@ -83,34 +83,34 @@ def new_password(caller_ident, ident_list, submit_list, submit_dict, call_data, 
         raise FailPage('Unable to update database', widget = 'passworderror')
 
     # password updated, show status message
-    page_data['passwordstatus', 'para_text'] = "A new password has been set"
-    page_data['passwordstatus', 'hide'] = False
+    skicall.page_data['passwordstatus', 'para_text'] = "A new password has been set"
+    skicall.page_data['passwordstatus', 'hide'] = False
 
 
-def set_email(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def set_email(skicall):
     """Sets the user email in the database"""
 
     # Users can change their own email
     # This function is called from responder 8003 to set a new email
 
-    user_id = call_data['user_id']
-    if ('email', 'input_text') not in call_data:
+    user_id = skicall.call_data['user_id']
+    if ('email', 'input_text') not in skicall.call_data:
         raise FailPage('email missing', widget = 'passworderror')
-    email = call_data['email', 'input_text']
+    email = skicall.call_data['email', 'input_text']
     if not email:
         email = ""
 
     if database_ops.set_email(user_id, email):
-        page_data['email', 'input_text'] = email
+        skicall.page_data['email', 'input_text'] = email
     else:
         raise FailPage('Unable to set email into database', widget = 'passworderror')
 
     # email updated, show status message
     if email:
-        page_data['emailstatus', 'para_text'] = "A new email address has been set"
+        skicall.page_data['emailstatus', 'para_text'] = "A new email address has been set"
     else:
-        page_data['emailstatus', 'para_text'] = "The email address has been deleted"
-    page_data['emailstatus', 'show'] = True
-    page_data['email', 'set_input_accepted'] = True
+        skicall.page_data['emailstatus', 'para_text'] = "The email address has been deleted"
+    skicall.page_data['emailstatus', 'show'] = True
+    skicall.page_data['email', 'set_input_accepted'] = True
 
 

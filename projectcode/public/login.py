@@ -13,7 +13,7 @@ from .. import database_ops, redis_ops
 
 
 
-def create_login_page(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def create_login_page(skicall):
     """Sets a hidden random number in the login form, which is only valid for four minutes
        This expires the login page, and also makes it difficult to script login calls"""
 
@@ -22,18 +22,18 @@ def create_login_page(caller_ident, ident_list, submit_list, submit_dict, call_d
     # two minute time slot.  Four sets of such random numbers are available
     # specified by argument rndset which should be 0 to 3
     # This login form uses rndset 0
-    rnd1, rnd2 = redis_ops.two_min_numbers(rndset=0, rconn=call_data.get("rconn_0"))
+    rnd1, rnd2 = redis_ops.two_min_numbers(rndset=0, rconn=skicall.call_data.get("rconn_0"))
     if rnd1 is None:
         raise ServerError(message = "Database access failure")
 
-    page_data['login', 'hidden_field1'] = str(rnd1)
+    skicall.page_data['login', 'hidden_field1'] = str(rnd1)
 
     # When the form is submitted, the received number will be checked
     return
 
 
 
-def check_login(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def check_login(skicall):
     """The user fills in the username and password widgets on the login template page and
          then submits the data to the responder which calls this function.
          This checks username and password against the member database and raises failpage
@@ -41,12 +41,12 @@ def check_login(caller_ident, ident_list, submit_list, submit_dict, call_data, p
 
     # Called by responder id 5002
 
-    call_data['loggedin'] = False
-    call_data['authenticated'] = False
+    skicall.call_data['loggedin'] = False
+    skicall.call_data['authenticated'] = False
 
-    username = call_data['login', 'input_text1']
-    password = call_data['login', 'input_text2']
-    str_rnd = call_data['login', 'hidden_field1']
+    username = skicall.call_data['login', 'input_text1']
+    password = skicall.call_data['login', 'input_text2']
+    str_rnd = skicall.call_data['login', 'hidden_field1']
 
     # check hidden random number is still valid
     if not str_rnd:
@@ -56,7 +56,7 @@ def check_login(caller_ident, ident_list, submit_list, submit_dict, call_data, p
     except:
         raise FailPage(message = "Invalid input")
 
-    rnd = redis_ops.two_min_numbers(rndset=0, rconn=call_data.get("rconn_0"))
+    rnd = redis_ops.two_min_numbers(rndset=0, rconn=skicall.call_data.get("rconn_0"))
     # rnd is a tuple of two valid random numbers
     # rnd[0] for the current 2 minute time slot
     # rnd[1] for the previous 2 minute time slot
@@ -82,8 +82,8 @@ def check_login(caller_ident, ident_list, submit_list, submit_dict, call_data, p
         raise FailPage(message= "Login Fail: unable to retrieve user details", widget='login')
 
     # login ok, populate call_data and return
-    call_data['user_id'] = user[0]
-    call_data['role'] =  user[1]
-    call_data['username'] =  username
-    call_data['loggedin'] =  True
+    skicall.call_data['user_id'] = user[0]
+    skicall.call_data['role'] =  user[1]
+    skicall.call_data['username'] =  username
+    skicall.call_data['loggedin'] =  True
 

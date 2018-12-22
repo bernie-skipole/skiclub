@@ -72,128 +72,123 @@ def start_project(project, projectfiles, path, option):
     return {"org_name":"Example club membership project", 'rconn_0':rconn_0, 'rconn_1':rconn_1, 'rconn_2':rconn_2, 'rconn_3':rconn_3, 'projectfiles':projectfiles}
 
 
-def start_call(environ, path, project, called_ident, caller_ident, received_cookies, ident_data, lang, option, proj_data):
+def start_call(called_ident, skicall):
     "When a call is initially received this function is called."
 
     # set initial call_data values
-    page_data = {}
-    call_data = { "project":project,
-                  "called_ident":called_ident,
-                  "org_name":proj_data["org_name"],
-                  "authenticated":False,
-                  "loggedin":False,
-                  "role":"",
-                  "json_requested":False,
-                  "rx_ident_data":ident_data,
-                  "rconn_0":proj_data["rconn_0"],
-                  "rconn_1":proj_data["rconn_1"],
-                  "rconn_2":proj_data["rconn_2"],
-                  "rconn_3":proj_data["rconn_3"],
-                  "projectfiles":proj_data["projectfiles"]}
-
-    # rx_ident_data = received ident_data, not currently used
-    # but may be a useful item to have in call_data for users code
+    skicall.call_data = {
+                          "called_ident":called_ident,
+                          "org_name":skicall.proj_data["org_name"],
+                          "authenticated":False,
+                          "loggedin":False,
+                          "role":"",
+                          "json_requested":False,
+                          "rconn_0":skicall.proj_data["rconn_0"],
+                          "rconn_1":skicall.proj_data["rconn_1"],
+                          "rconn_2":skicall.proj_data["rconn_2"],
+                          "rconn_3":skicall.proj_data["rconn_3"],
+                          "projectfiles":skicall.proj_data["projectfiles"]}
 
     if called_ident is None:
         # Force url not found if no called_ident
-        return called_ident, call_data, page_data, lang
+        return
 
     ####### If the user is logged in, populate call_data
 
     user = None
-    if received_cookies:
-        cookie_name = project + '2'
-        if cookie_name in received_cookies:
-            cookie_string = received_cookies[cookie_name]
+    if skicall.received_cookies:
+        cookie_name = skicall.project + '2'
+        if cookie_name in skicall.received_cookies:
+            cookie_string = skicall.received_cookies[cookie_name]
             # so a recognised cookie has arrived, check redis 1 to see if the user has logged in
-            rconn_1 = call_data.get("rconn_1")
+            rconn_1 = skicall.call_data.get("rconn_1")
             user_id = redis_ops.logged_in(cookie_string, rconn_1)
             if user_id:
                 user = database_ops.get_user_from_id(user_id)
                 # user is (username, role, email, member) on None on failure
                 if user:
-                    call_data['loggedin'] = True
-                    call_data['user_id'] =  user_id
-                    call_data['username'] = user[0]
-                    call_data['role'] = user[1]
-                    call_data['email'] = user[2]
-                    call_data['member'] = user[3]
-                    call_data['cookie'] = cookie_string
+                    skicall.call_data['loggedin'] = True
+                    skicall.call_data['user_id'] =  user_id
+                    skicall.call_data['username'] = user[0]
+                    skicall.call_data['role'] = user[1]
+                    skicall.call_data['email'] = user[2]
+                    skicall.call_data['member'] = user[3]
+                    skicall.call_data['cookie'] = cookie_string
                     if user[1] != 'ADMIN':
-                        call_data['authenticated'] = False
+                        skicall.call_data['authenticated'] = False
                     else:
                         # Is this user authenticated, check redis 2 to see if authenticated
-                        rconn_2 = call_data.get("rconn_2")
-                        call_data['authenticated'] = redis_ops.is_authenticated(cookie_string, rconn_2)
+                        rconn_2 = skicall.call_data.get("rconn_2")
+                        skicall.call_data['authenticated'] = redis_ops.is_authenticated(cookie_string, rconn_2)
 
     ### Check the page being called
     page_num = called_ident[1]
 
     if page_num in _JSON_PAGES:
-        call_data['json_requested'] = True
+        skicall.call_data['json_requested'] = True
         
 
     ####### unprotected pages
 
     if page_num in _UNPROTECTED_PAGES:
         # Go straight to the page
-        return called_ident, call_data, page_data, lang
+        return called_ident
 
     # if user is not logged in, cannot choose any other page
     if user is None:
-        if caller_ident and call_data['json_requested']:
+        if skicall.caller_ident and skicall.call_data['json_requested']:
             # divert to the home page
-            page_data["JSONtoHTML"] = 'home'
-            return "general_json", call_data, page_data, lang
+            skicall.page_data["JSONtoHTML"] = 'home'
+            return "general_json"
         # otherwise divert to page not found
-        return None, call_data, page_data, lang
+        return
 
     ###### So user is logged in, and call_data is populated
 
     # If access is required to any of these pages, can now go to page
     if page_num in _LOGGED_IN_PAGES:
-        return called_ident, call_data, page_data, lang
+        return called_ident
 
     ###### So for any remaining page the user must have ADMIN role
     
     # if not admin, cannot proceed
-    if call_data['role'] != 'ADMIN':
-        if caller_ident and call_data['json_requested']:
+    if skicall.call_data['role'] != 'ADMIN':
+        if skicall.caller_ident and skicall.call_data['json_requested']:
             # divert to the home page
-            page_data["JSONtoHTML"] = 'home'
-            return "general_json", call_data, page_data, lang
+            skicall.page_data["JSONtoHTML"] = 'home'
+            return "general_json"
         # otherwise divert to page not found
-        return None, call_data, page_data, lang
+        return
 
     ### All admin pages require the caller page to set caller_ident
     ### So if no caller ident redirect to home page
-    if not caller_ident:
-        return 'home',  call_data, page_data, lang
+    if not skicall.caller_ident:
+        return 'home'
 
     # So user is an ADMIN, is he authenticated?
-    if not call_data['authenticated']:
+    if not skicall.call_data['authenticated']:
         # unauthenticated admin allowed to call 'check_login' page to become authenticated
         if page_num == 5021:
-            return called_ident, call_data, page_data, lang
+            return called_ident
         # Unauthenticated - jump to PIN page
-        if call_data['json_requested']:
+        if skicall.call_data['json_requested']:
             # divert to the PIN page
-            page_data["JSONtoHTML"] = 'input_pin'
-            return "general_json", call_data, page_data, lang
-        return 'input_pin', call_data, page_data, lang
+            skicall.page_data["JSONtoHTML"] = 'input_pin'
+            return "general_json"
+        return 'input_pin'
 
     # So user is both a logged in Admin user, and authenticated,
 
     # An authenticated user should never call pages to become authenticated, as he is already there
     if (page_num == 5021) or (page_num == 5515):
-        return 'home',  call_data, page_data, lang
+        return 'home'
 
     # can go to any remaining page
-    return called_ident, call_data, page_data, lang
+    return called_ident
 
 
 @use_submit_list
-def submit_data(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def submit_data(skicall):
     """This function is called when a Responder wishes to submit data for processing in some manner
        For two or more submit_list values, the decorator ensures the matching function is called instead"""
 
@@ -221,30 +216,24 @@ _HEADER_TEXT = { 2001 : "Home Page",
                }
 
 
-def end_call(page_ident, page_type, call_data, page_data, proj_data, lang):
+def end_call(page_ident, page_type, skicall):
     """This function is called at the end of a call prior to filling the returned page with page_data,
        it can also return an optional ident_data string to embed into forms."""
-
-    # If it is required to send ident_data, users code puts it into call_data["tx_ident_data"]
-    # and it is sent here
-
-    if "tx_ident_data" in call_data:
-        page_data['ident_data'] = call_data["tx_ident_data"]
 
     if page_type != "TemplatePage":
         return
 
     message_string = database_ops.get_all_messages()
     if message_string:
-        page_data['navigation', 'messages', 'para_text'] = message_string
+        skicall.page_data['navigation', 'messages', 'para_text'] = message_string
 
     page_num = page_ident[1]
 
-    page_data['header','headtitle','tag_text'] = proj_data["org_name"]
-    page_data['header', 'headpara', 'para_text']  = _HEADER_TEXT[page_num]
-    if call_data['loggedin']:
-        page_data['header', 'user', 'para_text']  = "Logged in : " + call_data['username']
-        page_data['header', 'user', 'show']  = True
+    skicall.page_data['header','headtitle','tag_text'] = skicall.proj_data["org_name"]
+    skicall.page_data['header', 'headpara', 'para_text']  = _HEADER_TEXT[page_num]
+    if skicall.call_data['loggedin']:
+        skicall.page_data['header', 'user', 'para_text']  = "Logged in : " + skicall.call_data['username']
+        skicall.page_data['header', 'user', 'show']  = True
 
     ### set the page left navigation buttons ###
 
@@ -257,13 +246,13 @@ def end_call(page_ident, page_type, call_data, page_data, proj_data, lang):
     else:
         nav_buttons = [['home','Home', True, ''], ['public','Public', True, '']]
 
-    if not call_data['loggedin']:
+    if not skicall.call_data['loggedin']:
         # user is not logged in
         if page_num != 5501:
             # If not already at the login page, then add a Login option to nav buttons
             nav_buttons.append( ['login','Login', True, ''])
         # set these nav_buttons into the widget and return
-        page_data['navigation', 'navbuttons', 'nav_links'] = nav_buttons
+        skicall.page_data['navigation', 'navbuttons', 'nav_links'] = nav_buttons
         return
 
     ## user is logged in ##
@@ -278,7 +267,7 @@ def end_call(page_ident, page_type, call_data, page_data, proj_data, lang):
     nav_buttons.append( ['logout','Logout', True, ''])
 
     # logged in administrators have access to further pages
-    if call_data['role'] == 'ADMIN':
+    if skicall.call_data['role'] == 'ADMIN':
         # admin users have access to setpin,  setup page and tests page
         if page_num != 8601:
             nav_buttons.append( ['setpin','New PIN', True, ''])
@@ -288,7 +277,7 @@ def end_call(page_ident, page_type, call_data, page_data, proj_data, lang):
             nav_buttons.append( ['tests','Tests', True, ''])
 
     # set these nav_buttons into the widget
-    page_data['navigation', 'navbuttons', 'nav_links'] = nav_buttons
+    skicall.page_data['navigation', 'navbuttons', 'nav_links'] = nav_buttons
 
     return
 
