@@ -9,7 +9,7 @@ import uuid
 
 from http import cookies
 
-from ....skilift import FailPage, GoTo, ValidateError, ServerError, projectURLpaths
+from skipole import FailPage, GoTo, ValidateError, ServerError, projectURLpaths
 
 from .. import redis_ops
 

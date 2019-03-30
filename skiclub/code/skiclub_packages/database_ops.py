@@ -8,7 +8,7 @@ import os, sqlite3, hashlib, random, shutil
 
 from datetime import datetime, date, timedelta
 
-from ...skilift import FailPage, GoTo, ValidateError, ServerError
+from skipole import FailPage, GoTo, ValidateError, ServerError
 
 from . import cfg
 

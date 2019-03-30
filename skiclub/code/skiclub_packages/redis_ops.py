@@ -10,7 +10,7 @@ else:
     _REDIS_AVAILABLE = True
 
 
-from ...skilift import FailPage, GoTo, ValidateError, ServerError
+from skipole import FailPage, GoTo, ValidateError, ServerError
 
 from . import cfg
 
