@@ -3,3 +3,8 @@ syntax: glob
 
 *.pyc
 *~
+*.tar.gz
+*.db
+skiadmin/*
+skis/*
+
