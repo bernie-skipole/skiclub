@@ -27,7 +27,7 @@
 "general_json": 2002,
 "home": 1,
 "input_pin": 5515,
-"jquery_core": "lib,jquery_core",
+"jquery_core": "skis,jquery_core",
 "json_confirm_delete_member": 3075,
 "json_confirm_delete_user": 3065,
 "login": 5001,
@@ -39,42 +39,42 @@
 "newpin": 8101,
 "nextmembers": 3051,
 "nextusers": 3041,
-"no_javascript": "lib,no_javascript",
+"no_javascript": "skis,no_javascript",
 "public": 7001,
-"redirector": "lib,redirector",
-"server_error": "lib,server_error",
+"redirector": "skis,redirector",
+"server_error": "skis,server_error",
 "setpin": 8100,
 "setup": 3001,
-"ski_basic": "lib,ski_basic",
-"ski_checkbox": "lib,ski_checkbox",
-"ski_confirm": "lib,ski_confirm",
+"ski_basic": "skis,ski_basic",
+"ski_checkbox": "skis,ski_checkbox",
+"ski_confirm": "skis,ski_confirm",
 "ski_css": 1006,
-"ski_debug_tools": "lib,ski_debug_tools",
-"ski_dropdown": "lib,ski_dropdown",
-"ski_error_messages": "lib,ski_error_messages",
-"ski_footers": "lib,ski_footers",
-"ski_headers": "lib,ski_headers",
-"ski_info": "lib,ski_info",
-"ski_inputforms": "lib,ski_inputforms",
-"ski_inputtables": "lib,ski_inputtables",
-"ski_inputtext": "lib,ski_inputtext",
-"ski_links": "lib,ski_links",
-"ski_lists": "lib,ski_lists",
-"ski_logins": "lib,ski_logins",
-"ski_paras": "lib,ski_paras",
-"ski_paths": "lib,ski_paths",
-"ski_radio": "lib,ski_radio",
-"ski_svgbasics": "lib,ski_svgbasics",
-"ski_svggraphs": "lib,ski_svggraphs",
-"ski_svgmeters": "lib,ski_svgmeters",
-"ski_tables": "lib,ski_tables",
-"ski_textarea": "lib,ski_textarea",
-"ski_upload": "lib,ski_upload",
-"skipole_js": "lib,skipole_js",
+"ski_debug_tools": "skis,ski_debug_tools",
+"ski_dropdown": "skis,ski_dropdown",
+"ski_error_messages": "skis,ski_error_messages",
+"ski_footers": "skis,ski_footers",
+"ski_headers": "skis,ski_headers",
+"ski_info": "skis,ski_info",
+"ski_inputforms": "skis,ski_inputforms",
+"ski_inputtables": "skis,ski_inputtables",
+"ski_inputtext": "skis,ski_inputtext",
+"ski_links": "skis,ski_links",
+"ski_lists": "skis,ski_lists",
+"ski_logins": "skis,ski_logins",
+"ski_paras": "skis,ski_paras",
+"ski_paths": "skis,ski_paths",
+"ski_radio": "skis,ski_radio",
+"ski_svgbasics": "skis,ski_svgbasics",
+"ski_svggraphs": "skis,ski_svggraphs",
+"ski_svgmeters": "skis,ski_svgmeters",
+"ski_tables": "skis,ski_tables",
+"ski_textarea": "skis,ski_textarea",
+"ski_upload": "skis,ski_upload",
+"skipole_js": "skis,skipole_js",
 "tests": 9001,
-"url_not_found": "lib,url_not_found",
+"url_not_found": "skis,url_not_found",
 "usersettings": 8001,
-"validate_error": "lib,validate_error",
+"validate_error": "skis,validate_error",
 "w3_css": 1002,
 "w3_theme_ski_css": 1004
 },
@@ -304,7 +304,7 @@ false,
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "members",
 "authenticate",
 "fill_input_pin"
@@ -324,7 +324,7 @@ false,
 5002
 ],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "members",
 "set_cookies",
 "set_cookie"
@@ -977,7 +977,7 @@ false,
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "members",
 "set_cookies",
 "logout"
@@ -1846,7 +1846,7 @@ false,
 ],
 "alternate_ident": "login",
 "fail_ident": 5001,
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "public",
 "login",
 "check_login"
@@ -1874,7 +1874,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": 5535,
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "members",
 "authenticate",
 "check_pin"
@@ -1903,7 +1903,7 @@ false,
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "public",
 "login",
 "create_login_page"
@@ -1921,7 +1921,7 @@ false,
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "members",
 "set_cookies",
 "logout"
@@ -2847,7 +2847,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": 3605,
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "edit_email"
@@ -2874,7 +2874,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": 3605,
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "edit_member_number"
@@ -2901,7 +2901,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": 3605,
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "edit_role"
@@ -2928,7 +2928,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": 3605,
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "edit_username"
@@ -2955,7 +2955,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "edituser"
@@ -2981,7 +2981,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": 3605,
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "make_password"
@@ -3008,7 +3008,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": "general_json",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "pin",
 "make_pin"
@@ -3034,7 +3034,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": "general_json",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "pin",
 "make_pin"
@@ -3715,7 +3715,7 @@ false,
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "fill_edituser_template"
@@ -3733,7 +3733,7 @@ false,
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "pin",
 "fill_generate_pin_template"
@@ -5953,7 +5953,7 @@ false,
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "add_user"
@@ -5971,7 +5971,7 @@ false,
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "backup",
 "dumpdatabase"
@@ -5992,7 +5992,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "cancel_delete"
@@ -6019,7 +6019,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "confirm_delete_member"
@@ -6046,7 +6046,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "confirm_delete_user"
@@ -6073,7 +6073,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": "editusers",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "delete_user"
@@ -6098,7 +6098,7 @@ false,
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "edit_members"
@@ -6116,7 +6116,7 @@ false,
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "edit_users"
@@ -6134,7 +6134,7 @@ false,
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "server",
 "create_index"
@@ -6155,7 +6155,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "json_confirm_delete_member"
@@ -6182,7 +6182,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "json_confirm_delete_user"
@@ -6209,7 +6209,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": "editmembers",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "next_members"
@@ -6236,7 +6236,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": "editusers",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "next_users"
@@ -6260,7 +6260,7 @@ false,
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "server",
 "server_settings"
@@ -6281,7 +6281,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": 3001,
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "server",
 "add_message"
@@ -6307,7 +6307,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": 3020,
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "server",
 "set_server_email_settings"
@@ -6337,7 +6337,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": 3010,
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "users",
 "submit_add_user"
@@ -6367,7 +6367,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": 3020,
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "backup",
 "upload"
@@ -7761,7 +7761,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": "general_json",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "members",
 "settings",
 "confirm_deregister"
@@ -7785,7 +7785,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": 8001,
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "members",
 "settings",
 "deregister_user"
@@ -7806,7 +7806,7 @@ false,
 "original_args": {
 "allowed_callers": [],
 "fail_ident": 8501,
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "members",
 "settings",
 "user_settings"
@@ -7827,7 +7827,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": 8001,
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "members",
 "settings",
 "set_email"
@@ -7853,7 +7853,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": 8001,
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "members",
 "settings",
 "new_password"
@@ -7881,7 +7881,7 @@ false,
 ],
 "alternate_ident": "home",
 "fail_ident": "setpin",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "pin",
 "set_your_pin"
@@ -7907,7 +7907,7 @@ false,
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "admin",
 "pin",
 "fill_new_pin"
@@ -7929,7 +7929,7 @@ false,
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "server_error",
-"submit_list": [
+"submit_list": ["skiclub_packages",
 "public",
 "home",
 "create_index"
