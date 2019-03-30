@@ -9,7 +9,7 @@ import uuid
 
 from http import cookies
 
-from skipole import FailPage, GoTo, ValidateError, ServerError, projectURLpaths
+from skipole import FailPage, GoTo, ValidateError, ServerError
 
 from .. import redis_ops
 
@@ -43,7 +43,7 @@ def logout(skicall):
     cki = cookies.SimpleCookie()
     cki[ck_key] = "noaccess"
     # set root project path in the cookie
-    url_dict = projectURLpaths()
+    url_dict = skicall.projectpaths()
     cki[ck_key]['path'] = url_dict[project]
 
     return cki
@@ -69,7 +69,7 @@ def set_cookie(skicall):
     # twelve hours expirey time
     cki[ck_key]['max-age'] = 43200
     # set root project path
-    url_dict = projectURLpaths()
+    url_dict = skicall.projectpaths()
     cki[ck_key]['path'] = url_dict[project]
     # and set the cookie string into database
     status = redis_ops.set_cookie(ck_string, user_id, skicall.call_data.get("rconn_1"))

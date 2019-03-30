@@ -67,7 +67,7 @@ rconn_2 = redis_ops.open_redis(redis_db=2)
 # and another for user_id
 rconn_3 = redis_ops.open_redis(redis_db=3)
 # Set the organisation name into proj_data, used in page header and automated email
-proj_data = {"org_name":"Example club membership project", 'rconn_0':rconn_0, 'rconn_1':rconn_1, 'rconn_2':rconn_2, 'rconn_3':rconn_3, 'projectfiles':projectfiles}
+proj_data = {"org_name":"Example club membership project", 'rconn_0':rconn_0, 'rconn_1':rconn_1, 'rconn_2':rconn_2, 'rconn_3':rconn_3, 'projectfiles':PROJECTFILES}
 
 
 
