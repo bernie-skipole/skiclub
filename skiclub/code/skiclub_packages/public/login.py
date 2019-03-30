@@ -7,7 +7,7 @@
 
 import random
 
-from ....skilift import FailPage, GoTo, ValidateError, ServerError
+from skipole import FailPage, GoTo, ValidateError, ServerError
 
 from .. import database_ops, redis_ops
 

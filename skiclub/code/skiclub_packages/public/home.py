@@ -6,7 +6,7 @@
 
 
 
-from ....skilift import FailPage, GoTo, ValidateError, ServerError
+from skipole import FailPage, GoTo, ValidateError, ServerError
 
 
 def create_index(skicall):
