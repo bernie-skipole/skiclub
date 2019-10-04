@@ -53,7 +53,7 @@ def set_your_pin(skicall):
     pin4 = skicall.call_data['newpin','pin4']
     if not pin4 or (len(pin4) != 1):
         raise FailPage('Invalid PIN', widget = 'newpin')
-    if database_ops.set_pin(user_id, [pin1, pin2, pin3, pin4]):
+    if database_ops.set_pin(skicall.project, user_id, [pin1, pin2, pin3, pin4]):
         space_pin = pin1+' '+pin2+' '+pin3+' '+pin4
         skicall.page_data['showadminpin', 'para_text'] = "New PIN for user %s is %s" % (username, space_pin)
     else:
@@ -105,7 +105,7 @@ def make_pin(skicall):
 
     skicall.call_data['edited_user_id'] = edited_user_id
     # generate new pin
-    new_pin = database_ops.make_admin(edited_user_id)
+    new_pin = database_ops.make_admin(skicall.project, edited_user_id)
     if new_pin:
         space_pin = ' '.join( c for c in new_pin)
         skicall.page_data['showadminpin', 'para_text'] = 'New PIN for user %s is %s' % (edited_user[0], space_pin)

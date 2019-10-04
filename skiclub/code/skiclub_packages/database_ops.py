@@ -15,7 +15,6 @@ from . import cfg
 # These global values will be set when start_database is called
 _DATABASE_PATH = ''
 _DATABASE_EXISTS = False
-_PROJECT = ''
 
 # The following are set here, and could be changed if required
 _DATABASE_DIR_NAME =  'members_database'
@@ -54,10 +53,7 @@ def get_default_pin():
 
 def hash_password(user_id, password):
     "Return hashed password, on failure return None"
-    global _PROJECT
-    if not _PROJECT:
-        return
-    seed_password = _PROJECT + str(user_id) +  password
+    seed_password = str(user_id) +  password
     hashed_password = hashlib.sha512( seed_password.encode('utf-8') ).digest()
     return hashed_password
 
@@ -70,12 +66,10 @@ def hash_pin(pin, seed):
 
 
 def start_database(project, projectfiles):
-    """Must be called first, before any other database operation to set globals"""
-    global _DATABASE_PATH, _DATABASE_EXISTS, _PROJECT
+    """Must be called first, before any other database operation to set globals and create the database if necessary"""
+    global _DATABASE_PATH, _DATABASE_EXISTS
     if _DATABASE_EXISTS:
         return
-    # Set global variables
-    _PROJECT = project
     database_dir = cfg.get_database_directory()
     if database_dir:
         database_dir = os.path.join(database_dir, _DATABASE_DIR_NAME)
@@ -110,7 +104,7 @@ def start_database(project, projectfiles):
         hashed_password = hash_password(1, _PASSWORD)
         con.execute("insert into users (USER_ID, username, password, role, email, member) values (?, ?, ?, ?, ?, ?)", (None, _USERNAME, hashed_password,  'ADMIN', None, None))
         # set admin pin, with user_id 1
-        set_pin(1, _PIN, con)
+        set_pin(project, 1, _PIN, con)
         # set email server settings
         con.execute("INSERT INTO serversettings (server_id,  emailuser, emailpassword, emailserver, no_reply, starttls) VALUES (?, ?, ?, ?, ?, ?)", ('1', None, None, _MAIL_SERVER, _NO_REPLY, 1))
         # set first message
@@ -693,14 +687,14 @@ def set_membership_number(user_id, new_member, con=None):
     return True
 
 
-def set_pin(user_id, new_pin, con=None):
+def set_pin(project, user_id, new_pin, con=None):
     "Return True on success, False on failure, this updates an existing admin, if con given does not commit"
     if (not  _DATABASE_EXISTS) or (not user_id):
         return False
     if con is None:
         try:
             con = open_database()
-            result = set_pin(user_id, new_pin, con)
+            result = set_pin(project, user_id, new_pin, con)
             if result:
                 con.commit()
             con.close()
@@ -709,7 +703,7 @@ def set_pin(user_id, new_pin, con=None):
             return False
     else:
         # The seed for each hash will consist of project + user_id + pair numbers
-        part_seed = _PROJECT + str(user_id)
+        part_seed = project + str(user_id)
         pin1_2 = hash_pin(new_pin[0] + new_pin[1], seed=part_seed+'1')
         pin1_3 = hash_pin(new_pin[0] + new_pin[2], seed=part_seed+'2')
         pin1_4 = hash_pin(new_pin[0] + new_pin[3], seed=part_seed+'3')
@@ -744,7 +738,7 @@ def get_admin(user_id, con=None):
     return result
 
 
-def make_admin(user_id, con=None):
+def make_admin(project, user_id, con=None):
     """Return PIN on success, None on failure, this creates a new admin, if the given user is not already an admin
           and generates a PIN for him.    If con given does not commit"""
     if (not  _DATABASE_EXISTS) or (not user_id):
@@ -755,7 +749,7 @@ def make_admin(user_id, con=None):
     if con is None:
         try:
             con = open_database()
-            result = make_admin(user_id, con)
+            result = make_admin(project, user_id, con)
             if result:
                 con.commit()
             con.close()
@@ -764,7 +758,7 @@ def make_admin(user_id, con=None):
         return result
     # generate a pin
     new_pin = ''.join(random.choice(_CHARSPUNCT) for x in range(4))
-    if not set_pin(user_id, new_pin, con):
+    if not set_pin(project, user_id, new_pin, con):
         return
     if not set_role(user_id, 'ADMIN', con):
         return
