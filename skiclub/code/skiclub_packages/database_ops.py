@@ -70,11 +70,7 @@ def start_database(project, projectfiles):
     global _DATABASE_PATH, _DATABASE_EXISTS
     if _DATABASE_EXISTS:
         return
-    database_dir = cfg.get_database_directory()
-    if database_dir:
-        database_dir = os.path.join(database_dir, _DATABASE_DIR_NAME)
-    else:
-        database_dir = os.path.join(projectfiles, project, _DATABASE_DIR_NAME)
+    database_dir = os.path.join(projectfiles, project, _DATABASE_DIR_NAME)
     _DATABASE_PATH = os.path.join(database_dir, _DATABASE_NAME)
     _DATABASE_EXISTS = True
     # make the database directory

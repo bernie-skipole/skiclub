@@ -70,7 +70,7 @@
 "url_not_found": "skis,url_not_found",
 "usersettings": 8001,
 "validate_error": "skis,validate_error",
-"w3_css": 1002,
+"w3_css": "skis,w3_css",
 "w3_theme_ski_css": 1004
 },
 "sections": {
@@ -266,15 +266,6 @@ false,
 "enable_cache": true,
 "mimetype": "text/css"
 }
-},
-"w3.css": {
-"ident": 1002,
-"brief": "CSS file page, w3.css",
-"FilePage": {
-"filepath": "skiclub/static/css/w3.css",
-"enable_cache": true,
-"mimetype": "text/css"
-}
 }
 }
 },
@@ -426,19 +417,6 @@ false,
 "show": true,
 "attribs": {
 "href": "{font_css}",
-"rel": "stylesheet",
-"type": "text/css"
-}
-}
-],
-[
-"ClosedPart",
-{
-"tag_name": "link",
-"brief": "css link to ski_css",
-"show": true,
-"attribs": {
-"href": "{ski_css}",
 "rel": "stylesheet",
 "type": "text/css"
 }
@@ -700,19 +678,6 @@ false,
 }
 ],
 [
-"ClosedPart",
-{
-"tag_name": "link",
-"brief": "css link to ski_css",
-"show": true,
-"attribs": {
-"href": "{ski_css}",
-"rel": "stylesheet",
-"type": "text/css"
-}
-}
-],
-[
 "Part",
 {
 "tag_name": "script",
@@ -856,25 +821,25 @@ false,
 "disabled2": false,
 "div1_class": "w3-section",
 "div2_class": "w3-section",
-"div3_class": "ski_left_40_10",
+"div3_class": "w3-container w3-center",
 "error_class": "w3-panel w3-red",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
 "hidden_field4": "",
-"input_accepted_class": "ski_input_accepted",
-"input_class1": "ski_input w3-margin-left",
-"input_class2": "ski_input  w3-margin-left",
-"input_errored_class": "ski_input_errored",
+"input_accepted_class": "w3-pale-green",
+"input_class1": "w3-margin-left",
+"input_class2": "w3-margin-left",
+"input_errored_class": "w3-pale-red",
 "input_text1": "",
 "input_text2": "",
 "inputdiv_class": "w3-container",
 "label1": "Username:",
 "label2": "Password:",
-"label_class1": "ski_left_label",
-"label_class2": "ski_left_label",
-"label_style1": "",
-"label_style2": "",
+"label_class1": "",
+"label_class2": "",
+"label_style1": "display:inline-block;margin-right:1%;text-align:right;width:40%;",
+"label_style2": "display:inline-block;margin-right:1%;text-align:right;width:40%;",
 "maxlength1": "",
 "maxlength2": "",
 "pattern1": "",
@@ -1082,19 +1047,6 @@ false,
 "show": true,
 "attribs": {
 "href": "{font_css}",
-"rel": "stylesheet",
-"type": "text/css"
-}
-}
-],
-[
-"ClosedPart",
-{
-"tag_name": "link",
-"brief": "css link to ski_css",
-"show": true,
-"attribs": {
-"href": "{ski_css}",
 "rel": "stylesheet",
 "type": "text/css"
 }
@@ -1350,19 +1302,6 @@ false,
 "show": true,
 "attribs": {
 "href": "{font_css}",
-"rel": "stylesheet",
-"type": "text/css"
-}
-}
-],
-[
-"ClosedPart",
-{
-"tag_name": "link",
-"brief": "css link to ski_css",
-"show": true,
-"attribs": {
-"href": "{ski_css}",
 "rel": "stylesheet",
 "type": "text/css"
 }
@@ -1755,9 +1694,6 @@ false,
 "brief": "New Tag",
 "show": true,
 "hide_if_empty": false,
-"attribs": {
-"class": "boldfont"
-},
 "parts": [
 [
 "Text",

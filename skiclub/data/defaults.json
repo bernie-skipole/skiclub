@@ -1,9 +1,9 @@
 {
-"backcol": "#8e39ad",
+"backcol": "#ffffff",
+"body_class": "w3-theme",
 "css_links": [
 "w3_css",
-"w3_theme_ski_css",
-"ski_css"
+"w3_theme_ski_css"
 ],
 "js_links": [
 "jquery_core",
@@ -14,11 +14,13 @@
 "CheckBox1": {
 "checkbox_class": "w3-check",
 "error_class": "w3-panel w3-red",
-"left_class": "ski_left_label",
+"left_style": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
 "widget_class": "w3-section"
 },
 "CheckBox2": {
-"checkbox_class": "w3-check"
+"checkbox_class": "w3-check",
+"left_style": "margin-right:1em",
+"right_style": "margin-left:1em"
 },
 "CheckInputs": {
 "checkbox_class": "w3-check",
@@ -27,8 +29,14 @@
 "CheckedText": {
 "checkbox_class": "w3-check",
 "error_class": "w3-panel w3-red",
-"input_class": "ski_input",
-"widget_class": "w3-section"
+"widget_class": "w3-container"
+},
+"SubmitCheckBox1": {
+"button_class": "w3-button w3-theme-d4 w3-margin-left",
+"checkbox_class": "w3-check",
+"error_class": "w3-panel w3-red",
+"label_style": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
+"widget_class": "w3-container"
 }
 },
 "confirm": {
@@ -74,16 +82,15 @@
 "dropdown": {
 "DropDown1": {
 "error_class": "w3-panel w3-red",
-"select_class": "ski_input",
-"widget_class": "w3-section"
+"left_style": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
+"widget_class": "w3-container"
 },
 "SubmitDropDown1": {
 "button_class": "w3-button w3-theme-d4 w3-margin-left",
 "error_class": "w3-panel w3-red",
 "inputdiv_class": "w3-section",
-"label_class": "ski_left_label",
-"select_class": "ski_input",
-"widget_class": "w3-section"
+"label_style": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
+"widget_class": "w3-container"
 }
 },
 "error_messages": {
@@ -108,15 +115,30 @@
 "widget_class": "w3-red"
 }
 },
+"footers": {
+"SimpleFooter": {
+"error_class": "w3-panel w3-red",
+"widget_class": "w3-container"
+}
+},
 "headers": {
+"DropDownButton1": {
+"button_class": "w3-button w3-black",
+"div_class": "w3-dropdown-content w3-bar-block w3-card-4",
+"link_class": "w3-bar-item w3-button",
+"widget_class": "w3-dropdown-hover"
+},
 "HeaderText2": {
 "error_class": "w3-panel w3-red"
 },
 "NavButtons1": {
-"button_class": "w3-button w3-round w3-theme-l1",
+"button_class": "w3-button w3-round w3-theme-l1 w3-border",
 "error_class": "w3-panel w3-red",
-"ul_class": "w3-ul",
-"widget_class": ""
+"ul_class": "w3-ul"
+},
+"TabButtons1": {
+"button_class": "w3-bar-item w3-button",
+"widget_class": "w3-bar"
 }
 },
 "inputforms": {
@@ -131,28 +153,34 @@
 },
 "SubmitForm1": {
 "button_class": "w3-button w3-theme-d4",
-"div_class": "",
+"container_class": "w3-section",
 "error_class": "w3-panel w3-red",
-"left_class": "ski_left_label",
-"widget_class": "w3-section"
+"left_style": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
+"widget_class": "w3-container"
 }
 },
 "inputtables": {
 "InputTable5": {
-"button1_class": "w3-button w3-padding-small w3-small w3-theme-dark",
+"button1_class": "w3-button w3-padding-small w3-small w3-theme-dark w3-margin-left",
 "button2_class": "w3-button w3-padding-small w3-small w3-theme-dark w3-margin-left",
-"input_class": "ski_input",
-"widget_class": "w3-section"
+"div_class": "w3-section",
+"label_style": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
+"widget_class": "w3-container"
 }
 },
 "inputtext": {
+"Password1": {
+"input_accepted_class": "w3-pale-green",
+"input_errored_class": "w3-pale-red"
+},
 "Password2": {
 "error_class": "w3-panel w3-red",
-"input_accepted_class": "ski_input_accepted",
-"input_class": "ski_input",
-"input_errored_class": "ski_input_errored",
-"label_class": "ski_left_label",
-"widget_class": "w3-section"
+"input_accepted_class": "w3-pale-green",
+"input_errored_class": "w3-pale-red",
+"label_style": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
+"redstar_class": "w3-margin-left",
+"redstar_style": "color:red",
+"widget_class": "w3-container"
 },
 "SubmitDict1": {
 "button_class": "w3-button w3-theme-d4 w3-margin-left",
@@ -164,52 +192,58 @@
 "SubmitTextInput1": {
 "button_class": "w3-button w3-theme-d4 w3-margin-left",
 "error_class": "w3-panel w3-red",
-"input_accepted_class": "ski_input_accepted",
-"input_class": "ski_input",
-"input_errored_class": "ski_input_errored",
-"inputandbutton_class": "ski_nowrap",
+"input_accepted_class": "w3-pale-green",
+"input_errored_class": "w3-pale-red",
+"inputandbutton_style": "white-space: nowrap;",
 "inputdiv_class": "w3-section",
-"label_class": "ski_left_label",
-"widget_class": "w3-section"
+"label_style": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
+"widget_class": "w3-container"
 },
 "SubmitTextInput3": {
 "button_class": "w3-button w3-theme-d4",
-"button_label_class": "ski_left_label",
+"button_label_style": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
 "buttondiv_class": "w3-section",
 "error_class": "w3-panel w3-red",
-"input_accepted_class": "ski_input_accepted",
-"input_class": "ski_input",
-"input_errored_class": "ski_input_errored",
+"input_accepted_class": "w3-pale-green",
+"input_errored_class": "w3-pale-red",
 "inputdiv_class": "w3-section",
-"label_class": "ski_left_label",
+"label_style": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
 "outer_class": "w3-section",
-"widget_class": "w3-section"
-},
-"TextInput1": {
-"widget_class": "ski_input"
+"widget_class": "w3-container"
 },
 "TextInput2": {
 "error_class": "w3-panel w3-red",
-"input_accepted_class": "ski_input_accepted",
-"input_class": "ski_input",
-"input_errored_class": "ski_input_errored",
-"inputdiv_class": "",
-"label_class": "ski_left_label",
-"widget_class": "w3-section"
+"input_accepted_class": "w3-pale-green",
+"input_errored_class": "w3-pale-red",
+"label_style": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
+"redstar_class": "w3-margin-left",
+"redstar_style": "color:red",
+"widget_class": "w3-container"
+},
+"TextInput3": {
+"input_accepted_class": "w3-pale-green",
+"input_errored_class": "w3-pale-red",
+"left_style": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
+"widget_class": "w3-container"
 },
 "TextInput4": {
-"input_class": "ski_input",
-"inputdiv_class": "ski_left_marg_35_percent",
-"label_class": "",
-"labeldiv_class": "ski_left_marg_35_percent"
+"input_accepted_class": "w3-pale-green",
+"input_errored_class": "w3-pale-red",
+"input_style": "padding:8px;border:2px solid #ccc;width:80%",
+"inputdiv_class": "w3-container",
+"labeldiv_class": "w3-container",
+"redstar_class": "w3-margin-left",
+"redstar_style": "color:red",
+"widget_class": "w3-container"
 },
 "TwoInputsSubmit1": {
 "button_class": "w3-button w3-theme-d4 w3-margin-left",
 "error_class": "w3-panel w3-red",
-"input_class1": "ski_input",
-"input_class2": "ski_input  w3-margin-left",
-"label_class": "ski_left_label",
-"widget_class": "w3-section"
+"input_accepted_class": "w3-pale-green",
+"input_class2": "w3-margin-left",
+"input_errored_class": "w3-pale-red",
+"label_style": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
+"widget_class": "w3-container"
 }
 },
 "links": {
@@ -218,13 +252,11 @@
 "widget_class": "w3-button w3-block w3-theme-d4"
 },
 "ButtonLink2": {
-"button_class": "w3-button w3-block w3-theme-l1 w3-border",
-"buttondiv_class": "ski_mid_button",
+"button_class": "w3-button w3-theme-l1 w3-border w3-round",
+"buttondiv_class": "w3-container w3-center",
+"buttondiv_style": "margin-left:20%;width:20em;",
 "error_class": "w3-panel w3-red",
-"widget_class": "w3-section"
-},
-"CloseButton": {
-"widget_class": ""
+"widget_class": "w3-container"
 },
 "GeneralButtonTable": {
 "odd_class": "w3-theme-d2",
@@ -243,6 +275,14 @@
 "header_class": "w3-theme-d3",
 "odd_class": "w3-theme-d2",
 "widget_class": "w3-table w3-theme-d1 w3-border w3-bordered"
+},
+"MessageButton": {
+"boxdiv_class": "w3-modal-content w3-panel w3-theme-d4",
+"buttondiv_class": "",
+"inner_class": "w3-panel w3-theme-d4",
+"messagediv_class": "w3-modal",
+"x_class": "w3-bar-item w3-button w3-right w3-theme-l2",
+"xdiv_class": "w3-bar"
 },
 "Table1_Button": {
 "header_class": "w3-theme-d3",
@@ -269,19 +309,17 @@
 "logins": {
 "NamePasswd1": {
 "button_class": "w3-button w3-theme-d4 w3-margin",
-"button_style": "margin-left:40%",
+"button_style": "",
 "div1_class": "w3-section",
 "div2_class": "w3-section",
-"div3_class": "ski_left_40_10",
+"div3_class": "w3-container w3-center",
 "error_class": "w3-panel w3-red",
-"input_accepted_class": "ski_input_accepted",
-"input_class1": "ski_input w3-margin-left",
-"input_class2": "ski_input  w3-margin-left",
+"input_accepted_class": "w3-pale-green",
+"input_errored_class": "w3-pale-red",
 "inputdiv_class": "w3-container",
-"input_errored_class": "ski_input_errored",
-"label_class1": "ski_left_label",
-"label_class2": "ski_left_label",
-"widget_class": ""
+"label_style1": "display:inline-block;margin-right:1%;text-align:right;width:40%;",
+"label_style2": "display:inline-block;margin-right:1%;text-align:right;width:40%;",
+"widget_class": "w3-container"
 },
 "Pin4": {
 "butt_div_class": "w3-section",
@@ -307,13 +345,18 @@
 "ShowPara2": {
 "close_class": "w3-button w3-round w3-theme-l1 w3-right",
 "widget_class": "w3-panel w3-theme-action w3-center"
+},
+"TextBlockPara": {
+"error_class": "w3-panel w3-red"
 }
 },
 "radio": {
 "BooleanRadio": {
-"left_class1": "ski_left_label",
-"left_class2": "ski_left_label",
-"widget_class": "w3-section"
+"div_class1": "w3-section",
+"div_class2": "w3-section",
+"left_style1": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
+"left_style2": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
+"widget_class": "w3-container"
 },
 "RadioButton1": {
 "error_class": "w3-panel w3-red",
@@ -337,6 +380,11 @@
 "odd_class": "w3-theme-d2",
 "widget_class": "w3-table w3-theme-d1 w3-border w3-bordered"
 },
+"ThreeColTable1": {
+"header_class": "w3-theme-d3",
+"odd_class": "w3-theme-d2",
+"widget_class": "w3-table w3-theme-d1 w3-border w3-bordered"
+},
 "TwoColTable1": {
 "header_class": "w3-theme-d2",
 "odd_class": "w3-theme-d1",
@@ -347,15 +395,15 @@
 "SubmitTextArea": {
 "button_class": "w3-button w3-theme-d4 w3-margin-left",
 "error_class": "w3-panel w3-red",
-"inputdiv_class": "",
-"textarea_class": "ski_input",
-"widget_class": "w3-section"
+"inputdiv_class": "w3-container w3-center",
+"widget_class": "w3-container"
 },
 "TextArea2": {
 "error_class": "w3-panel w3-red",
-"label_class": "",
-"textarea_class": "ski_input",
-"widget_class": "w3-section"
+"label_style": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
+"redstar_class": "w3-margin-left",
+"redstar_style": "color:red",
+"widget_class": "w3-container"
 }
 },
 "upload": {
@@ -370,8 +418,8 @@
 "UploadFile1": {
 "error_class": "w3-panel w3-red",
 "filebutton_class": "w3-button w3-theme-d4",
-"label_class": "ski_left_label",
-"widget_class": "w3-section"
+"label_style": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
+"widget_class": "w3-container"
 }
 }
 }

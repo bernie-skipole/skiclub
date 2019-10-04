@@ -29,9 +29,7 @@ def dumpdatabase(skicall):
     if os.path.exists(backupfile):
         os.unlink(backupfile)
 
-    homedir = cfg.get_database_directory()
-    if not homedir:
-        homedir = os.path.join(skicall.call_data["projectfiles"], skicall.project)
+    homedir = os.path.join(skicall.call_data["projectfiles"], skicall.project)
 
     # call gpg2 to encrypt the dump
 
@@ -60,9 +58,7 @@ def upload(skicall):
     if (('upload','action') not in skicall.call_data) or (not skicall.call_data['upload','action']):
         raise FailPage("Invalid file.", widget = 'upload' )
 
-    homedir = cfg.get_database_directory()
-    if not homedir:
-        homedir = os.path.join(skicall.call_data["projectfiles"], skicall.project)
+    homedir = os.path.join(skicall.call_data["projectfiles"], skicall.project)
 
     uploaded_data = skicall.call_data['upload','action']
     args = ["gpg2"]
