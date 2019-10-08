@@ -3,7 +3,7 @@
 "default_language": "en",
 "brief": "Example club membership project",
 "version": "0.6.1",
-"skipole": "3.5.5",
+"skipole": "3.5.6",
 "specialpages": {
 "cancel_delete": 3080,
 "check_login": 5002,
@@ -1563,19 +1563,6 @@ false,
 }
 ],
 [
-"ClosedPart",
-{
-"tag_name": "link",
-"brief": "css link to ski_css",
-"show": true,
-"attribs": {
-"href": "{ski_css}",
-"rel": "stylesheet",
-"type": "text/css"
-}
-}
-],
-[
 "Part",
 {
 "tag_name": "script",
@@ -1724,14 +1711,16 @@ false,
 "hidden_field4": "",
 "hide": false,
 "inner_div_class": "",
-"left_class": "ski_left_label",
+"left_class": "",
 "left_label": "Submit your PIN:",
+"left_style": "display:inline-block;margin-right:1%;text-align:right;width:30%;",
 "pin1": true,
 "pin2": true,
 "pin3": true,
 "pin4": true,
 "right_class": "",
 "right_label": "",
+"right_style": "",
 "show": true,
 "show_error": "",
 "widget_class": "w3-section",
@@ -1747,7 +1736,7 @@ false,
 "fields": {
 "para_text": "",
 "show": true,
-"widget_class": "ski_top_bot_10",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -6936,12 +6925,14 @@ false,
 "inner_div_class": "",
 "left_class": "ski_left_label",
 "left_label": "Set the PIN:",
+"left_style": "",
 "pin1": true,
 "pin2": true,
 "pin3": true,
 "pin4": true,
 "right_class": "",
 "right_label": "",
+"right_style": "",
 "show": true,
 "show_error": "",
 "widget_class": "",
