@@ -1977,19 +1977,6 @@ false,
 }
 ],
 [
-"ClosedPart",
-{
-"tag_name": "link",
-"brief": "css link to ski_css",
-"show": true,
-"attribs": {
-"href": "{ski_css}",
-"rel": "stylesheet",
-"type": "text/css"
-}
-}
-],
-[
 "Part",
 {
 "tag_name": "script",
@@ -2254,19 +2241,6 @@ false,
 "show": true,
 "attribs": {
 "href": "{font_css}",
-"rel": "stylesheet",
-"type": "text/css"
-}
-}
-],
-[
-"ClosedPart",
-{
-"tag_name": "link",
-"brief": "css link to ski_css",
-"show": true,
-"attribs": {
-"href": "{ski_css}",
 "rel": "stylesheet",
 "type": "text/css"
 }
@@ -2548,19 +2522,6 @@ false,
 "show": true,
 "attribs": {
 "href": "{font_css}",
-"rel": "stylesheet",
-"type": "text/css"
-}
-}
-],
-[
-"ClosedPart",
-{
-"tag_name": "link",
-"brief": "css link to ski_css",
-"show": true,
-"attribs": {
-"href": "{ski_css}",
 "rel": "stylesheet",
 "type": "text/css"
 }
